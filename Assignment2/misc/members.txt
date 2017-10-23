@@ -1,12 +1,12 @@
 # Please leave your contact information here
 
 Member 1:
-Name: Momo Yoshida
-Email: momo.yoshida@mail.utoronto.ca
+Name: 
+Email: 
 
 Member 2:
-Name:
-Email:
+Name: Momo Yoshida
+Email: momo.yoshida@mail.utoronto.ca 
 
 Member 3:
 Name:
