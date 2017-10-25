@@ -1,15 +1,18 @@
 # Fill in, commit and push each day.
-# Group Member: FILL THIS IN
+# Group Member: Momo Yoshida
 
 Oct 23, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : No work.
+	Today     : Added group repo into Git and created new branch.
+	Obstacles : Took a while to understand how exactly to push
+				from one branch to another.
 
 Oct 24, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : group repo and git.
+	Today     : No update from other 2 group members. 
+			    Better talk to Arnold about them.
+			    Read over the assignment once.
+	Obstacles : None.
 
 Oct 25, 2017
 	Yesterday :
