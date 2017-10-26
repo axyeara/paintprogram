@@ -16,9 +16,11 @@ Oct 24, 2017
 	Obstacles :No significant obstacles.
 
 Oct 25, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : No work (break day).
+	Today     :Break day. Currently waiting until the rest of the members of the group successfully update their
+				contact information in order to plan and organize our workload. I analyzed most of the starter code
+				so that I could be prepared for the meeting.
+	Obstacles :No significant obstacles.
 
 Oct 26, 2017
 	Yesterday :
