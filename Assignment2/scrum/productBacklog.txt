@@ -7,9 +7,9 @@
 --------------------------------------------------------------------------
 TYPE     : USER STORY 1
 NAME     : Draw Circle
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Arnold
+PRIORITY : N/A
+ESTIMATE : N/A
 AS A     : user
 I WANT   : To click the center of the circle, drag, and release to specify
            a circle to be drawn in the current style.
@@ -33,9 +33,9 @@ SO THAT  : I can see the circle I am about to build on release of the mouse
 --------------------------------------------------------------------------
 TYPE     : USER STORY 3
 NAME     : Draw Rectangle
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day(3-4 hours)
 AS A     : user
 I WANT   : To click on one corner of a rectangle, drag, and release to 
 		   specify two corners of a rectangle to be drawn in the current style.
@@ -102,9 +102,9 @@ SO THAT  :
 --------------------------------------------------------------------------
 TYPE     : USER STORY 7
 NAME     : Line thickness selector
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day (or 3-4 hours)
 AS A     : user
 I WANT   : To be able to select the current line thickness, to be applied
            to subsequent shapes. Example:
@@ -145,7 +145,7 @@ ISSUE    : Currently ,you can't tell which mode "Circle", "Rectangle", ...
 --------------------------------------------------------------------------
 TYPE     : BUG 3
 NAME     : Architecture behind choosing selection mode is poor
-OWNER    : 
+OWNER    : Alexander Yeara
 PRIORITY :
 ESTIMATE : 
 ISSUE    : Code is not modular and is difficult to expand. Need a better
@@ -170,9 +170,9 @@ ISSUE    : Having a list of different types of drawable things in the
 --------------------------------------------------------------------------
 TYPE     : BUG 5
 NAME     : Squiggle is broken
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day (or 3-4 hours)
 ISSUE    : Squiggles are connected to each other by a straight line. Each drag
 		   of the mouse should be a separate squiggle. Possibly
            the issue is with the representation of the squiggles in the Model.

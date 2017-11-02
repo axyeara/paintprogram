@@ -57,13 +57,13 @@ Oct 31, 2017
 	Obstacles :No significant obstacles.
 
 Nov 1, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : No work.
+	Today     : I met with my team member for the first Sprint Planning Meeting.
+	Obstacles : No significant obstacles.
 	
 Nov 2, 2017
-	Yesterday :
-	Today     :
+	Yesterday : I met with my team member for the first Sprint Planning Meeting. 
+	Today     : 
 	Obstacles :
 	
 Nov 3, 2017
