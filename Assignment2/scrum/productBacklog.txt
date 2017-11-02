@@ -18,8 +18,8 @@ SO THAT  : I can add circles to my canvas
 --------------------------------------------------------------------------
 TYPE     : USER STORY 2
 NAME     : Draw Circle Feedback
-OWNER    : 
-PRIORITY :
+OWNER    : Momo
+PRIORITY : 1
 ESTIMATE : 
 AS A     : user
 I WANT   : As a user is specifying a Circle, during the drag, a 'current'
@@ -44,8 +44,8 @@ SO THAT  : I can add rectangles to my canvas
 --------------------------------------------------------------------------
 TYPE     : USER STORY 4
 NAME     : Draw Rectangle Feedback
-OWNER    : 
-PRIORITY :
+OWNER    : Momo
+PRIORITY : 2
 ESTIMATE : 
 AS A     : user
 I WANT   : Similarly to Draw Circle Feedback, display the rectangle in mid construction.
@@ -78,8 +78,8 @@ SO THAT  :
 --------------------------------------------------------------------------
 TYPE     : USER STORY 6
 NAME     : Fill style selector
-OWNER    : 
-PRIORITY :
+OWNER    : Momo
+PRIORITY : 3
 ESTIMATE : 
 AS A     : user
 I WANT   : To be able to select the current drawing style (filled or outline), to be applied
@@ -135,7 +135,7 @@ ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
 --------------------------------------------------------------------------
 TYPE     : BUG 2
 NAME     : Drawing selection mode not indicated
-OWNER    : 
+OWNER    : Momo
 PRIORITY :
 ESTIMATE : 
 ISSUE    : Currently ,you can't tell which mode "Circle", "Rectangle", ...
@@ -157,7 +157,7 @@ ISSUE    : Code is not modular and is difficult to expand. Need a better
 --------------------------------------------------------------------------
 TYPE     : BUG 4
 NAME     : Architecture behind Model is poor
-OWNER    : 
+OWNER    : Momo
 PRIORITY :
 ESTIMATE : 
 ISSUE    : Having a list of different types of drawable things in the
@@ -180,7 +180,7 @@ ISSUE    : Squiggles are connected to each other by a straight line. Each drag
 --------------------------------------------------------------------------
 TYPE     : BUG 6
 NAME     : Circle drawing is broken
-OWNER    : 
+OWNER    : Momo
 PRIORITY :
 ESTIMATE : 
 ISSUE    : The first click should specify the center of the circle, with

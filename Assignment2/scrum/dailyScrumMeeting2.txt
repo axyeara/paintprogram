@@ -46,16 +46,19 @@ Oct 30, 2017
 
 Oct 31, 2017
 	Yesterday : No work.
-	Today     : 
-	Obstacles :
+	Today     : Read through the requirements for the assignment
+			    to prepare for the meeting tomorrow.
+	Obstacles : None.
 
 Nov 1, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : Read through the requirements for the assignment
+			    to prepare for the meeting tomorrow.
+	Today     : Meet with a group member today. Attempt starting
+				and finishing a user story.
+	Obstacles : None.
 	
 Nov 2, 2017
-	Yesterday :
+	Yesterday : Meet with a group member today.
 	Today     :
 	Obstacles :
 	
