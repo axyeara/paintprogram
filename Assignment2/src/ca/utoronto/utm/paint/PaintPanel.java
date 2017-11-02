@@ -19,6 +19,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 
 	private String mode; // modifies how we interpret input (could be better?)
 	private Circle circle; // the circle we are building
+	private Rectangle rectangle;
 	
 	public PaintPanel(PaintModel model, View view){
 		this.setBackground(Color.blue);
@@ -26,7 +27,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		
-		this.mode="Circle"; // bad code here?
+		this.mode= mode; // bad code here?
 		
 		this.model = model;
 		this.model.addObserver(this);
@@ -64,6 +65,16 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int y = c.getCentre().getY();
 			int radius = c.getRadius();
 			g2d.drawOval(x, y, radius, radius);
+		}
+		
+		// Draw Rectangles
+		ArrayList<Rectangle> rectangles = this.model.getRectangles();
+		for (Rectangle r: this.model.getRectangles()) {
+			int x = r.getOrigin().getX();
+			int y = r.getOrigin().getY();
+			int height = r.getHeight();
+			int width = r.getWidth();
+			g2d.drawRect(x, y, width, height);
 		}
 		
 		g2d.dispose();
@@ -119,6 +130,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			Point centre = new Point(e.getX(), e.getY());
 			int radius = 0;
 			this.circle=new Circle(centre, 0);
+			
+		} else if(this.mode == "Rectangle") {
+			Point origin = new Point(e.getX(), e.getY());
+			int height = 0;
+			int width = 0;
+			this.rectangle = new Rectangle(origin, 0,  0);
 		}
 	}
 
@@ -133,6 +150,30 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				this.circle.setRadius(radius);
 				this.model.addCircle(this.circle);
 				this.circle=null;
+			}
+		} else if(this.mode=="Rectangle") {
+			if(this.rectangle!= null) {
+				if (this.rectangle.getOrigin().getX() - e.getX() <  0) {
+					int width = Math.abs(this.rectangle.getOrigin().getX()-e.getX());
+					this.rectangle.setWidth(width);
+				}
+				else {
+					int width = Math.abs(this.rectangle.getOrigin().getX()-e.getX());
+					this.rectangle.getOrigin().setX(Math.abs(e.getX()));
+					this.rectangle.setWidth(width);
+				}
+				if (this.rectangle.getOrigin().getY() - e.getY() < 0){
+					int height = Math.abs(this.rectangle.getOrigin().getY()-e.getY());
+					this.rectangle.setHeight(height);
+				}
+				else {
+					int height = Math.abs(this.rectangle.getOrigin().getY()-e.getY());
+					this.rectangle.getOrigin().setY(Math.abs(e.getY()));
+					this.rectangle.setHeight(height);
+				}
+				
+				this.model.addRectangle(this.rectangle);
+				this.rectangle = null;
 			}
 		}
 		
