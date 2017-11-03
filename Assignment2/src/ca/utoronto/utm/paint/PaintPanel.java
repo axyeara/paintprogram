@@ -20,6 +20,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private String mode; // modifies how we interpret input (could be better?)
 	private Circle circle; // the circle we are building
 	private Rectangle rectangle;
+	private Squiggle squiggle;
 	
 	public PaintPanel(PaintModel model, View view){
 		this.setBackground(Color.blue);
@@ -142,6 +143,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(this.mode=="Squiggle"){
+			this.model.clearPoints();
 			
 		} else if(this.mode=="Circle"){
 			if(this.circle!=null){
