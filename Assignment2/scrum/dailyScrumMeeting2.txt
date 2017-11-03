@@ -58,9 +58,12 @@ Nov 1, 2017
 	Obstacles : None.
 	
 Nov 2, 2017
-	Yesterday : Meet with a group member today.
-	Today     :
-	Obstacles :
+	Yesterday : Met with a group member.
+	Today     : Fix circle because it does not work the way 
+				the user would expect it to. 
+	Obstacles : Was confused about fixing circle and classifying
+				it as user story 1. Also could not allocate enough
+				time, need to put in more time tomorrow.
 	
 Nov 3, 2017
 	Yesterday :
