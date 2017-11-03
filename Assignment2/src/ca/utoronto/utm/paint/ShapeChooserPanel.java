@@ -1,9 +1,13 @@
 package ca.utoronto.utm.paint;
 
 import javax.swing.*;
+
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
@@ -13,13 +17,28 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	
 	public ShapeChooserPanel(View view) {	
 		this.view=view;
+		ImageIcon rectangle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/rectangle.gif"));
+		ImageIcon circle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/circle.gif"));
+		ImageIcon square = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/square.gif"));
+		ImageIcon squiggle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/squiggle.png"));
+		ImageIcon polyline = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/polyline.gif"));
 		
-		String[] buttonLabels = { "Circle", "Rectangle", "Square", "Squiggle", "Polyline" };
-		this.setLayout(new GridLayout(buttonLabels.length, 1));
-		for (String label : buttonLabels) {
-			JButton button = new JButton(label);
+		ImageIcon[] buttonIcons = {circle, rectangle, square, squiggle, polyline};
+		String[] buttonLabels = {"Circle", "Rectangle", "Square", "Squiggle", "Polyline"};
+		this.setLayout(new GridLayout(buttonIcons.length, 1));
+		int index = 0;
+		for (ImageIcon icon : buttonIcons) {
+			JButton button = new JButton(icon);
+			button.setActionCommand(buttonLabels[index]);
+			button.setBackground(Color.WHITE);
 			this.add(button);
 			button.addActionListener(this);
+			index++;
 		}
 	}
 	
