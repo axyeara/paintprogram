@@ -63,12 +63,12 @@ Nov 1, 2017
 	
 Nov 2, 2017
 	Yesterday : I met with my team member for the first Sprint Planning Meeting. 
-	Today     : 
-	Obstacles :
+	Today     : I implemented UserStory3 and bug1.
+	Obstacles : I believe my code fix for UserStory could've been more concise. I'll to find a better solution.
 	
 Nov 3, 2017
-	Yesterday :
-	Today     :
+	Yesterday : I implemented UserStory3 and bug1.
+	Today     : I will try to implement bug5 and UserStory5, or maybe more.
 	Obstacles :
 
 Nov 4, 2017

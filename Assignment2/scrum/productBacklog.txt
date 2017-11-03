@@ -54,9 +54,9 @@ SO THAT  : I can see the rectangle I am about to build on release of the mouse b
 --------------------------------------------------------------------------
 TYPE     : USER STORY 5
 NAME     : Color selector
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Alexander Yeara
+PRIORITY :1
+ESTIMATE : 1 day (or 3-4 hours)
 AS A     : user
 I WANT   : To be able to select the current drawing color, to be applied
            to subsequent shapes. Example: 
@@ -138,9 +138,9 @@ SO THAT  : I can add squares to my canvas
 --------------------------------------------------------------------------
 TYPE     : BUG 1
 NAME     : Icons instead of text for drawing mode selection
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day (or 3-4 hours)
 ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
@@ -157,8 +157,8 @@ ISSUE    : Currently ,you can't tell which mode "Circle", "Rectangle", ...
 TYPE     : BUG 3
 NAME     : Architecture behind choosing selection mode is poor
 OWNER    : Alexander Yeara
-PRIORITY :
-ESTIMATE : 
+PRIORITY : 3
+ESTIMATE : N/A
 ISSUE    : Code is not modular and is difficult to expand. Need a better
            architecture behind selecting a drawing mode, and handling
            the drawing events. Consider some design patterns here.
@@ -200,6 +200,30 @@ ISSUE    : The first click should specify the center of the circle, with
 --------------------------------------------------------------------------
 
 # COMPLETED USER STORIES/BUGS BELOW ###########################################
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 3
+NAME     : Draw Rectangle
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day(3-4 hours)
+AS A     : user
+I WANT   : To click on one corner of a rectangle, drag, and release to 
+		   specify two corners of a rectangle to be drawn in the current style.
+SO THAT  : I can add rectangles to my canvas
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : BUG 1
+NAME     : Icons instead of text for drawing mode selection
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day (or 3-4 hours)
+ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
+--------------------------------------------------------------------------
+
+
+
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
 
