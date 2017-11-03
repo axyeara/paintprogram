@@ -7,9 +7,9 @@
 --------------------------------------------------------------------------
 TYPE     : USER STORY 1
 NAME     : Draw Circle
-OWNER    : Momo
-PRIORITY : 1
-ESTIMATE : 2 hours
+OWNER    : Arnold
+PRIORITY : N/A
+ESTIMATE : N/A
 AS A     : user
 I WANT   : To click the center of the circle, drag, and release to specify
            a circle to be drawn in the current style.
