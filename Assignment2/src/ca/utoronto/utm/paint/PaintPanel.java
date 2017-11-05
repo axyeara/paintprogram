@@ -24,7 +24,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private Square square;
 	
 	public PaintPanel(PaintModel model, View view){
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.WHITE);
 		this.setPreferredSize(new Dimension(300,300));
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -49,12 +49,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// setBackground (Color.blue); 
 		// Origin is at the top left of the window 50 over, 75 down
 		g2d.setColor(Color.white);
-        g2d.drawString ("i="+i, 50, 75);
-		i=i+1;
+   
 
 		// Draw Squiggles
 		ArrayList<Squiggle> squiggles = this.model.getSquiggles();
 		for (Squiggle s: squiggles) {
+			g2d.setColor(s.color);
 			for(int i=0;i<s.getPoints().size()-1; i++){
 				Point p1=s.getPoints().get(i);
 				Point p2=s.getPoints().get(i+1);
@@ -65,6 +65,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Draw Circles
 		ArrayList<Circle> circles = this.model.getCircles();
 		for(Circle c: this.model.getCircles()){
+			g2d.setColor(c.color);
 			int x = c.getCentre().getX();
 			int y = c.getCentre().getY();
 			int radius = c.getRadius();
@@ -74,6 +75,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Draw Rectangles
 		ArrayList<Rectangle> rectangles = this.model.getRectangles();
 		for (Rectangle r: this.model.getRectangles()) {
+			g2d.setColor(r.color);
 			int x = r.getOrigin().getX();
 			int y = r.getOrigin().getY();
 			int height = r.getHeight();
@@ -86,6 +88,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Draw Squares
 		ArrayList<Square> squares = this.model.getSquares();
 		for (Square sq: this.model.getSquares()) {
+			g2d.setColor(sq.color);
 			int x = sq.getOrigin().getX();
 			int y = sq.getOrigin().getY();
 			int height = sq.getHeight();
@@ -166,6 +169,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		if(this.mode=="Squiggle"){
 			if (this.squiggle != null) {
 				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
+				this.squiggle.color = this.view.defaultColor;
 				this.model.addSquiggle(this.squiggle);
 				this.squiggle = null;
 			}
@@ -174,6 +178,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				// Problematic notion of radius and centre!!
 				int radius = Math.abs(this.circle.getCentre().getX()-e.getX());
 				this.circle.setRadius(radius);
+				this.circle.color = this.view.defaultColor;
 				this.model.addCircle(this.circle);
 				this.circle=null;
 			}
@@ -198,6 +203,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 					this.rectangle.setHeight(height);
 				}
 				
+				this.rectangle.color = this.view.defaultColor;
 				this.model.addRectangle(this.rectangle);
 				this.rectangle = null;
 			}
@@ -222,6 +228,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 					this.square.setHeight(height);
 				}
 				
+				this.square.color = this.view.defaultColor;
 				this.model.addSquare(this.square);
 				this.square = null;
 			}

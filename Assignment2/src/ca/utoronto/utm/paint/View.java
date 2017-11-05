@@ -3,6 +3,7 @@ package ca.utoronto.utm.paint;
 import javax.swing.*;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.*;
 /**
@@ -19,6 +20,8 @@ public class View extends JFrame implements ActionListener {
 	// The components that make this up
 	private PaintPanel paintPanel;
 	private ShapeChooserPanel shapeChooserPanel;
+	private ColorChooser colorFrame;
+	Color defaultColor;
 	
 	
 	public View(PaintModel model) {
@@ -32,6 +35,7 @@ public class View extends JFrame implements ActionListener {
 		// c.add(new JButton("South"),BorderLayout.SOUTH);
 		// c.add(new JButton("East"),BorderLayout.EAST);
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
+		this.colorFrame = new ColorChooser(this);
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
 	
 		this.model=model;
@@ -106,11 +110,23 @@ public class View extends JFrame implements ActionListener {
 		menu.add(menuItem);
 
 		menuBar.add(menu);
-
+		
+		menu = new JMenu("Color");
+		
+		menuItem = new JMenuItem("Choose Color");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
+		menuBar.add(menu);
+		
+		
 		return menuBar;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
+		if (e.getActionCommand() == "Choose Color") {
+			this.colorFrame.setVisible(true);
+		}
 	}
 }

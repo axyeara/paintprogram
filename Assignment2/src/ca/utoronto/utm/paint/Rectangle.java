@@ -1,14 +1,18 @@
 package ca.utoronto.utm.paint;
 
+import java.awt.Color;
+
 public class Rectangle {
 	private int width;
 	private int height;
 	private Point origin;
+	Color color;
 	
 	public Rectangle(Point origin, int width, int height) {
 		this.origin = origin;
 		this.width = width;
 		this.height = height;
+		this.color = color;
 		
 	}
 	
