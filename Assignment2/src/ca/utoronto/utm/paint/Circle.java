@@ -8,14 +8,18 @@ public class Circle {
 	Color color;
 	Color fillColor;
 	boolean fillState = false;
+
 	private int x;
 	private int y;
+	int stroke;
+
 	
 	public Circle(Point centre, int radius){
 		this.centre = centre;
 		this.radius = radius;
 		this.color = color;
 		this.fillColor = fillColor;
+		this.stroke = stroke;
 	}
 
 	public Point getCentre() {

@@ -22,9 +22,11 @@ public class View extends JFrame implements ActionListener {
 	private ShapeChooserPanel shapeChooserPanel;
 	private ColorChooser colorFrame;
 	private FillChooser fillFrame;
-	Color defaultColor;
+	private LineThickness strokePanel;
+	Color defaultColor = Color.RED;
 	Color fillColor;
 	boolean fillState = false;
+	int defaultStroke;
 	
 	
 	public View(PaintModel model) {
@@ -40,10 +42,10 @@ public class View extends JFrame implements ActionListener {
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
 		this.colorFrame = new ColorChooser(this);
 		this.fillFrame = new FillChooser(this);
-		c.add(this.shapeChooserPanel,BorderLayout.WEST);
-	
-		this.model=model;
+		this.strokePanel = new LineThickness(this);
 		
+		c.add(this.shapeChooserPanel,BorderLayout.WEST);
+		this.model=model;
 		this.paintPanel = new PaintPanel(model, this);
 		c.add(this.paintPanel, BorderLayout.CENTER);
 		
@@ -133,14 +135,19 @@ public class View extends JFrame implements ActionListener {
 		menu.add(menuItem);
 		
 		menuBar.add(menu);
-			
 		
+		menu = new JMenu("Line Thickness");
+		
+		menuItem = new JMenuItem("Choose Line Thickness");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+			
+		menuBar.add(menu);
 		
 		return menuBar;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
 		if (e.getActionCommand() == "Choose Color") {
 			this.colorFrame.setVisible(true);
 		}
@@ -150,6 +157,10 @@ public class View extends JFrame implements ActionListener {
 		}
 		else if (e.getActionCommand() == "Cancel Fill") {
 			this.fillState = false;
+		}
+		
+		else if (e.getActionCommand() == "Choose Line Thickness") {
+			this.strokePanel.setVisible(true);
 		}
 	}
 }

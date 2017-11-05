@@ -7,11 +7,13 @@ public class Squiggle {
 	Color color;
 	Color fillColor;
 	private ArrayList<Point> points;
+	int stroke;
 	
 	public Squiggle(ArrayList<Point> points) {
 		this.points = points;
 		this.color = color;
 		this.fillColor = fillColor;
+		this.stroke = stroke;
 	}
 	
 	public ArrayList<Point> getPoints() {
