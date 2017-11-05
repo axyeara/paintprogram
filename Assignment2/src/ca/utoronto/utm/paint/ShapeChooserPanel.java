@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -14,9 +15,14 @@ import java.util.Arrays;
 
 class ShapeChooserPanel extends JPanel implements ActionListener {
 	private View view; // So we can talk to our parent or other components of the view
+	private int numClicks = 0;
+	private JButton firstBt;
+	private JButton secondBt;
+	private ArrayList<JButton> buttons = new ArrayList<JButton>();
 	
 	public ShapeChooserPanel(View view) {	
 		this.view=view;
+		
 		ImageIcon rectangle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
                 .getResource("images/rectangle.gif"));
 		ImageIcon circle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
@@ -37,6 +43,7 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 			button.setActionCommand(buttonLabels[index]);
 			button.setBackground(Color.WHITE);
 			this.add(button);
+			this.buttons.add(button);
 			button.addActionListener(this);
 			index++;
 		}
@@ -47,8 +54,16 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		for (JButton button: this.buttons) {
+			if (button.isEnabled() == false) {
+				button.setEnabled(true);
+				
+			}
+			JButton firstbt = (JButton)e.getSource();
+			firstbt.setEnabled(false);
+		}
 		this.view.getPaintPanel().setMode(e.getActionCommand());
-		System.out.println(e.getActionCommand());
+		//System.out.println(e.getActionCommand());
 	}
 
 	
