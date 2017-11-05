@@ -2,6 +2,144 @@
 # to the appropriate Sprint below, after the 
 # Sprint Planning Meeting.
 
-# Sprint 1 October 23, 2017
-# Sprint 1 Backlog UserStories go below
+# Sprint 1 November 2, 2017
+The following UserStories and bugs were selected and implemented:
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 3:yearagen
+NAME     : Draw Rectangle
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day(3-4 hours)
+AS A     : user
+I WANT   : To click on one corner of a rectangle, drag, and release to 
+		   specify two corners of a rectangle to be drawn in the current style.
+SO THAT  : I can add rectangles to my canvas
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : BUG 1:yearagen
+NAME     : Icons instead of text for drawing mode selection
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day (or 3-4 hours)
+ISSUE    : Would be nice to have icons instead of "Circle", "Rectangle", ...
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : BUG 5:yearagen
+NAME     : Squiggle is broken
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day (or 3-4 hours)
+ISSUE    : Squiggles are connected to each other by a straight line. Each drag
+		   of the mouse should be a separate squiggle. Possibly
+           the issue is with the representation of the squiggles in the Model.
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : BUG 6:yoshid36
+NAME     : Circle drawing is broken
+OWNER    : Momo
+PRIORITY : 1
+ESTIMATE : 2-3 hours
+ISSUE    : The first click should specify the center of the circle, with
+           a drag for the radius. This is not the case in the current
+           implementation.
+--------------------------------------------------------------------------
+
+Sprint 2 November 3-4, 2017
+
+The following UserStories/bugs were selected and implemented:
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 6:yearagen
+NAME     : Fill style selector
+OWNER    : Alexander Yeara
+PRIORITY : 2
+ESTIMATE : 1 day (or 2 hours)
+AS A     : user
+I WANT   : To be able to select the current drawing style (filled or outline), to be applied
+           to subsequent shapes. Example: 
+           		selects fill style solid
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select fill style outline
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two solid circles and a solid rectangle as well as
+           	two outlined rectangles and a squiggle
+SO THAT  : I can fill any shape with a specific color.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 7:yearagen
+NAME     : Line thickness selector
+OWNER    : Alexander Yeara
+PRIORITY : 2
+ESTIMATE : 1 day (or 3-4 hours)
+AS A     : user
+I WANT   : To be able to select the current line thickness, to be applied
+           to subsequent shapes. Example:
+           		select fill style outline 
+           		selects line thickness 1
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select line thickness 9
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two thinly outlined circles and a thinly outlined 
+           	rectangle as well as two thickly outlined rectangles and a thick squiggle
+SO THAT  : I can draw shapes of different thickness.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 5:yearagen
+NAME     : Color selector
+OWNER    : Alexander Yeara
+PRIORITY : 2
+ESTIMATE : 1 day (or 3-4 hours)
+AS A     : user
+I WANT   : To be able to select the current drawing color, to be applied
+           to subsequent shapes. Example: 
+           		selects color red 
+           		mode circle
+           		draw a circle
+           		draw a circle
+           		mode rectangle
+           		draw a rectangle
+           		select color green
+           		draw a rectangle
+           		draw a rectangle
+           		select mode squiggle
+           		draw a squiggle
+           	results in two red circles and a red rectangle as well as
+           	two green rectangles and a green squiggle
+SO THAT  : I can paint shapes in different color.
+--------------------------------------------------------------------------
+
+
+sprint 3 November 5, 2017
+
+The following UserStories/Bugs were selected and implemented
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 8:yearagen
+NAME     : Draw Square
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE : 1 day(3-4 hours)
+AS A     : user
+I WANT   : To click on one corner of a square, drag, and release to 
+		   specify two corners of a square to be drawn in the current style.
+SO THAT  : I can add squares to my canvas
+--------------------------------------------------------------------------
 

@@ -63,20 +63,20 @@ Nov 1, 2017
 	
 Nov 2, 2017
 	Yesterday : I met with my team member for the first Sprint Planning Meeting. 
-	Today     : I implemented UserStory3 and bug1.
+	Today     : I implemented UserStory3, bug1, bug5.
 	Obstacles : I believe my code fix for UserStory could've been more concise. I'll to find a better solution.
 	
 Nov 3, 2017
-	Yesterday : I implemented UserStory3 and bug1.
-	Today     : I will try to implement bug5 and UserStory5, or maybe more.
-	Obstacles :
+	Yesterday : I implemented UserStory3, bug1, bug5.
+	Today     : I will try to implement UserStory6 and UserStory5, or maybe more.
+	Obstacles : Very hard to select colors for individual shapes.
 
 Nov 4, 2017
-	Yesterday :Updated
-	Today     :
-	Obstacles :
+	Yesterday : Implemented UserStories 5,6,8.
+	Today     : I will try to implement user story 7.
+	Obstacles : Again, the code has become convoluted due to bad design.
 
 Nov 5, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : Implemented userstory 7 and re-implemented userstories 5,6 (few changes).
+	Today     : try to work on shape feedbacks with my partner. Re-implemented userstory7 (few changes). Update product and sprintbacklogs.
+	Obstacles : No significant obstacles.
