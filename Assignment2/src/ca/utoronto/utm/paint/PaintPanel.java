@@ -227,6 +227,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 					this.circle.fillColor = this.view.fillColor;
 					this.circle.setFillState(true);
 				}
+
 				this.circle.stroke = this.view.defaultStroke;
 				this.model.addCircle(this.circle);
 				this.circle=null;
