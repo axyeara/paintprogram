@@ -1,1 +1,5 @@
 ylzhang@cs.toronto.edu,RealSlimShady
+
+In general, showing the shape while mouse is moving is not working, you should call repaint() when you move the mouse rather than just calling it at the end when the shape is finalized. 
+
+Polyline still needs some more work, not working right now. Make sure that you can draw multiple polylines easily.
