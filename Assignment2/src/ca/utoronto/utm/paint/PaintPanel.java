@@ -70,12 +70,15 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int x = c.getCentre().getX();
 			int y = c.getCentre().getY();
 			int radius = c.getRadius();
+			// we want x and y coordinates for drawOval
+			int topX = x - radius;
+			int topY = y - radius;
 			if (c.fillState == true) {
 				g2d.setPaint(c.fillColor);
-				g2d.fillOval(x, y, radius, radius);
+				g2d.fillOval(topX, topY, radius*2, radius*2);
 			}
 			else {
-				g2d.drawOval(x, y, radius, radius);
+				g2d.drawOval(topX, topY, radius*2, radius*2);
 			}
 		}
 		
@@ -197,8 +200,18 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		} else if(this.mode=="Circle"){
 			if(this.circle!=null){
 				// Problematic notion of radius and centre!!
-				int radius = Math.abs(this.circle.getCentre().getX()-e.getX());
+				int xCoord = Math.abs(e.getX() - this.circle.getCentre().getX());
+				int yCoord = Math.abs(e.getY() - this.circle.getCentre().getY());
+				
+				int xSq = (int) Math.pow(xCoord, 2);
+				int ySq = (int) Math.pow(yCoord, 2);
+				
+				int radius = (int) Math.sqrt(xSq + ySq);
 				this.circle.setRadius(radius);
+				
+				this.circle.setX(this.circle.getCentre().getX() - this.circle.getRadius());
+				this.circle.setY(this.circle.getCentre().getY() - this.circle.getRadius());
+				
 				this.circle.color = this.view.defaultColor;
 				if (this.view.fillState == true) {
 					this.circle.fillColor = this.view.fillColor;

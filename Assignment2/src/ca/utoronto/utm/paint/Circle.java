@@ -8,6 +8,8 @@ public class Circle {
 	Color color;
 	Color fillColor;
 	boolean fillState = false;
+	private int x;
+	private int y;
 	
 	public Circle(Point centre, int radius){
 		this.centre = centre;
@@ -35,4 +37,21 @@ public class Circle {
 	public void setFillState(boolean bool) {
 		this.fillState = bool;
 	}
+	
+	public void setX(int newX) {
+		this.x = newX;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public void setY(int newY) {
+		this.y = newY;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
 }
