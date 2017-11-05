@@ -21,7 +21,10 @@ public class View extends JFrame implements ActionListener {
 	private PaintPanel paintPanel;
 	private ShapeChooserPanel shapeChooserPanel;
 	private ColorChooser colorFrame;
+	private FillChooser fillFrame;
 	Color defaultColor;
+	Color fillColor;
+	boolean fillState = false;
 	
 	
 	public View(PaintModel model) {
@@ -36,6 +39,7 @@ public class View extends JFrame implements ActionListener {
 		// c.add(new JButton("East"),BorderLayout.EAST);
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
 		this.colorFrame = new ColorChooser(this);
+		this.fillFrame = new FillChooser(this);
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
 	
 		this.model=model;
@@ -119,6 +123,18 @@ public class View extends JFrame implements ActionListener {
 		
 		menuBar.add(menu);
 		
+		menu = new JMenu("Fill");
+		
+		menuItem = new JMenuItem("Choose Fill");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Cancel Fill");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
+		menuBar.add(menu);
+			
+		
 		
 		return menuBar;
 	}
@@ -127,6 +143,13 @@ public class View extends JFrame implements ActionListener {
 		System.out.println(e.getActionCommand());
 		if (e.getActionCommand() == "Choose Color") {
 			this.colorFrame.setVisible(true);
+		}
+		else if (e.getActionCommand() == "Choose Fill") {
+			this.fillFrame.setVisible(true);
+			this.fillState = true;
+		}
+		else if (e.getActionCommand() == "Cancel Fill") {
+			this.fillState = false;
 		}
 	}
 }

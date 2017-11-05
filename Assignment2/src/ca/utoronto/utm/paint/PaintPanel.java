@@ -69,7 +69,13 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int x = c.getCentre().getX();
 			int y = c.getCentre().getY();
 			int radius = c.getRadius();
-			g2d.drawOval(x, y, radius, radius);
+			if (c.fillState == true) {
+				g2d.setPaint(c.fillColor);
+				g2d.fillOval(x, y, radius, radius);
+			}
+			else {
+				g2d.drawOval(x, y, radius, radius);
+			}
 		}
 		
 		// Draw Rectangles
@@ -80,10 +86,16 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int y = r.getOrigin().getY();
 			int height = r.getHeight();
 			int width = r.getWidth();
-			g2d.drawRect(x, y, width, height);
+			if (r.fillState == true) {
+				g2d.setPaint(r.fillColor);
+				g2d.fillRect(x, y, width, height);
+			}
+			else {
+				g2d.drawRect(x, y, width, height);
+			}
+			
+			
 		}
-		
-		
 		
 		// Draw Squares
 		ArrayList<Square> squares = this.model.getSquares();
@@ -94,7 +106,14 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int height = sq.getHeight();
 			int width = sq.getWidth();
 			int length = Math.max(height, width);
-			g2d.drawRect(x, y, length, length);
+			if (sq.fillState == true) {
+				g2d.setPaint(sq.fillColor);
+				g2d.fillRect(x, y, width, height);
+			}
+			else {
+				g2d.drawRect(x, y, length, length);
+			}
+			
 		}
 		
 		g2d.dispose();
@@ -170,6 +189,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			if (this.squiggle != null) {
 				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
 				this.squiggle.color = this.view.defaultColor;
+				this.squiggle.fillColor = this.view.fillColor;
 				this.model.addSquiggle(this.squiggle);
 				this.squiggle = null;
 			}
@@ -179,6 +199,10 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				int radius = Math.abs(this.circle.getCentre().getX()-e.getX());
 				this.circle.setRadius(radius);
 				this.circle.color = this.view.defaultColor;
+				if (this.view.fillState == true) {
+					this.circle.fillColor = this.view.fillColor;
+					this.circle.setFillState(true);
+				}
 				this.model.addCircle(this.circle);
 				this.circle=null;
 			}
@@ -204,6 +228,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				}
 				
 				this.rectangle.color = this.view.defaultColor;
+				if (this.view.fillState == true) {
+					this.rectangle.fillColor = this.view.fillColor;
+					this.rectangle.setFillState(true);
+				}
+				
 				this.model.addRectangle(this.rectangle);
 				this.rectangle = null;
 			}
@@ -229,6 +258,10 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				}
 				
 				this.square.color = this.view.defaultColor;
+				if (this.view.fillState == true) {
+					this.square.fillColor = this.view.fillColor;
+					this.square.setFillState(true);
+				}
 				this.model.addSquare(this.square);
 				this.square = null;
 			}

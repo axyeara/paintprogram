@@ -6,11 +6,14 @@ public class Circle {
 	private Point centre;
 	private int radius;
 	Color color;
+	Color fillColor;
+	boolean fillState = false;
 	
 	public Circle(Point centre, int radius){
 		this.centre = centre;
 		this.radius = radius;
 		this.color = color;
+		this.fillColor = fillColor;
 	}
 
 	public Point getCentre() {
@@ -28,5 +31,8 @@ public class Circle {
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
-
+	
+	public void setFillState(boolean bool) {
+		this.fillState = bool;
+	}
 }

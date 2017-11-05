@@ -5,6 +5,8 @@ import java.awt.Color;
 public class Square {
 	private int sideLength;
 	Color color;
+	Color fillColor;
+	boolean fillState = false;
 	private Point origin;
 	private int width;
 	private int height;
@@ -14,6 +16,7 @@ public class Square {
 		this.color = color;
 		this.width = width;
 		this.height = height;
+		this.fillColor = fillColor;
 	}
 	
 	public int getWidth() {
@@ -33,5 +36,9 @@ public class Square {
 	
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public void setFillState(boolean bool) {
+		this.fillState = bool;
 	}
 }
