@@ -57,6 +57,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		for (Squiggle s: squiggles) {
 			g2d.setColor(s.color);
 			for(int i=0;i<s.getPoints().size()-1; i++){
+				g2d.setStroke(new BasicStroke(s.stroke));
 				Point p1=s.getPoints().get(i);
 				Point p2=s.getPoints().get(i+1);
 				g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
@@ -75,6 +76,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				g2d.fillOval(x, y, radius, radius);
 			}
 			else {
+				g2d.setStroke(new BasicStroke(c.stroke));
 				g2d.drawOval(x, y, radius, radius);
 			}
 		}
@@ -92,6 +94,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				g2d.fillRect(x, y, width, height);
 			}
 			else {
+				g2d.setStroke(new BasicStroke(r.stroke));
 				g2d.drawRect(x, y, width, height);
 			}
 			
@@ -112,6 +115,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				g2d.fillRect(x, y, length, length);
 			}
 			else {
+				g2d.setStroke(new BasicStroke(sq.stroke));
 				g2d.drawRect(x, y, length, length);
 			}
 			
@@ -191,6 +195,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
 				this.squiggle.color = this.view.defaultColor;
 				this.squiggle.fillColor = this.view.fillColor;
+				this.squiggle.stroke = this.view.defaultStroke;
 				this.model.addSquiggle(this.squiggle);
 				this.squiggle = null;
 			}
@@ -204,6 +209,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 					this.circle.fillColor = this.view.fillColor;
 					this.circle.setFillState(true);
 				}
+				this.circle.stroke = this.view.defaultStroke;
 				this.model.addCircle(this.circle);
 				this.circle=null;
 			}
@@ -233,7 +239,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 					this.rectangle.fillColor = this.view.fillColor;
 					this.rectangle.setFillState(true);
 				}
-				
+				this.rectangle.stroke = this.view.defaultStroke;
 				this.model.addRectangle(this.rectangle);
 				this.rectangle = null;
 			}
@@ -263,6 +269,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 					this.square.fillColor = this.view.fillColor;
 					this.square.setFillState(true);
 				}
+				this.square.stroke = this.view.defaultStroke;
 				this.model.addSquare(this.square);
 				this.square = null;
 			}

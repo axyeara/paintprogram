@@ -10,7 +10,6 @@ public class ColorChooser extends JFrame implements ChangeListener {
 
 	protected JColorChooser colorChooser;
 	protected JLabel title;
-	private PaintPanel paintPanel;
 	private View view;
 	
 	public ColorChooser(View view) {

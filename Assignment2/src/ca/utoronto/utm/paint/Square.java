@@ -10,6 +10,7 @@ public class Square {
 	private Point origin;
 	private int width;
 	private int height;
+	int stroke;
 	
 	public Square(Point origin, int width, int height) {
 		this.origin = origin;
@@ -17,6 +18,7 @@ public class Square {
 		this.width = width;
 		this.height = height;
 		this.fillColor = fillColor;
+		this.stroke = stroke;
 	}
 	
 	public int getWidth() {

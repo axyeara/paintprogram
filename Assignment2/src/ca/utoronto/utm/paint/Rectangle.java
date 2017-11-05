@@ -9,6 +9,7 @@ public class Rectangle {
 	Color color;
 	Color fillColor;
 	boolean fillState = false;
+	int stroke;
 	
 	public Rectangle(Point origin, int width, int height) {
 		this.origin = origin;
@@ -16,6 +17,7 @@ public class Rectangle {
 		this.height = height;
 		this.color = color;
 		this.fillColor = fillColor;
+		this.stroke = stroke;
 		
 	}
 	
