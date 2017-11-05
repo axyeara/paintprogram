@@ -21,6 +21,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private Circle circle; // the circle we are building
 	private Rectangle rectangle;
 	private Squiggle squiggle;
+	private Square square;
 	
 	public PaintPanel(PaintModel model, View view){
 		this.setBackground(Color.BLUE);
@@ -78,6 +79,19 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int height = r.getHeight();
 			int width = r.getWidth();
 			g2d.drawRect(x, y, width, height);
+		}
+		
+		
+		
+		// Draw Squares
+		ArrayList<Square> squares = this.model.getSquares();
+		for (Square sq: this.model.getSquares()) {
+			int x = sq.getOrigin().getX();
+			int y = sq.getOrigin().getY();
+			int height = sq.getHeight();
+			int width = sq.getWidth();
+			int length = Math.max(height, width);
+			g2d.drawRect(x, y, length, length);
 		}
 		
 		g2d.dispose();
@@ -139,6 +153,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int height = 0;
 			int width = 0;
 			this.rectangle = new Rectangle(origin, 0,  0);
+		} else if (this.mode == "Square") {
+			Point origin = new Point(e.getX(), e.getY());
+			int width = 0;
+			int height = 0;
+			this.square = new Square(origin, 0, 0);
 		}
 	}
 
@@ -181,6 +200,30 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				
 				this.model.addRectangle(this.rectangle);
 				this.rectangle = null;
+			}
+		} else if (this.mode == "Square") {
+			if(this.square!= null) {
+				if (this.square.getOrigin().getX() - e.getX() <  0) {
+					int width = Math.abs(this.square.getOrigin().getX()-e.getX());
+					this.square.setWidth(width);
+				}
+				else {
+					int width = Math.abs(this.square.getOrigin().getX()-e.getX());
+					this.square.getOrigin().setX(Math.abs(e.getX()));
+					this.square.setWidth(width);
+				}
+				if (this.square.getOrigin().getY() - e.getY() < 0){
+					int height = Math.abs(this.square.getOrigin().getY()-e.getY());
+					this.square.setHeight(height);
+				}
+				else {
+					int height = Math.abs(this.square.getOrigin().getY()-e.getY());
+					this.square.getOrigin().setY(Math.abs(e.getY()));
+					this.square.setHeight(height);
+				}
+				
+				this.model.addSquare(this.square);
+				this.square = null;
 			}
 		}
 		
