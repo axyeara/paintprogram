@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -64,7 +65,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		
 		// Draw Circles
 		ArrayList<Circle> circles = this.model.getCircles();
-		for(Circle c: this.model.getCircles()){
+		for(Circle c: circles){
 			g2d.setColor(c.color);
 			int x = c.getCentre().getX();
 			int y = c.getCentre().getY();
@@ -108,7 +109,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			int length = Math.max(height, width);
 			if (sq.fillState == true) {
 				g2d.setPaint(sq.fillColor);
-				g2d.fillRect(x, y, width, height);
+				g2d.fillRect(x, y, length, length);
 			}
 			else {
 				g2d.drawRect(x, y, length, length);
