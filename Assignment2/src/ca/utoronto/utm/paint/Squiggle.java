@@ -12,4 +12,8 @@ public class Squiggle {
 	public ArrayList<Point> getPoints() {
 		return this.points;
 	}
+	
+	public void addPoint(Point point) {
+		this.points.add(point);
+	}
 }

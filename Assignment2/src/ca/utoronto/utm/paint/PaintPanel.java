@@ -23,7 +23,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private Squiggle squiggle;
 	
 	public PaintPanel(PaintModel model, View view){
-		this.setBackground(Color.blue);
+		this.setBackground(Color.BLUE);
 		this.setPreferredSize(new Dimension(300,300));
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -51,12 +51,14 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
         g2d.drawString ("i="+i, 50, 75);
 		i=i+1;
 
-		// Draw Lines
-		ArrayList<Point> points = this.model.getPoints();
-		for(int i=0;i<points.size()-1; i++){
-			Point p1=points.get(i);
-			Point p2=points.get(i+1);
-			g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		// Draw Squiggles
+		ArrayList<Squiggle> squiggles = this.model.getSquiggles();
+		for (Squiggle s: squiggles) {
+			for(int i=0;i<s.getPoints().size()-1; i++){
+				Point p1=s.getPoints().get(i);
+				Point p2=s.getPoints().get(i+1);
+				g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+			}
 		}
 		
 		// Draw Circles
@@ -106,7 +108,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if(this.mode=="Squiggle"){
-			this.model.addPoint(new Point(e.getX(), e.getY()));
+			this.squiggle.addPoint(new Point(e.getX(), e.getY()));
 		} else if(this.mode=="Circle"){
 			
 		}
@@ -125,7 +127,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(this.mode=="Squiggle"){
-			
+			this.squiggle = new Squiggle(new ArrayList<Point>());
 		} else if(this.mode=="Circle"){
 			// Problematic notion of radius and centre!!
 			Point centre = new Point(e.getX(), e.getY());
@@ -143,8 +145,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(this.mode=="Squiggle"){
-			this.model.clearPoints();
-			
+			if (this.squiggle != null) {
+				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
+				this.model.addSquiggle(this.squiggle);
+				this.squiggle = null;
+			}
 		} else if(this.mode=="Circle"){
 			if(this.circle!=null){
 				// Problematic notion of radius and centre!!
