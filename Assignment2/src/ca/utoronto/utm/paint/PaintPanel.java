@@ -200,15 +200,17 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		} else if(this.mode=="Circle"){
 			if(this.circle!=null){
 				// Problematic notion of radius and centre!!
+				// get coordinates for center of circle
 				int xCoord = Math.abs(e.getX() - this.circle.getCentre().getX());
 				int yCoord = Math.abs(e.getY() - this.circle.getCentre().getY());
 				
+				// solve for correct value of radius using distance formula
 				int xSq = (int) Math.pow(xCoord, 2);
 				int ySq = (int) Math.pow(yCoord, 2);
-				
 				int radius = (int) Math.sqrt(xSq + ySq);
 				this.circle.setRadius(radius);
 				
+				// set coordinates for circle that is logical for drawOval
 				this.circle.setX(this.circle.getCentre().getX() - this.circle.getRadius());
 				this.circle.setY(this.circle.getCentre().getY() - this.circle.getRadius());
 				
