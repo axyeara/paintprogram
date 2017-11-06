@@ -78,7 +78,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Draw Circles
 		ArrayList<Circle> circles = this.model.getCircles();
 		for(Circle c: circles){
-			System.out.println("render c=" + c.getRadius());
 			g2d.setColor(c.color);
 			int x = c.getCentre().getX();
 			int y = c.getCentre().getY();
@@ -102,7 +101,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// Draw Rectangles
 		ArrayList<Rectangle> rectangles = this.model.getRectangles();
 		for (Rectangle r: this.model.getRectangles()) {
-			System.out.println("render r=" + r.getRenderTopLeftPoint() + ", w=" + r.getWidth() + ", h=" + r.getHeight());
 			g2d.setColor(r.color);
 			Point renderTopLeftP = r.getRenderTopLeftPoint();
 //			int x = r.getOrigin().getX();
@@ -174,14 +172,18 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		System.out.println("Dragged...");
 		if(this.mode=="Squiggle"){
-			this.squiggle.addPoint(new Point(e.getX(), e.getY()));
-			// 1. We must addCircle() to render shape
-			// 2. we will replace the last object in the collection in the model to reduce duplication
-			// 3. we will add the shape object on mousePressed to guarantee this logic
-			this.model.getSquiggles().remove(this.model.getSquiggles().size() - 1);
-			this.model.addSquiggle(this.squiggle);
+			if (this.squiggle != null) {
+				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
+				this.squiggle.color = this.defaultColor;
+				this.squiggle.fillColor = this.fillColor;
+				this.squiggle.stroke = this.defaultStroke;
+				// 1. We must addCircle() to render shape
+				// 2. we will replace the last object in the collection in the model to reduce duplication
+				// 3. we will add the shape object on mousePressed to guarantee this logic
+				this.model.getSquiggles().remove(this.model.getSquiggles().size() - 1);
+				this.model.addSquiggle(this.squiggle);
+			}
 			
 		} else if(this.mode=="Circle"){
 			// get coordinates for center of circle
@@ -232,7 +234,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			} else {
 				renderTopLeftP.setY(e.getY());
 			}
-			System.out.println("drag r=" + rectangle.getRenderTopLeftPoint() + ", w=" + rectangle.getWidth() + ", h=" + rectangle.getHeight());
 			
 			this.rectangle.color = this.defaultColor;
 			if (this.fillState) {
@@ -297,7 +298,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	// 3. we will add the shape object on mousePressed to guarantee this logic
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("Pressed...");
 		if(this.mode=="Squiggle"){
 			this.squiggle = new Squiggle(new ArrayList<Point>());
 			this.model.addSquiggle(this.squiggle);
@@ -329,18 +329,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	public void mouseReleased(MouseEvent e) {
 		System.out.println("Released...");
 		if(this.mode=="Squiggle"){
-			if (this.squiggle != null) {
-				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
-				this.squiggle.color = this.defaultColor;
-				this.squiggle.fillColor = this.fillColor;
-				this.squiggle.stroke = this.defaultStroke;
-				// 1. We must addCircle() to render shape
-				// 2. we will replace the last object in the collection in the model to reduce duplication
-				// 3. we will add the shape object on mousePressed to guarantee this logic
-				this.model.getSquiggles().remove(this.model.getSquiggles().size() - 1);
-				this.model.addSquiggle(this.squiggle);
-				this.squiggle = null;
-			}
+			
 		} else if(this.mode=="Circle"){
 			if(this.circle!=null){
 				// Problematic notion of radius and centre!!
@@ -394,7 +383,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				} else {
 					renderTopLeftP.setY(e.getY());
 				}
-				System.out.println("release r=" + rectangle.getRenderTopLeftPoint() + ", w=" + rectangle.getWidth() + ", h=" + rectangle.getHeight());
 				
 				// ----------------------
 //				if (this.rectangle.getOrigin().getX() - e.getX() <  0) {
@@ -451,26 +439,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				} else {
 					renderTopLeftP.setY(e.getY());
 				}
-				
-				//--------------
-//				if (this.square.getOrigin().getX() - e.getX() <  0) {
-//					int width = Math.abs(this.square.getOrigin().getX()-e.getX());
-//					this.square.setWidth(width);
-//				}
-//				else {
-//					int width = Math.abs(this.square.getOrigin().getX()-e.getX());
-//					this.square.getOrigin().setX(Math.abs(e.getX()));
-//					this.square.setWidth(width);
-//				}
-//				if (this.square.getOrigin().getY() - e.getY() < 0){
-//					int height = Math.abs(this.square.getOrigin().getY()-e.getY());
-//					this.square.setHeight(height);
-//				}
-//				else {
-//					int height = Math.abs(this.square.getOrigin().getY()-e.getY());
-//					this.square.getOrigin().setY(Math.abs(e.getY()));
-//					this.square.setHeight(height);
-//				}
 				
 				this.square.color = this.defaultColor;
 				if (this.fillState) {

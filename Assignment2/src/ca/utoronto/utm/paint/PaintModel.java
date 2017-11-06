@@ -19,7 +19,6 @@ public class PaintModel extends Observable {
 	
 	public void addCircle(Circle c){
 		this.circles.add(c);
-		System.out.println("added circles size =" + circles.size());
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -29,7 +28,6 @@ public class PaintModel extends Observable {
 	
 	public void addRectangle(Rectangle r) {
 		this.rectangles.add(r);
-		System.out.println("added rects size =" + rectangles.size());
 		this.setChanged();
 		this.notifyObservers();
 	}
