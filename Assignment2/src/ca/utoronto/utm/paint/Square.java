@@ -15,7 +15,7 @@ public class Square {
 	
 	public Square(Point origin, int width, int height) {
 		this.origin = origin;
-		setRenderTopLeftPoint(origin);
+		setRenderTopLeftPoint(new Point(origin));
 		this.color = color;
 		this.width = width;
 		this.height = height;

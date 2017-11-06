@@ -15,7 +15,7 @@ public class Rectangle {
 	
 	public Rectangle(Point origin, int width, int height) {
 		this.origin = origin;
-		setRenderTopLeftPoint(origin);
+		setRenderTopLeftPoint(new Point(origin));
 		this.width = width;
 		this.height = height;
 		this.color = color;

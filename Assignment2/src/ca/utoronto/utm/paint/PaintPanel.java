@@ -212,92 +212,73 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			this.model.addCircle(this.circle);
 			
 		} else if (this.mode=="Rectangle") {
-//			Point renderTopLeftP = this.rectangle.getRenderTopLeftPoint();
-//			Point dragStartOrigin = this.rectangle.getOrigin();
-//			// set width
-//			int width = Math.abs(dragStartOrigin.getX() - e.getX());
-//			this.rectangle.setWidth(width);
-//			// set height
-//			int height = Math.abs(dragStartOrigin.getY() - e.getY());
-//			this.rectangle.setHeight(height);
-//			// set renderTopLeftP x
-//			if (e.getX() > renderTopLeftP.getX()) {
-//				renderTopLeftP.setX(dragStartOrigin.getX());
-//			} else {
-//				renderTopLeftP.setX(e.getX());
-//			}
-//			// set renderTopLeftP y
-//			if (e.getY() > renderTopLeftP.getY()) {
-//				renderTopLeftP.setY(dragStartOrigin.getY());
-//			} else {
-//				renderTopLeftP.setY(e.getY());
-//			}
-//			System.out.println("drag r=" + rectangle.getRenderTopLeftPoint() + ", w=" + rectangle.getWidth() + ", h=" + rectangle.getHeight());
-//			
-//			this.rectangle.color = this.view.defaultColor;
-//			if (this.view.fillState == true) {
-//				this.rectangle.fillColor = this.view.fillColor;
-//				this.rectangle.setFillState(true);
-//			}
-//			this.rectangle.stroke = this.view.defaultStroke;
-//			// 1. We must addCircle() to render shape
-//			// 2. we will replace the last object in the collection in the model to reduce duplication
-//			// 3. we will add the shape object on mousePressed to guarantee this logic
-//			this.model.getRectangles().remove(this.model.getRectangles().size() - 1);
-//			this.model.addRectangle(this.rectangle);
+			Point renderTopLeftP = this.rectangle.getRenderTopLeftPoint();
+			Point dragStartOrigin = this.rectangle.getOrigin();
+			// set width
+			int width = Math.abs(dragStartOrigin.getX() - e.getX());
+			this.rectangle.setWidth(width);
+			// set height
+			int height = Math.abs(dragStartOrigin.getY() - e.getY());
+			this.rectangle.setHeight(height);
+			// set renderTopLeftP x
+			if (e.getX() > renderTopLeftP.getX()) {
+				renderTopLeftP.setX(dragStartOrigin.getX());
+			} else {
+				renderTopLeftP.setX(e.getX());
+			}
+			// set renderTopLeftP y
+			if (e.getY() > renderTopLeftP.getY()) {
+				renderTopLeftP.setY(dragStartOrigin.getY());
+			} else {
+				renderTopLeftP.setY(e.getY());
+			}
+			System.out.println("drag r=" + rectangle.getRenderTopLeftPoint() + ", w=" + rectangle.getWidth() + ", h=" + rectangle.getHeight());
+			
+			this.rectangle.color = this.defaultColor;
+			if (this.fillState) {
+				this.rectangle.fillColor = this.fillColor;
+				this.rectangle.setFillState(true);
+			}
+			this.rectangle.stroke = this.defaultStroke;
+			// 1. We must addCircle() to render shape
+			// 2. we will replace the last object in the collection in the model to reduce duplication
+			// 3. we will add the shape object on mousePressed to guarantee this logic
+			this.model.getRectangles().remove(this.model.getRectangles().size() - 1);
+			this.model.addRectangle(this.rectangle);
 		
-//		} else if (this.mode=="Square") {
-//			Point renderTopLeftP = this.square.getRenderTopLeftPoint();
-//			Point dragStartOrigin = this.square.getOrigin();
-//			// set width
-//			int width = Math.abs(dragStartOrigin.getX() - e.getX());
-//			this.rectangle.setWidth(width);
-//			// set height
-//			int height = Math.abs(dragStartOrigin.getY() - e.getY());
-//			this.rectangle.setHeight(height);
-//			// set renderTopLeftP x
-//			if (e.getX() > renderTopLeftP.getX()) {
-//				renderTopLeftP.setX(dragStartOrigin.getX());
-//			} else {
-//				renderTopLeftP.setX(e.getX());
-//			}
-//			// set renderTopLeftP y
-//			if (e.getY() > renderTopLeftP.getY()) {
-//				renderTopLeftP.setY(dragStartOrigin.getY());
-//			} else {
-//				renderTopLeftP.setY(e.getY());
-//			}
-////			
-////			if (this.rectangle.getOrigin().getX() - e.getX() <  0) {
-////				int width = Math.abs(this.rectangle.getOrigin().getX()-e.getX());
-////				this.rectangle.setWidth(width);
-////			}
-////			else {
-////				int width = Math.abs(this.rectangle.getOrigin().getX()-e.getX());
-////				this.rectangle.getOrigin().setX(Math.abs(e.getX()));
-////				this.rectangle.setWidth(width);
-////			}
-////			if (this.rectangle.getOrigin().getY() - e.getY() < 0){
-////				int height = Math.abs(this.rectangle.getOrigin().getY()-e.getY());
-////				this.rectangle.setHeight(height);
-////			}
-////			else {
-////				int height = Math.abs(this.rectangle.getOrigin().getY()-e.getY());
-////				this.rectangle.getOrigin().setY(Math.abs(e.getY()));
-////				this.rectangle.setHeight(height);
-////			}
-////			
-//			this.rectangle.color = this.view.defaultColor;
-//			if (this.view.fillState == true) {
-//				this.rectangle.fillColor = this.view.fillColor;
-//				this.rectangle.setFillState(true);
-//			}
-//			this.rectangle.stroke = this.view.defaultStroke;
-//			// 1. We must addCircle() to render shape
-//			// 2. we will replace the last object in the collection in the model to reduce duplication
-//			// 3. we will add the shape object on mousePressed to guarantee this logic
-//			this.model.getRectangles().remove(this.model.getRectangles().size() - 1);
-//			this.model.addRectangle(this.rectangle);
+		} else if (this.mode=="Square") {
+			Point renderTopLeftP = this.square.getRenderTopLeftPoint();
+			Point dragStartOrigin = this.square.getOrigin();
+			// set width
+			int width = Math.abs(dragStartOrigin.getX() - e.getX());
+			this.square.setWidth(width);
+			// set height
+			int height = Math.abs(dragStartOrigin.getY() - e.getY());
+			this.square.setHeight(height);
+			// set renderTopLeftP x
+			if (e.getX() > renderTopLeftP.getX()) {
+				renderTopLeftP.setX(dragStartOrigin.getX());
+			} else {
+				renderTopLeftP.setX(e.getX());
+			}
+			// set renderTopLeftP y
+			if (e.getY() > renderTopLeftP.getY()) {
+				renderTopLeftP.setY(dragStartOrigin.getY());
+			} else {
+				renderTopLeftP.setY(e.getY());
+			}
+			
+			this.square.color = this.defaultColor;
+			if (this.fillState) {
+				this.square.fillColor = this.fillColor;
+				this.square.setFillState(true);
+			}
+			this.square.stroke = this.defaultStroke;
+			// 1. We must addCircle() to render shape
+			// 2. we will replace the last object in the collection in the model to reduce duplication
+			// 3. we will add the shape object on mousePressed to guarantee this logic
+			this.model.getSquares().remove(this.model.getSquares().size() - 1);
+			this.model.addSquare(this.square);
 		}
 	}
 
