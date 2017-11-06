@@ -1,10 +1,15 @@
 
 package ca.utoronto.utm.paint;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.colorchooser.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class FillChooser extends JFrame implements ChangeListener {
 
@@ -36,7 +41,7 @@ public class FillChooser extends JFrame implements ChangeListener {
 	public void stateChanged(ChangeEvent arg0) {
 		Color newColor = colorChooser.getColor();
         title.setForeground(newColor);
-        this.view.defaultColor = newColor;
+        this.view.getPaintPanel().setDefaultColor(newColor);
 	}		
 }
 	

@@ -1,8 +1,14 @@
 package ca.utoronto.utm.paint;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class LineThickness extends JFrame implements ChangeListener {
 	
@@ -45,7 +51,7 @@ public class LineThickness extends JFrame implements ChangeListener {
 		JSlider source = (JSlider)e.getSource();
 		if (!source.getValueIsAdjusting()) {
 			int stroke = (int)source.getValue();
-			this.view.defaultStroke = stroke;
+			this.view.getPaintPanel().setDefaultStroke(stroke);
 		}
 		
 	}

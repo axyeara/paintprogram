@@ -1,11 +1,14 @@
 package ca.utoronto.utm.paint;
 
-import javax.swing.*;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 /**
  * This is the top level View+Controller, it contains other aspects of the View+Controller.
  * @author arnold
@@ -23,10 +26,6 @@ public class View extends JFrame implements ActionListener {
 	private ColorChooser colorFrame;
 	private FillChooser fillFrame;
 	private LineThickness strokePanel;
-	Color defaultColor = Color.RED;
-	Color fillColor;
-	boolean fillState = false;
-	int defaultStroke;
 	
 	
 	public View(PaintModel model) {
@@ -153,14 +152,15 @@ public class View extends JFrame implements ActionListener {
 		}
 		else if (e.getActionCommand() == "Choose Fill") {
 			this.fillFrame.setVisible(true);
-			this.fillState = true;
+			this.paintPanel.setFillState(true);
 		}
 		else if (e.getActionCommand() == "Cancel Fill") {
-			this.fillState = false;
+			this.paintPanel.setFillState(false);
 		}
 		
 		else if (e.getActionCommand() == "Choose Line Thickness") {
 			this.strokePanel.setVisible(true);
 		}
 	}
+
 }

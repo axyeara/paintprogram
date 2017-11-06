@@ -1,14 +1,18 @@
 package ca.utoronto.utm.paint;
 
-import javax.swing.*;  
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JPanel;
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
@@ -23,6 +27,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private Rectangle rectangle;
 	private Squiggle squiggle;
 	private Square square;
+	
+	private Color defaultColor = Color.RED;
+	private Color fillColor;
+	private boolean fillState = false;
+	private int defaultStroke;
 	
 	public PaintPanel(PaintModel model, View view){
 		this.setBackground(Color.WHITE);
@@ -189,13 +198,13 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 			this.circle.setX(this.circle.getCentre().getX() - this.circle.getRadius());
 			this.circle.setY(this.circle.getCentre().getY() - this.circle.getRadius());
 			
-			this.circle.color = this.view.defaultColor;
-			if (this.view.fillState == true) {
-				this.circle.fillColor = this.view.fillColor;
+			this.circle.color = this.defaultColor;
+			if (this.fillState) {
+				this.circle.fillColor = this.fillColor;
 				this.circle.setFillState(true);
 			}
 
-			this.circle.stroke = this.view.defaultStroke;
+			this.circle.stroke = this.defaultStroke;
 			// 1. We must addCircle() to render shape
 			// 2. we will replace the last object in the collection in the model to reduce duplication
 			// 3. we will add the shape object on mousePressed to guarantee this logic
@@ -341,9 +350,9 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		if(this.mode=="Squiggle"){
 			if (this.squiggle != null) {
 				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
-				this.squiggle.color = this.view.defaultColor;
-				this.squiggle.fillColor = this.view.fillColor;
-				this.squiggle.stroke = this.view.defaultStroke;
+				this.squiggle.color = this.defaultColor;
+				this.squiggle.fillColor = this.fillColor;
+				this.squiggle.stroke = this.defaultStroke;
 				// 1. We must addCircle() to render shape
 				// 2. we will replace the last object in the collection in the model to reduce duplication
 				// 3. we will add the shape object on mousePressed to guarantee this logic
@@ -368,13 +377,13 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 				this.circle.setX(this.circle.getCentre().getX() - this.circle.getRadius());
 				this.circle.setY(this.circle.getCentre().getY() - this.circle.getRadius());
 				
-				this.circle.color = this.view.defaultColor;
-				if (this.view.fillState == true) {
-					this.circle.fillColor = this.view.fillColor;
+				this.circle.color = this.defaultColor;
+				if (this.fillState) {
+					this.circle.fillColor = this.fillColor;
 					this.circle.setFillState(true);
 				}
 
-				this.circle.stroke = this.view.defaultStroke;
+				this.circle.stroke = this.defaultStroke;
 				// 1. We must addCircle() to render shape
 				// 2. we will replace the last object in the collection in the model to reduce duplication
 				// 3. we will add the shape object on mousePressed to guarantee this logic
@@ -426,12 +435,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 //					this.rectangle.setHeight(height);
 //				}
 				
-				this.rectangle.color = this.view.defaultColor;
-				if (this.view.fillState == true) {
-					this.rectangle.fillColor = this.view.fillColor;
+				this.rectangle.color = this.defaultColor;
+				if (this.fillState) {
+					this.rectangle.fillColor = this.fillColor;
 					this.rectangle.setFillState(true);
 				}
-				this.rectangle.stroke = this.view.defaultStroke;
+				this.rectangle.stroke = this.defaultStroke;
 				// 1. We must addCircle() to render shape
 				// 2. we will replace the last object in the collection in the model to reduce duplication
 				// 3. we will add the shape object on mousePressed to guarantee this logic
@@ -482,12 +491,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 //					this.square.setHeight(height);
 //				}
 				
-				this.square.color = this.view.defaultColor;
-				if (this.view.fillState == true) {
-					this.square.fillColor = this.view.fillColor;
+				this.square.color = this.defaultColor;
+				if (this.fillState) {
+					this.square.fillColor = this.fillColor;
 					this.square.setFillState(true);
 				}
-				this.square.stroke = this.view.defaultStroke;
+				this.square.stroke = this.defaultStroke;
 				// 1. We must addCircle() to render shape
 				// 2. we will replace the last object in the collection in the model to reduce duplication
 				// 3. we will add the shape object on mousePressed to guarantee this logic
@@ -515,5 +524,37 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		} else if(this.mode=="Circle"){
 			
 		}
+	}
+	
+	public Color getDefaultColor() {
+		return defaultColor;
+	}
+
+	public void setDefaultColor(Color defaultColor) {
+		this.defaultColor = defaultColor;
+	}
+
+	public Color getFillColor() {
+		return fillColor;
+	}
+
+	public void setFillColor(Color fillColor) {
+		this.fillColor = fillColor;
+	}
+
+	public boolean isFillState() {
+		return fillState;
+	}
+
+	public void setFillState(boolean fillState) {
+		this.fillState = fillState;
+	}
+
+	public int getDefaultStroke() {
+		return defaultStroke;
+	}
+
+	public void setDefaultStroke(int defaultStroke) {
+		this.defaultStroke = defaultStroke;
 	}
 }
