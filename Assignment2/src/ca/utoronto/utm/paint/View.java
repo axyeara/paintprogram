@@ -15,10 +15,10 @@ public class View extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private PaintModel model;
+	private PaintModel model;		// This is Observable
 	
 	// The components that make this up
-	private PaintPanel paintPanel;
+	private PaintPanel paintPanel;		// This is Observer
 	private ShapeChooserPanel shapeChooserPanel;
 	private ColorChooser colorFrame;
 	private FillChooser fillFrame;

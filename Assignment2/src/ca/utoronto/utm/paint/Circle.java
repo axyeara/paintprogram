@@ -3,13 +3,14 @@ package ca.utoronto.utm.paint;
 import java.awt.Color;
 
 public class Circle {
-	private Point centre;
+	private Point centre; 	// holds point of mouse click when user starts dragging
 	private int radius;
 	Color color;
 	Color fillColor;
 	boolean fillState = false;
 
-	private int x;
+	// TODO: Use Point class
+	private int x;		// Top left point of rectangle to draw circle
 	private int y;
 	int stroke;
 

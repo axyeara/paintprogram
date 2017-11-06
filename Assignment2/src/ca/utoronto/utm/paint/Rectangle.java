@@ -5,7 +5,9 @@ import java.awt.Color;
 public class Rectangle {
 	private int width;
 	private int height;
-	private Point origin;
+	private Point origin;	// holds point of mouse click when user starts dragging
+	private Point renderTopLeftPoint;
+	
 	Color color;
 	Color fillColor;
 	boolean fillState = false;
@@ -13,6 +15,7 @@ public class Rectangle {
 	
 	public Rectangle(Point origin, int width, int height) {
 		this.origin = origin;
+		setRenderTopLeftPoint(origin);
 		this.width = width;
 		this.height = height;
 		this.color = color;
@@ -41,6 +44,14 @@ public class Rectangle {
 	
 	public void setFillState(boolean bool) {
 		this.fillState = bool;
+	}
+
+	public Point getRenderTopLeftPoint() {
+		return renderTopLeftPoint;
+	}
+
+	public void setRenderTopLeftPoint(Point point) {
+		this.renderTopLeftPoint = point;
 	}
 
 }

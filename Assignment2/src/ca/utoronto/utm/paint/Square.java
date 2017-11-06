@@ -8,12 +8,14 @@ public class Square {
 	Color fillColor;
 	boolean fillState = false;
 	private Point origin;
+	private Point renderTopLeftPoint;
 	private int width;
 	private int height;
 	int stroke;
 	
 	public Square(Point origin, int width, int height) {
 		this.origin = origin;
+		setRenderTopLeftPoint(origin);
 		this.color = color;
 		this.width = width;
 		this.height = height;
@@ -42,5 +44,13 @@ public class Square {
 	
 	public void setFillState(boolean bool) {
 		this.fillState = bool;
+	}
+	
+	public Point getRenderTopLeftPoint() {
+		return renderTopLeftPoint;
+	}
+
+	public void setRenderTopLeftPoint(Point point) {
+		this.renderTopLeftPoint = point;
 	}
 }
