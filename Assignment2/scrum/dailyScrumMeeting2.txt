@@ -66,16 +66,24 @@ Nov 2, 2017
 				time, need to put in more time tomorrow.
 	
 Nov 3, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : Attempted to fix bug for circle but
+				could not do it.
+	Today     : Work on bug for circle and also the
+				feedback for it as well.
+	Obstacles : Could not pinpoint the reason for the circle bug.
 
 Nov 4, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : Worked on circle bug and also tried to
+				code the feedback for circle.
+	Today     : Meet with group member to go over and 
+				work on the assignment together rather
+				than remotely.
+	Obstacles : Took a while to make our logic of 
+				solving the bugs and implementing the
+				user stories into code that works.
 
 Nov 5, 2017
-	Yesterday :
-	Today     :
-	Obstacles :
+	Yesterday : Met with group member and worked on assignment together.
+	Today     : Meet with group member and finish assignment.
+				Update code by 11:59pm.
+	Obstacles : Had to figure out bugs our code made by themselves.
