@@ -70,3 +70,50 @@ Nov 5, 2017
 	Yesterday :
 	Today     :
 	Obstacles :
+	
+	//IN OLD GROUP FOR A2P2
+	
+Nov 6, 2017
+	Yesterday :
+	Today     :Was not in group yet.
+	Obstacles :
+	
+Nov 7, 2017
+	Yesterday :
+	Today     :Was not in group yet.
+	Obstacles :
+
+Nov 8, 2017
+	Yesterday :
+	Today     : Meet up with group members, and try and decide which design pattern to implement.
+	Obstacles :
+	
+Nov 9, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 10, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 11, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 12, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 13, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 14, 2017
+	Yesterday :
+	Today     :
+	Obstacles :	
