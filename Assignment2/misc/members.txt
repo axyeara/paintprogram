@@ -13,5 +13,5 @@ Name: Filip de Braga
 Email: filip.debraga@mail.utoronto.ca
 
 Member 4:
-Name: DROPPED COURSE
-Email: DROPPED COURSE
+Name: Osioreame Ikiebe
+Email: reame.ikiebe@mail.utoronto.ca
