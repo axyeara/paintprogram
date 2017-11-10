@@ -70,3 +70,20 @@ Nov 5, 2017
 	Yesterday :
 	Today     :
 	Obstacles :
+	
+Nov 8, 2017
+	Yesterday :
+	Today     : No work done, attempted to clone the repo but terminal returned an error everytime
+	Obstacles : Accessing my groups repo
+	
+Nov 9, 2017
+	Yesterday : No work done, attempted to clone the repo but terminal returned an error everytime
+	Today     : Got access to the Repo, evaluated the work my group members had already done so I knew what was done and
+				what was left to be done
+	Obstacles :	None
+	
+Nov 10, 2017
+	Yesterday : Got access to the Repo, evaluated the work my group members had already done so I knew what was done and
+				what was left to be done
+	Today     : Made contact with my group members
+	Obstacles :	None
