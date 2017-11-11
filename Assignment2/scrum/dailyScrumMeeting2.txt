@@ -87,3 +87,36 @@ Nov 5, 2017
 	Today     : Meet with group member and finish assignment.
 				Update code by 11:59pm.
 	Obstacles : Had to figure out bugs our code made by themselves.
+
+Nov 6, 2017
+	Yesterday : No work.
+	Today     : No work.
+	Obstacles : None.
+	
+Nov 7, 2017
+	Yesterday : No work.
+	Today     : No work.
+	Obstacles : None.
+	
+Nov 8, 2017
+	Yesterday : No work.
+	Today     : No work.
+	Obstacles : None.
+	
+Nov 9, 2017
+	Yesterday : No work.
+	Today     : No work.
+	Obstacles : None.
+	
+Nov 10, 2017
+	Yesterday : No work.
+	Today     : Look into what procedure is needed in
+				order to fix Bug 2.1.
+	Obstacles : None.
+	
+Nov 11, 2017
+	Yesterday : One team mate got in touch with the group.
+				Looked into what procedure is needed in
+				order to fix Bug 2.1.
+	Today     : Fix bug 2.1 and also complete a user story.
+	Obstacles : 

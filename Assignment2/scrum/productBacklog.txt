@@ -220,11 +220,11 @@ ESTIMATE :
 ISSUE    : YOU FILL THIS ONE IN!!
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : BUG 2.1 : UTORID
+TYPE     : BUG 2.1 : yoshid36
 NAME     : Architecture for drawing shapes can be improved
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Momo Yoshida
+PRIORITY : Top
+ESTIMATE : 3-4 hours
 ISSUE    : The architecture can be improved if we implement the Command Design 
 Pattern to draw shapes as follows:
 
