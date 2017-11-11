@@ -30,9 +30,6 @@ public class View extends JFrame implements ActionListener {
 		this.setJMenuBar(createMenuBar());
 		
 		Container c=this.getContentPane();
-		// c.add(new JButton("North"),BorderLayout.NORTH);
-		// c.add(new JButton("South"),BorderLayout.SOUTH);
-		// c.add(new JButton("East"),BorderLayout.EAST);
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
 		this.shapeChooserPanel.setPreferredSize(new Dimension(350,200));
@@ -122,6 +119,5 @@ public class View extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
 	}
 }

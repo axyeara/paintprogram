@@ -21,13 +21,13 @@ import javax.swing.JPanel;
 class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseListener  {
 	private PaintModel model; // slight departure from MVC, because of the way painting works
 	private View view; // So we can talk to our parent or other components of the view
-	private String mode; // modifies how we interpret input (could be better?)
-	private Circle circle; // the circle we are building
-	private Rectangle rectangle; // the rectangle we are building
-	private Square square;//the square we are building
-	private Squiggle squiggle;//the squiggle we are creating
+	private String mode; 
+	private Circle circle; 
+	private Rectangle rectangle; 
+	private Square square;
+	private Squiggle squiggle;
 	private String fillState;	
-	private Color color = Color.BLACK;	
+	private Color color;	
 	private int lineThickness = 1;
 
 	
@@ -41,21 +41,16 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		this.view=view;
 	}
 
-	/**
-	 *  View aspect of this
-	 */
+
 	public void paintComponent(Graphics g) {
-		// Use g to draw on the JPanel, lookup java.awt.Graphics in
-		// the javadoc to see more of what this can do for you!!
+	
 		
         super.paintComponent(g); //paint background
         Graphics2D g2d = (Graphics2D) g; // lets use the advanced api
-		// setBackground (Color.blue); 
-		// Origin is at the top left of the window 50 over, 75 down
+		
+     	ArrayList<Shape> shapeStack = this.model.getShapes();
+     	for(Shape sh: shapeStack) {
      		
-       // Draw in order of history
-     	ArrayList<Shape> history = this.model.getShapes();
-     	for(Shape sh: history) {
      			// Draw Squiggles
      			if(sh instanceof Squiggle) {
      	        	for(int i=0;i< ((Squiggle) sh).getSize()-1; i++){
@@ -142,7 +137,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	}
 
 
-	// implements Observer
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		// Not exactly how MVC works, but similar.
@@ -153,11 +148,6 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		this.mode=mode;
 	}
 	
-	
-	public void setColor(Color color) {
-		this.color = color;
-	}
-	
 	public void setFillState(String fillState) {
 		this.fillState = fillState;
 	}
@@ -166,8 +156,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		this.lineThickness = thickness;
 	}
 	
+	public void setColor(Color color) {
+		this.color = color;
+	}
 	
-	// MouseMotionListener below
+	
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if(this.mode=="Squiggle"){
@@ -201,7 +194,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		
 	}
 
-	// MouseListener below
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(this.mode=="Squiggle"){
@@ -211,9 +204,7 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		}
 	}
 
-	// 1. We must addCircle() to render shape
-	// 2. we will replace the last object in the collection in the model to reduce duplication
-	// 3. we will add the shape object on mousePressed to guarantee this logic
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(this.mode=="Squiggle"){

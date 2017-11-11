@@ -42,9 +42,7 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 		
 	}
 	
-	/**
-	 * Controller aspect of this
-	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonSelected = (JButton)e.getSource();

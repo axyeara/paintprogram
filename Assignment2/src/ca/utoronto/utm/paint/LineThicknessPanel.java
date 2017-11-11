@@ -12,11 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/**
- * Panel so the user can adjust linethickness 
- * @author morganwi
- *
- */
+
 public class LineThicknessPanel extends JPanel implements ChangeListener{
 	static final int strokeMin = 0;
 	static final int strokeMax = 50;
@@ -25,11 +21,7 @@ public class LineThicknessPanel extends JPanel implements ChangeListener{
 	private JSlider slider;
 	private JLabel text;
 	
-	/**
-	 * constructor
-	 * @param view this View
-	 */
-	
+
 	public LineThicknessPanel(View view) {
 		this.view = view;
 		

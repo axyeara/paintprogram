@@ -6,27 +6,29 @@ import java.util.Observable;
 public class PaintModel extends Observable {
 	private ArrayList<Point> points=new ArrayList<Point>();
 	
-	private ArrayList<Shape> history = new ArrayList<Shape>();
+	private ArrayList<Shape> shapeStack = new ArrayList<Shape>();
 
 	public void addShape(Shape shape) {
-		this.history.add(shape);
+		this.shapeStack.add(shape);
 		this.setChanged();
 		this.notifyObservers();
 	}
 	
 	public ArrayList<Shape> getShapes(){
-		return this.history;
-	}
-	
-	public void clearPoints() {
-		this.points.clear();
+		return this.shapeStack;
 	}
 	
 	public void addPoint(Point p){
 		this.points.add(p);
 		this.setChanged();
 		this.notifyObservers();
+	} 
+	
+	public void clearPoints() {
+		this.points.clear();
 	}
+	
+	
 	public ArrayList<Point> getPoints(){
 		return points;
 	}

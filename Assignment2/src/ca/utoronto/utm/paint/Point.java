@@ -7,7 +7,8 @@ public class Point {
 	}
 	
 	Point(Point p){
-		this.x=p.getX(); this.y=p.getY();
+		this.x=p.getX(); 
+		this.y=p.getY();
 	}
 	
 	public int getX() {
@@ -25,9 +26,4 @@ public class Point {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	public String toString() {
-		return "[" + x + ", " + y + "]";
-	}
-	
 }
