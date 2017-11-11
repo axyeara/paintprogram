@@ -2,7 +2,9 @@ package ca.utoronto.utm.paint;
 
 import java.awt.Color;
 
-public class Circle {
+import ca.utoronto.utm.paint.RenderableShape;
+
+public class Circle implements RenderableShape {
 	private Point centre; 	// holds point of mouse click when user starts dragging
 	private int radius;
 	Color color;
