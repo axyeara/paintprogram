@@ -36,10 +36,7 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 			button.addActionListener(this);
 			index++;
 		}
-		
 		this.add(new FillPanel(this.view));
-		
-		
 	}
 	
 
@@ -53,8 +50,7 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 			}
 		}
 		buttonSelected.setEnabled(false);
-		buttonSelected.setBackground(Color.GREEN);
-		
+		buttonSelected.setBackground(Color.GREEN);	
 		
 		this.view.getPaintPanel().setMode(e.getActionCommand());	
 	}

@@ -90,17 +90,17 @@ Nov 8, 2017
 	
 Nov 9, 2017
 	Yesterday :
-	Today     :
+	Today     : continue to discuss project
 	Obstacles :
 	
 Nov 10, 2017
 	Yesterday :
-	Today     :
+	Today     : communicate with newly added group member
 	Obstacles :
 	
 Nov 11, 2017
 	Yesterday :
-	Today     :
+	Today     : Talk to group and look to implement a design pattern and work on bugs and user story
 	Obstacles :
 	
 Nov 12, 2017
