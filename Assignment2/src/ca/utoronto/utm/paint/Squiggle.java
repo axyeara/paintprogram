@@ -3,24 +3,30 @@ package ca.utoronto.utm.paint;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class Squiggle {
-	Color color;
-	Color fillColor;
+public class Squiggle extends Shape{
 	private ArrayList<Point> points;
-	int stroke;
 	
-	public Squiggle(ArrayList<Point> points) {
-		this.points = points;
-		this.color = color;
-		this.fillColor = fillColor;
-		this.stroke = stroke;
+	public Squiggle(Point point, Color color, String fillState, int lineThickness) {
+		super(color, fillState, lineThickness);
+		this.points = new ArrayList<Point>();
+		this.points.add(point);
 	}
 	
-	public ArrayList<Point> getPoints() {
+	public int getSize() {
+		return points.size();
+	}
+	
+	public ArrayList<Point> getSquigglePoints(){
 		return this.points;
 	}
 	
 	public void addPoint(Point point) {
 		this.points.add(point);
 	}
+	
+	public Point getPoint(int index) {
+		return points.get(index);
+	}
+	
+
 }

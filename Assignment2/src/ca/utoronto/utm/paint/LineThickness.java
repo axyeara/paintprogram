@@ -6,11 +6,12 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class LineThickness extends JFrame implements ChangeListener {
+public class LineThickness extends JPanel implements ChangeListener {
 	
 	static final int strokeMin = 0;
 	static final int strokeMax = 50;
@@ -42,17 +43,16 @@ public class LineThickness extends JFrame implements ChangeListener {
 		Font font = new Font("Serif", Font.ITALIC, 15);
 		
 		//add the components to the panel
-		this.getContentPane().add(lineThickness, BorderLayout.CENTER);
-		this.getContentPane().add(sliderLabel, BorderLayout.PAGE_END);
-		this.pack();
+		this.add(sliderLabel, BorderLayout.SOUTH);
+		this.add(lineThickness, BorderLayout.NORTH);
+	
+		
+	
 	}
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		JSlider source = (JSlider)e.getSource();
-		if (!source.getValueIsAdjusting()) {
-			int stroke = (int)source.getValue();
-			this.view.getPaintPanel().setDefaultStroke(stroke);
-		}
+		JSlider sliderSource = (JSlider)e.getSource();
+		this.view.getPaintPanel().setLineThickness(sliderSource.getValue());
 		
 	}
 	

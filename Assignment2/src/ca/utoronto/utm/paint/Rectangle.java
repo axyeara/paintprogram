@@ -2,56 +2,41 @@ package ca.utoronto.utm.paint;
 
 import java.awt.Color;
 
-public class Rectangle {
+public class Rectangle extends Shape {
+	private Point corner;
 	private int width;
 	private int height;
-	private Point origin;	// holds point of mouse click when user starts dragging
-	private Point renderTopLeftPoint;
 	
-	Color color;
-	Color fillColor;
-	boolean fillState = false;
-	int stroke;
-	
-	public Rectangle(Point origin, int width, int height) {
-		this.origin = origin;
-		setRenderTopLeftPoint(new Point(origin));
+	public Rectangle(Point corner, int width, int height, Color color, String fillState, int lineThickness) {
+		super(color, fillState, lineThickness);
+		this.corner = corner;
 		this.width = width;
 		this.height = height;
-		this.color = color;
-		this.fillColor = fillColor;
-		this.stroke = stroke;
-		
 	}
-	
-	public int getHeight() {
-		return this.height;
+
+	public Point getCorner() {
+		return corner;
 	}
-	
+
+	public void setCorner(Point corner) {
+		this.corner = corner;
+	}
+
 	public int getWidth() {
-		return this.width;
+		return width;
 	}
-	
-	public Point getOrigin() {
-		return this.origin;
-	}
+
 	public void setWidth(int width) {
 		this.width = width;
 	}
+
+	public int getHeight() {
+		return height;
+	}
+
 	public void setHeight(int height) {
 		this.height = height;
 	}
 	
-	public void setFillState(boolean bool) {
-		this.fillState = bool;
-	}
-
-	public Point getRenderTopLeftPoint() {
-		return renderTopLeftPoint;
-	}
-
-	public void setRenderTopLeftPoint(Point point) {
-		this.renderTopLeftPoint = point;
-	}
-
 }
+
