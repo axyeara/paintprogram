@@ -20,14 +20,20 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 		this.view=view;
 		this.buttons = buttons;
 		
-		
+		ImageIcon[] buttonIcons = {
+                new ImageIcon(getClass().getClassLoader().getResource("images/circle.png")), 
+                new ImageIcon(getClass().getClassLoader().getResource("images/rectangle.png")),
+        new ImageIcon(getClass().getClassLoader().getResource("images/squiggle.png")),
+        new ImageIcon(getClass().getClassLoader().getResource("images/square.png")),
+        new ImageIcon(getClass().getClassLoader().getResource("images/polyline.png"))
+        };
 		
 		
 		String[] buttonLabels = { "Circle", "Rectangle", "Squiggle", "Square" ,"Polyline" };
 		this.setLayout(new GridLayout(buttonLabels.length,1));
 		int index = 0;
 		for (String label : buttonLabels) {
-			button = new JButton(label);
+			button = new JButton(buttonIcons[index]);
 			button.setActionCommand(label);		
 			button.setOpaque(true);
 			this.add(button);
