@@ -80,3 +80,49 @@ Nov 5, 2017
 	Yesterday : Implemented userstory 7 and re-implemented userstories 5,6 (few changes).
 	Today     : try to work on shape feedbacks with my partner. Re-implemented userstory7 (few changes). Update product and sprintbacklogs.
 	Obstacles : No significant obstacles.
+	
+Nov 6, 2017
+	Yesterday : Submitted A2P1.
+	Today     : Was waiting for new members.
+	Obstacles : No obstacles.
+	
+Nov 7, 2017
+	Yesterday : Was waiting for new members.
+	Today     : Had to wait for new members. 
+	Obstacles : No obstacles.
+
+Nov 8, 2017
+	Yesterday : Was waiting for new members.
+	Today     : Meet up with group members, and try and decide which design pattern to implement.
+	Obstacles : No obstacles
+	
+Nov 9, 2017
+	Yesterday : Meet up with group members, and try and decide which design pattern to implement.
+	Today     : Decided to do a re-implementation of A2P1 using my partners code as template. 
+	Obstacles : No obstacles.
+	
+Nov 10, 2017
+	Yesterday :Decided to do a re-implementation of A2P1 using my partners code as template. 
+	Today     :Worked on re-implementation of A2P1 in order incorporate better architecture. The last thing I have to do is add icons to the buttons.
+	Obstacles :Placement of panels on GUI was hard to do.
+	
+Nov 11, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 12, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 13, 2017
+	Yesterday :
+	Today     :
+	Obstacles :
+	
+Nov 14, 2017
+	Yesterday :
+	Today     :
+	Obstacles :	
+
