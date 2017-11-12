@@ -212,12 +212,12 @@ ISSUE    : The first click should specify the center of the circle, with
            implementation.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
-TYPE     : USER STORY 2.1 : UTORID
+TYPE     : USER STORY 2.1 : debragaf
 NAME     : Implement Poly Line
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
-ISSUE    : YOU FILL THIS ONE IN!!
+OWNER    : Filip
+PRIORITY : high
+ESTIMATE : 2 hours
+ISSUE    : Polyline is not working, implement a tool where one can clickpoints to create a polyline
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : BUG 2.1 : yoshid36
