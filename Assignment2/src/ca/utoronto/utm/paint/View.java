@@ -136,7 +136,12 @@ public class View extends JFrame implements ActionListener {
 		menuItem = new JMenuItem("Redo");
 		menuItem.addActionListener(this);
 		menu.add(menuItem);
-
+		
+		menu.addSeparator();// -------------
+		menuItem = new JMenuItem("Clear");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		
 		menuBar.add(menu);
 		
 		menu = new JMenu("Color");
