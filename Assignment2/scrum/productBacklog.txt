@@ -302,9 +302,9 @@ of object creation.
 --------------------------------------------------------------------------
 TYPE     : BUG 2.4 : UTORID
 NAME     : Architecture behind creating shape instances is poor
-OWNER    : 
-PRIORITY :
-ESTIMATE : 
+OWNER    : Alexander Yeara
+PRIORITY : 1
+ESTIMATE :  1 day (3-4hours)
 ISSUE    : A better architecture for creating shape instances so that it is 
 more flexible, and easier to work with can be created using the Strategy Design 
 pattern as follows:

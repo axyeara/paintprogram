@@ -107,8 +107,8 @@ Nov 10, 2017
 	Obstacles :Placement of panels on GUI was hard to do.
 	
 Nov 11, 2017
-	Yesterday :
-	Today     :
+	Yesterday : Worked on re-implementation of A2P1 in order incorporate better architecture. The last thing I have to do is add icons to the buttons.
+	Today     : Implemented Polyline and worked on the strategy design pattern.
 	Obstacles :
 	
 Nov 12, 2017
