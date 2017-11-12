@@ -22,45 +22,42 @@ public class SquiggleShapeManipulatorStrategy extends ShapeManipulatorStrategyTe
 		this.paintPanel = paintPanel;
 		this.model = paintPanel.getModel();
 	}
-
+	
+	@Override
+	public void reset()
+	{
+		this.squiggle = null;
+		this.draggingDrawCmd = null;
+		setDragging(false);
+	}
+	
 	protected void doMousePressedSetDraggingDrawCmd(MouseEvent e) 
 	{
 		LOG.fine("doMousePressedSetDraggingDrawCmd");
 
 		this.squiggle = new Squiggle(new ArrayList<Point>());
-
+		this.squiggle.addPoint(new Point(e.getX(), e.getY()));
+		
 		draggingDrawCmd = new SquiggleDrawingCommand(squiggle, paintPanel.toRenderingParameters());
 	}
 
-	protected void doMouseDraggedUpdateShape(MouseEvent e)
+	protected boolean doMouseDraggedUpdateShape(MouseEvent e)
 	{
 		LOG.fine("doMouseDraggedUpdateShape squiggle");
 
 		this.squiggle.addPoint(new Point(e.getX(), e.getY()));
+		return true; // notify observers
 	}
 
-	protected void doMouseReleasedUpdateShape(MouseEvent e)
+	protected boolean doMouseReleasedUpdateShape(MouseEvent e)
 	{
 		LOG.fine("doMouseReleased squiggle");
 
 		this.squiggle.addPoint(new Point(e.getX(), e.getY()));
-	}
-
-	@Override
-	public void setDragging(boolean dragging)
-	{
-		this.dragging = dragging;
-
-		if (!dragging) {
-			draggingDrawCmd = null;
-		}
-	}
-
-	@Override
-	public boolean isDragging()
-	{
-		// TODO Auto-generated method stub
-		return dragging;
+		this.model.addPlacedDrawingCommand(draggingDrawCmd); // place dragging shape
+		
+		setDragging(false); // set manupulator.dragging is over
+		return true; // notify observers
 	}
 
 }

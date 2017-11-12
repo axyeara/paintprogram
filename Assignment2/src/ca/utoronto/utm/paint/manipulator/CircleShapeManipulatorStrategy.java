@@ -15,15 +15,20 @@ public class CircleShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 	// shape
 	private Circle circle;
 
-	public CircleShapeManipulatorStrategy(PaintPanel paintPanel)
-	{
+	public CircleShapeManipulatorStrategy(PaintPanel paintPanel) {
 		LOG.fine("new CircleShapeManipulatorStrategy...");
 		this.paintPanel = paintPanel;
 		this.model = paintPanel.getModel();
 	}
-
-	protected void doMousePressedSetDraggingDrawCmd(MouseEvent e) 
-	{
+	
+	@Override
+	public void reset() {
+		this.circle = null;
+		this.draggingDrawCmd = null;
+		setDragging(false);
+	}
+	
+	protected void doMousePressedSetDraggingDrawCmd(MouseEvent e) {
 		LOG.fine("doMousePressedSetDraggingDrawCmd");
 		// Problematic notion of radius and centre!!
 		Point centre = new Point(e.getX(), e.getY());
@@ -33,20 +38,23 @@ public class CircleShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 		draggingDrawCmd = new CircleDrawingCommand(circle, paintPanel.toRenderingParameters());
 	}
 
-	protected void doMouseDraggedUpdateShape(MouseEvent e)
-	{
+	protected boolean doMouseDraggedUpdateShape(MouseEvent e) {
 		LOG.fine("doMouseDraggedUpdateShape circle=" + circle.getRadius());
 		doUpdateCoordByEvent(e);
+		return true; // notify observers
 	}
 
-	protected void doMouseReleasedUpdateShape(MouseEvent e)
-	{
+	protected boolean doMouseReleasedUpdateShape(MouseEvent e) {
 		LOG.fine("doMouseReleased circle=" + circle.getRadius());
 		doUpdateCoordByEvent(e);
+		
+		this.model.addPlacedDrawingCommand(draggingDrawCmd); // place dragging shape
+		
+		setDragging(false); // set manupulator.dragging is over
+		return true; // notify observers
 	}
 
-	private void doUpdateCoordByEvent(MouseEvent e)
-	{
+	private void doUpdateCoordByEvent(MouseEvent e) {
 		// Problematic notion of radius and centre!!
 		// get coordinates for center of circle
 		int xCoord = Math.abs(e.getX() - this.circle.getCentre().getX());

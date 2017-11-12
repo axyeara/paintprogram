@@ -1,16 +1,17 @@
 package ca.utoronto.utm.paint.shape;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Squiggle implements RenderableShape {
 	
-	private ArrayList<Point> points;
+	private List<Point> points;
 	
-	public Squiggle(ArrayList<Point> points) {
+	public Squiggle(List<Point> points) {
 		this.points = points;
 	}
 	
-	public ArrayList<Point> getPoints() {
+	public List<Point> getPoints() {
 		return this.points;
 	}
 	
@@ -18,8 +19,4 @@ public class Squiggle implements RenderableShape {
 		this.points.add(point);
 	}
 	
-	public void setPoints(ArrayList<Point> points) {
-		this.points = points;
-	}
-
 }

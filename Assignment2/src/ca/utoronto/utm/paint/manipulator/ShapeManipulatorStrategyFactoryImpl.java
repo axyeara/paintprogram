@@ -6,7 +6,7 @@ import ca.utoronto.utm.paint.PaintPanel;
 import ca.utoronto.utm.paint.shape.RenderableShape;
 
 /**
- * Bug 2.3: Abstract Factory pattern for ShapeManupulatorStrategy
+ * Bug 2.3: Factory pattern for ShapeManupulatorStrategy
  *
  */
 public class ShapeManipulatorStrategyFactoryImpl implements ShapeManipulatorStrategyFactory {
@@ -25,8 +25,7 @@ public class ShapeManipulatorStrategyFactoryImpl implements ShapeManipulatorStra
 		} else if (RenderableShape.LABEL_SQUIGGLE.equals(shapeLabel)) {
 			return new SquiggleShapeManipulatorStrategy(paintPanel);
 		} else if (RenderableShape.LABEL_POLYLINE.equals(shapeLabel)) {
-			LOG.warning("Not Supported yet : " + RenderableShape.LABEL_POLYLINE);
-			return null;
+			return new PolylineShapeManipulatorStrategy(paintPanel);
 		} else {
 			throw new IllegalStateException("Unknown shape is registered: " + shapeLabel);
 		}

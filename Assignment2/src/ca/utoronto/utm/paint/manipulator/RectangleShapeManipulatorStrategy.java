@@ -15,15 +15,20 @@ public class RectangleShapeManipulatorStrategy extends ShapeManipulatorStrategyT
 	// shape
 	private Rectangle rect;
 
-	public RectangleShapeManipulatorStrategy(PaintPanel paintPanel)
-	{
+	public RectangleShapeManipulatorStrategy(PaintPanel paintPanel) {
 		LOG.fine("new RectangleShapeManipulatorStrategy...");
 		this.paintPanel = paintPanel;
 		this.model = paintPanel.getModel();
 	}
-
-	protected void doMousePressedSetDraggingDrawCmd(MouseEvent e) 
-	{
+	
+	@Override
+	public void reset() {
+		this.rect = null;
+		this.draggingDrawCmd = null;
+		setDragging(false);
+	}
+	
+	protected void doMousePressedSetDraggingDrawCmd(MouseEvent e) {
 		LOG.fine("doMousePressedSetDraggingDrawCmd");
 		// Problematic notion of radius and centre!!
 		Point origin = new Point(e.getX(), e.getY());
@@ -34,20 +39,21 @@ public class RectangleShapeManipulatorStrategy extends ShapeManipulatorStrategyT
 		draggingDrawCmd = new RectangleDrawingCommand(rect, paintPanel.toRenderingParameters());
 	}
 
-	protected void doMouseDraggedUpdateShape(MouseEvent e)
-	{
+	protected boolean doMouseDraggedUpdateShape(MouseEvent e) {
 		LOG.fine("doMouseDraggedUpdateShape rectangle");
 		doUpdateCoordByEvent(e);
+		return true; // notify observers
 	}
-
-	protected void doMouseReleasedUpdateShape(MouseEvent e)
-	{
+	
+	protected boolean doMouseReleasedUpdateShape(MouseEvent e) {
 		LOG.fine("doMouseReleased rectangle");
 		doUpdateCoordByEvent(e);
+		this.model.addPlacedDrawingCommand(draggingDrawCmd); // place dragging shape
+		setDragging(false); // set manupulator.dragging is over
+		return true; // notify observers
 	}
 
-	private void doUpdateCoordByEvent(MouseEvent e)
-	{
+	private void doUpdateCoordByEvent(MouseEvent e) {
 		Point renderTopLeftP = this.rect.getRenderTopLeftPoint();
 		Point dragStartOrigin = this.rect.getOrigin();
 		// set width
@@ -70,22 +76,5 @@ public class RectangleShapeManipulatorStrategy extends ShapeManipulatorStrategyT
 		}
 		//		LOG.fine("updated r=" + rect.getRenderTopLeftPoint() + ", w=" + rect.getWidth() + ", h=" + rect.getHeight());
 	}
-
-	@Override
-	public void setDragging(boolean dragging)
-	{
-		this.dragging = dragging;
-
-		if (!dragging) {
-			draggingDrawCmd = null;
-		}
-	}
-
-	@Override
-	public boolean isDragging()
-	{
-		// TODO Auto-generated method stub
-		return dragging;
-	}
-
+	
 }

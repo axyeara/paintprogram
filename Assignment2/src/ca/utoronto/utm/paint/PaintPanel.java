@@ -58,6 +58,10 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		this.shapeManipulator = shapeManipulator;
 	}
 	
+	public ShapeManipulatorStrategy getShapeManipulator() {
+		return shapeManipulator;
+	}
+	
 	/**
 	 * convert current rendering parameters into RenderingParameters object
 	 * to set to DrawingCommand
@@ -71,7 +75,6 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		renderingParams.setFillState(this.fillState);
 		return renderingParams;
 	}
-
 
 	/**
 	 *  View aspect of this
@@ -112,17 +115,13 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		this.repaint(); // Schedule a call to paintComponent
 	}
 	
-//	/**
-//	 *  Controller aspect of this
-//	 */
-//	public void setMode(String mode){
-//		this.mode=mode;
-//	}
-	
 	// MouseMotionListener below
 	@Override
 	public void mouseMoved(MouseEvent e) {
-
+		// for Polyline
+		if (shapeManipulator != null) {
+			shapeManipulator.mouseMoved(e);
+		}
 	}
 	
 	@Override
@@ -137,7 +136,10 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	// MouseListener below
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		LOG.fine("Clicked...");
+		LOG.fine("Clicked");
+		if (shapeManipulator != null) {
+			shapeManipulator.mouseClicked(e);
+		}
 	}
 	
 	@Override
@@ -151,27 +153,19 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		LOG.fine("Released...");
-
 		if (shapeManipulator != null) {
-			DrawingCommand draggingDrawCmd = this.shapeManipulator.getDraggingDrawingCommand();
-			if (draggingDrawCmd != null) {
-				shapeManipulator.getDraggingDrawingCommand().setRenderingParameters(toRenderingParameters());
-				shapeManipulator.mouseReleased(e);
-				shapeManipulator.setDragging(false);
-
-				this.model.addPlacedDrawingCommand(draggingDrawCmd); // place dragging shape
-			}
+			shapeManipulator.mouseReleased(e);
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		LOG.fine("mouseEntered...");
+//		LOG.fine("mouseEntered...");
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		LOG.fine("mouseExited...");
+//		LOG.fine("mouseExited...");
 	}
 	
 	public Color getLineColor() {

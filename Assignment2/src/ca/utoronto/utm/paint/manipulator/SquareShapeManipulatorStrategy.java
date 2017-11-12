@@ -21,7 +21,15 @@ public class SquareShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 		this.paintPanel = paintPanel;
 		this.model = paintPanel.getModel();
 	}
-
+	
+	@Override
+	public void reset()
+	{
+		this.square = null;
+		this.draggingDrawCmd = null;
+		setDragging(false);
+	}
+	
 	protected void doMousePressedSetDraggingDrawCmd(MouseEvent e) 
 	{
 		LOG.fine("doMousePressedSetDraggingDrawCmd");
@@ -33,17 +41,21 @@ public class SquareShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 		draggingDrawCmd = new SquareDrawingCommand(square, paintPanel.toRenderingParameters());
 	}
 
-	protected void doMouseDraggedUpdateShape(MouseEvent e)
+	protected boolean doMouseDraggedUpdateShape(MouseEvent e)
 	{
 		LOG.fine("doMouseDraggedUpdateShape square");
 		doUpdateCoordByEvent(e);
-
+		return true; // notify observers
+		
 	}
 
-	protected void doMouseReleasedUpdateShape(MouseEvent e)
+	protected boolean doMouseReleasedUpdateShape(MouseEvent e)
 	{
 		LOG.fine("doMouseReleased square=");
 		doUpdateCoordByEvent(e);
+		this.model.addPlacedDrawingCommand(draggingDrawCmd); // place dragging shape
+		setDragging(false); // set manupulator.dragging is over
+		return true; // notify observers
 	}
 
 	private void doUpdateCoordByEvent(MouseEvent e)
@@ -68,23 +80,6 @@ public class SquareShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 		} else {
 			renderTopLeftP.setY(e.getY());
 		}
-	}
-
-	@Override
-	public void setDragging(boolean dragging)
-	{
-		this.dragging = dragging;
-
-		if (!dragging) {
-			draggingDrawCmd = null;
-		}
-	}
-
-	@Override
-	public boolean isDragging()
-	{
-		// TODO Auto-generated method stub
-		return dragging;
 	}
 
 }
