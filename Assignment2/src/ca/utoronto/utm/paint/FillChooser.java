@@ -13,8 +13,8 @@ import javax.swing.event.ChangeListener;
 
 public class FillChooser extends JFrame implements ChangeListener {
 
-	protected JColorChooser colorChooser;
-	protected JLabel title;
+	private JColorChooser colorChooser;
+	private JLabel title;
 	private PaintPanel paintPanel;
 	
 	public FillChooser(PaintPanel paintPanel) {

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Polyline implements RenderableShape {
 	
-private List<Point> points;
+	private List<Point> points;
 	
 	public Polyline(List<Point> points) {
 		this.points = points;

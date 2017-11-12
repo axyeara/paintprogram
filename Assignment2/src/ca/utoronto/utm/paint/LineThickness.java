@@ -12,9 +12,9 @@ import javax.swing.event.ChangeListener;
 
 public class LineThickness extends JFrame implements ChangeListener {
 	
-	static final int strokeMin = 0;
-	static final int strokeMax = 50;
-	static final int strokeInit = 25;
+	static final int STROKE_MIN = 0;
+	static final int STROKE_MAX = 50;
+	static final int STROKE_DEFAULT = 25;
 	private PaintPanel paintPanel;
 	
 	public LineThickness(PaintPanel paintPanel) {
@@ -29,8 +29,8 @@ public class LineThickness extends JFrame implements ChangeListener {
 		
 		
 		// creates the slider.
-		JSlider lineThickness = new JSlider(JSlider.HORIZONTAL, strokeMin, strokeMax, 
-				strokeInit);
+		JSlider lineThickness = new JSlider(JSlider.HORIZONTAL, STROKE_MIN, STROKE_MAX, 
+				STROKE_DEFAULT);
 		
 		lineThickness.addChangeListener(this);
 		//turn on labels at major tick marks.
