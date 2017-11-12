@@ -15,11 +15,11 @@ public class ColorChooser extends JFrame implements ChangeListener {
 
 	protected JColorChooser colorChooser;
 	protected JLabel title;
-	private View view;
+	private PaintPanel paintPanel;
 	
-	public ColorChooser(View view) {
+	public ColorChooser(PaintPanel paintPanel) {
 		super();
-		this.view = view;
+		this.paintPanel = paintPanel;
 		title = new JLabel("Choose your color!", JLabel.CENTER);
 		title.setForeground(Color.BLACK);
 		title.setOpaque(true);
@@ -41,7 +41,7 @@ public class ColorChooser extends JFrame implements ChangeListener {
 	public void stateChanged(ChangeEvent arg0) {
 		Color newColor = colorChooser.getColor();
         title.setForeground(newColor);
-        this.view.getPaintPanel().setDefaultColor(newColor);
+        this.paintPanel.setLineColor(newColor);
 	}		
 }
 	

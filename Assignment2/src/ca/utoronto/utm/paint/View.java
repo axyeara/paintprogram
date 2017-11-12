@@ -35,18 +35,20 @@ public class View extends JFrame implements ActionListener {
 		this.setJMenuBar(createMenuBar());
 		
 		Container c=this.getContentPane();
+		
+		this.model=model;
+		this.paintPanel = new PaintPanel(model);
+		c.add(this.paintPanel, BorderLayout.CENTER);
+		
 		// c.add(new JButton("North"),BorderLayout.NORTH);
 		// c.add(new JButton("South"),BorderLayout.SOUTH);
 		// c.add(new JButton("East"),BorderLayout.EAST);
-		this.shapeChooserPanel = new ShapeChooserPanel(this);
-		this.colorFrame = new ColorChooser(this);
-		this.fillFrame = new FillChooser(this);
-		this.strokePanel = new LineThickness(this);
+		this.shapeChooserPanel = new ShapeChooserPanel(paintPanel);
+		this.colorFrame = new ColorChooser(paintPanel);
+		this.fillFrame = new FillChooser(paintPanel);
+		this.strokePanel = new LineThickness(paintPanel);
 		
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
-		this.model=model;
-		this.paintPanel = new PaintPanel(model, this);
-		c.add(this.paintPanel, BorderLayout.CENTER);
 		
 		this.pack();
 		// this.setSize(200,200);

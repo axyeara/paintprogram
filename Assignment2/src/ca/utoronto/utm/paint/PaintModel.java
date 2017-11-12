@@ -5,76 +5,48 @@ import java.util.List;
 import java.util.Observable;
 import java.util.logging.Logger;
 
+import ca.utoronto.utm.paint.render.DrawingCommand;
+
+/**
+ * Has 2 responsibilities:
+ * 1: holds only placed shapes
+ * 2: Observable, so notifies Observer
+ * @author momo
+ *
+ */
 public class PaintModel extends Observable {
 	// log
 	private static final Logger LOG = Logger.getLogger(PaintModel.class.getName());
 	
-	private DrawingCommand draggingDrawingCommand;
+	// Bug 2.1: Should not declare the variable as concrete class like ArrayList
 	private List<DrawingCommand> placedDrawingCommands = new ArrayList<>();
-	private DrawingCommandFactoryImpl renderCommandFactory = new DrawingCommandFactoryImpl();
-	
-	private ArrayList<Point> points=new ArrayList<Point>();
-	private ArrayList<Circle> circles=new ArrayList<Circle>();
-	private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
-	private ArrayList<Squiggle> squiggles = new ArrayList<Squiggle>();
-	private ArrayList<Square> squares = new ArrayList<Square>();
-	//----------------------------------
-	
-	private ArrayList<DrawingCommand> drawingCommands = new ArrayList<DrawingCommand>();
-	
-	public void addDrawingCommand(DrawingCommand d) {
-		this.drawingCommands.add(d);
-	}
-	
-	public ArrayList<DrawingCommand> getDrawingCommand() {
-		return drawingCommands;
-	}
-	
-	//-------------------------------------
-	public void addPoint(Point p){
-		this.points.add(p);
-	}
-	public ArrayList<Point> getPoints(){
-		return points;
-	}
-	
-	public void addCircle(Circle c){
-		this.circles.add(c);
+
+	// Bug 2.4 : called from ShapeManupulatorStrategy
+	public void draggableChanged() {
+		// notify observers
 		this.setChanged();
 		this.notifyObservers();
 	}
-	public ArrayList<Circle> getCircles(){
-		return circles;
-	}
-	
-	public void addRectangle(Rectangle r) {
-		this.rectangles.add(r);
+
+	//------------------------------------------------
+	// Shapes already placed
+	public void clearPlacedDrawingCommands() {
+		this.placedDrawingCommands = new ArrayList<>();
+		// notify observers
 		this.setChanged();
 		this.notifyObservers();
 	}
 	
-	public ArrayList<Rectangle> getRectangles(){
-		return rectangles;
-	}
-	
-	public void addSquiggle(Squiggle s) {
-		this.squiggles.add(s);
+	public void addPlacedDrawingCommand(DrawingCommand cmd) {
+		this.placedDrawingCommands.add(cmd);
+		// notify observers
 		this.setChanged();
 		this.notifyObservers();
 	}
 	
-	public ArrayList<Squiggle> getSquiggles(){
-		return this.squiggles;
+	public List<DrawingCommand> getPlacedDrawingCommands() {
+		return placedDrawingCommands;
 	}
 	
-	public ArrayList<Square> getSquares(){
-		return this.squares;
-	}
-	
-	public void addSquare(Square sq) {
-		this.squares.add(sq);
-		this.setChanged();
-		this.notifyObservers();
-	}
 }
 

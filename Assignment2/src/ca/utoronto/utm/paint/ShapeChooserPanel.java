@@ -5,24 +5,33 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactory;
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategy;
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactoryImpl;
 
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
 
 class ShapeChooserPanel extends JPanel implements ActionListener {
-	private View view; // So we can talk to our parent or other components of the view
+	private static final Logger LOG = Logger.getLogger(PaintModel.class.getName());
+	
+	private PaintPanel paintPanel; // So we can talk to our parent or other components of the view
 	private int numClicks = 0;
 	private JButton firstBt;
 	private JButton secondBt;
-	private ArrayList<JButton> buttons = new ArrayList<JButton>();
+	private List<JButton> buttons = new ArrayList<JButton>();
+	private ShapeManipulatorStrategyFactory manipulatorFactory =  new ShapeManipulatorStrategyFactoryImpl();
 	
-	public ShapeChooserPanel(View view) {	
-		this.view=view;
+	public ShapeChooserPanel(PaintPanel paintPanel) {	
+		this.paintPanel = paintPanel;
 		
 		ImageIcon rectangle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
                 .getResource("images/rectangle.gif"));
@@ -63,8 +72,10 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 			JButton firstbt = (JButton)e.getSource();
 			firstbt.setEnabled(false);
 		}
-		this.view.getPaintPanel().setMode(e.getActionCommand());
-		//System.out.println(e.getActionCommand());
+
+		// Bug 2.4 Strategy Factory
+		ShapeManipulatorStrategy sm = manipulatorFactory.create(e.getActionCommand(), paintPanel);
+		paintPanel.setShapeManupulator(sm);
 	}
 
 	

@@ -1,12 +1,13 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.shape;
 
-public class Point {
-	int x, y;
-	Point(int x, int y){
+public class Point implements RenderableShape {
+	private int x, y;
+	
+	public Point(int x, int y){
 		this.x=x; this.y=y;
 	}
 	
-	Point(Point p){
+	Point(Point p) {
 		this.x=p.getX(); this.y=p.getY();
 	}
 	

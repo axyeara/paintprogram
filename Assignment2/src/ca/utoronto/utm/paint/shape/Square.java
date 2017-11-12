@@ -1,26 +1,17 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.shape;
 
-import java.awt.Color;
-
-public class Square {
+public class Square implements RenderableShape {
 	private int sideLength;
-	Color color;
-	Color fillColor;
-	boolean fillState = false;
 	private Point origin;
 	private Point renderTopLeftPoint;
 	private int width;
 	private int height;
-	int stroke;
 	
 	public Square(Point origin, int width, int height) {
 		this.origin = origin;
 		setRenderTopLeftPoint(new Point(origin));
-		this.color = color;
 		this.width = width;
 		this.height = height;
-		this.fillColor = fillColor;
-		this.stroke = stroke;
 	}
 	
 	public int getWidth() {
@@ -42,10 +33,6 @@ public class Square {
 		this.height = height;
 	}
 	
-	public void setFillState(boolean bool) {
-		this.fillState = bool;
-	}
-	
 	public Point getRenderTopLeftPoint() {
 		return renderTopLeftPoint;
 	}
@@ -53,4 +40,13 @@ public class Square {
 	public void setRenderTopLeftPoint(Point point) {
 		this.renderTopLeftPoint = point;
 	}
+
+	public int getSideLength() {
+		return sideLength;
+	}
+
+	public void setSideLength(int sideLength) {
+		this.sideLength = sideLength;
+	}
+
 }

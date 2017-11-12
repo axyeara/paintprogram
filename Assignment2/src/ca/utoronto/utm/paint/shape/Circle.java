@@ -1,15 +1,8 @@
-package ca.utoronto.utm.paint;
-
-import java.awt.Color;
-
-import ca.utoronto.utm.paint.RenderableShape;
+package ca.utoronto.utm.paint.shape;
 
 public class Circle implements RenderableShape {
 	private Point centre; 	// holds point of mouse click when user starts dragging
 	private int radius;
-	Color color;
-	Color fillColor;
-	boolean fillState = false;
 
 	// TODO: Use Point class
 	private int x;		// Top left point of rectangle to draw circle
@@ -20,9 +13,6 @@ public class Circle implements RenderableShape {
 	public Circle(Point centre, int radius){
 		this.centre = centre;
 		this.radius = radius;
-		this.color = color;
-		this.fillColor = fillColor;
-		this.stroke = stroke;
 	}
 
 	public Point getCentre() {
@@ -39,10 +29,6 @@ public class Circle implements RenderableShape {
 
 	public void setRadius(int radius) {
 		this.radius = radius;
-	}
-	
-	public void setFillState(boolean bool) {
-		this.fillState = bool;
 	}
 	
 	public void setX(int newX) {

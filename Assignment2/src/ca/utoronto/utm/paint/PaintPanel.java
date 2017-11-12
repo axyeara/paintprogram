@@ -1,6 +1,5 @@
 package ca.utoronto.utm.paint;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -8,46 +7,71 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Logger;
 
 import javax.swing.JPanel;
+
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategy;
+import ca.utoronto.utm.paint.render.DrawingCommand;
+import ca.utoronto.utm.paint.render.RenderingParameters;
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
 
-class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseListener  {
-	private int i=0;
-	private PaintModel model; // slight departure from MVC, because of the way painting works
-	private View view; // So we can talk to our parent or other components of the view
+public class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseListener  {
 
-	private String mode; // modifies how we interpret input (could be better?)
-	private Circle circle; // the circle we are building
-	private Rectangle rectangle;
-	private Squiggle squiggle;
-	private Square square;
+	// JPanel implements Serializable
+	private static final long serialVersionUID = 1L;
+
+	private static final Logger LOG = Logger.getLogger(PaintPanel.class.getName());
 	
-	private Color defaultColor = Color.RED;
+	private final PaintModel model; // slight departure from MVC, because of the way painting works
+
+	// followings are paint panel properties, nothing to do with view
+	// these are set by chooser component hen users select a choice for drawing
+	// parameters to draw lines
+	private Color lineColor = Color.RED;
+	private int lineThickness;
+	// parameters to draw fill
 	private Color fillColor;
 	private boolean fillState = false;
-	private int defaultStroke;
 	
-	public PaintPanel(PaintModel model, View view){
+	// Bug 2.2, 2.3, 2.4
+	private ShapeManipulatorStrategy shapeManipulator;
+	
+	public PaintPanel(PaintModel model){
 		this.setBackground(Color.WHITE);
 		this.setPreferredSize(new Dimension(300,300));
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		
-		this.mode= mode; // bad code here?
-		
 		this.model = model;
+		
 		// paintPanel will now observe model
 		// Every time model is changed (model calls notifyObservers()), this update method gets called
 		this.model.addObserver(this);	
-		
-		this.view=view;
 	}
+	
+	public void setShapeManupulator(ShapeManipulatorStrategy shapeManipulator) {
+		this.shapeManipulator = shapeManipulator;
+	}
+	
+	/**
+	 * convert current rendering parameters into RenderingParameters object
+	 * to set to DrawingCommand
+	 * @return
+	 */
+	public RenderingParameters toRenderingParameters() {
+		RenderingParameters renderingParams = new RenderingParameters();
+		renderingParams.setColor(this.lineColor);
+		renderingParams.setFillColor(this.fillColor);
+		renderingParams.setStroke(this.lineThickness);
+		renderingParams.setFillState(this.fillState);
+		return renderingParams;
+	}
+
 
 	/**
 	 *  View aspect of this
@@ -61,89 +85,23 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		// setBackground (Color.blue); 
 		// Origin is at the top left of the window 50 over, 75 down
 		g2d.setColor(Color.white);
+		
+		// draw placed shape
+		for (DrawingCommand drawingCmd : this.model.getPlacedDrawingCommands()) {
+			drawingCmd.render(g2d);
+		}
+
+		// draw dragging shape (rubberband)
+		if (shapeManipulator != null) {
+			DrawingCommand draggingDrawCmd = this.shapeManipulator.getDraggingDrawingCommand();
+			if (draggingDrawCmd != null) {
+				if (shapeManipulator.isDragging()) {
+					LOG.fine("paint draggable shape = " + draggingDrawCmd.getShape());
+					draggingDrawCmd.render(g2d);		// draw rubberband
+				}
+			}
+		}
    
-
-		// Draw Squiggles
-		ArrayList<Squiggle> squiggles = this.model.getSquiggles();
-		for (Squiggle s: squiggles) {
-			g2d.setColor(s.color);
-			for(int i=0;i<s.getPoints().size()-1; i++){
-				g2d.setStroke(new BasicStroke(s.stroke));
-				Point p1=s.getPoints().get(i);
-				Point p2=s.getPoints().get(i+1);
-				g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-			}
-		}
-		
-		// Draw Circles
-		ArrayList<Circle> circles = this.model.getCircles();
-		for(Circle c: circles){
-			g2d.setColor(c.color);
-			int x = c.getCentre().getX();
-			int y = c.getCentre().getY();
-			int radius = c.getRadius();
-			// we want x and y coordinates for drawOval
-			int topX = x - radius;
-			int topY = y - radius;
-			if (c.fillState == true) {
-				g2d.setPaint(c.fillColor);
-				g2d.fillOval(topX, topY, radius*2, radius*2);
-			}
-			else {
-
-				g2d.drawOval(topX, topY, radius*2, radius*2);
-
-				g2d.setStroke(new BasicStroke(c.stroke));
-
-			}
-		}
-		
-		// Draw Rectangles
-		ArrayList<Rectangle> rectangles = this.model.getRectangles();
-		for (Rectangle r: this.model.getRectangles()) {
-			g2d.setColor(r.color);
-			Point renderTopLeftP = r.getRenderTopLeftPoint();
-//			int x = r.getOrigin().getX();
-//			int y = r.getOrigin().getY();
-			int x = renderTopLeftP.getX();
-			int y = renderTopLeftP.getY();
-			int height = r.getHeight();
-			int width = r.getWidth();
-			if (r.fillState == true) {
-				g2d.setPaint(r.fillColor);
-				g2d.fillRect(x, y, width, height);
-			}
-			else {
-				g2d.setStroke(new BasicStroke(r.stroke));
-				g2d.drawRect(x, y, width, height);
-			}
-			
-			
-		}
-		
-		// Draw Squares
-		ArrayList<Square> squares = this.model.getSquares();
-		for (Square sq: this.model.getSquares()) {
-			g2d.setColor(sq.color);
-			Point renderTopLeftP = sq.getRenderTopLeftPoint();
-//			int x = sq.getOrigin().getX();
-//			int y = sq.getOrigin().getY();
-			int x = renderTopLeftP.getX();
-			int y = renderTopLeftP.getY();
-			int height = sq.getHeight();
-			int width = sq.getWidth();
-			int length = Math.max(height, width);
-			if (sq.fillState == true) {
-				g2d.setPaint(sq.fillColor);
-				g2d.fillRect(x, y, length, length);
-			}
-			else {
-				g2d.setStroke(new BasicStroke(sq.stroke));
-				g2d.drawRect(x, y, length, length);
-			}
-			
-		}
-		
 		g2d.dispose();
 	}
 
@@ -154,333 +112,74 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		this.repaint(); // Schedule a call to paintComponent
 	}
 	
-	/**
-	 *  Controller aspect of this
-	 */
-	public void setMode(String mode){
-		this.mode=mode;
-	}
+//	/**
+//	 *  Controller aspect of this
+//	 */
+//	public void setMode(String mode){
+//		this.mode=mode;
+//	}
 	
 	// MouseMotionListener below
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
-		}
+
 	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			if (this.squiggle != null) {
-				this.squiggle.addPoint(new Point(e.getX(), e.getY()));
-				this.squiggle.color = this.defaultColor;
-				this.squiggle.fillColor = this.fillColor;
-				this.squiggle.stroke = this.defaultStroke;
-				// 1. We must addCircle() to render shape
-				// 2. we will replace the last object in the collection in the model to reduce duplication
-				// 3. we will add the shape object on mousePressed to guarantee this logic
-				this.model.getSquiggles().remove(this.model.getSquiggles().size() - 1);
-				this.model.addSquiggle(this.squiggle);
-			}
-			
-		} else if(this.mode=="Circle"){
-			// get coordinates for center of circle
-			int xCoord = Math.abs(e.getX() - this.circle.getCentre().getX());
-			int yCoord = Math.abs(e.getY() - this.circle.getCentre().getY());
-			
-			// solve for correct value of radius using distance formula
-			int xSq = (int) Math.pow(xCoord, 2);
-			int ySq = (int) Math.pow(yCoord, 2);
-			int radius = (int) Math.sqrt(xSq + ySq);
-			this.circle.setRadius(radius);
-			
-			// set coordinates for circle that is logical for drawOval
-			this.circle.setX(this.circle.getCentre().getX() - this.circle.getRadius());
-			this.circle.setY(this.circle.getCentre().getY() - this.circle.getRadius());
-			
-			this.circle.color = this.defaultColor;
-			if (this.fillState) {
-				this.circle.fillColor = this.fillColor;
-				this.circle.setFillState(true);
-			}
-
-			this.circle.stroke = this.defaultStroke;
-			// 1. We must addCircle() to render shape
-			// 2. we will replace the last object in the collection in the model to reduce duplication
-			// 3. we will add the shape object on mousePressed to guarantee this logic
-			this.model.getCircles().remove(this.model.getCircles().size() - 1);
-			this.model.addCircle(this.circle);
-			
-		} else if (this.mode=="Rectangle") {
-			Point renderTopLeftP = this.rectangle.getRenderTopLeftPoint();
-			Point dragStartOrigin = this.rectangle.getOrigin();
-			// set width
-			int width = Math.abs(dragStartOrigin.getX() - e.getX());
-			this.rectangle.setWidth(width);
-			// set height
-			int height = Math.abs(dragStartOrigin.getY() - e.getY());
-			this.rectangle.setHeight(height);
-			// set renderTopLeftP x
-			if (e.getX() > renderTopLeftP.getX()) {
-				renderTopLeftP.setX(dragStartOrigin.getX());
-			} else {
-				renderTopLeftP.setX(e.getX());
-			}
-			// set renderTopLeftP y
-			if (e.getY() > renderTopLeftP.getY()) {
-				renderTopLeftP.setY(dragStartOrigin.getY());
-			} else {
-				renderTopLeftP.setY(e.getY());
-			}
-			
-			this.rectangle.color = this.defaultColor;
-			if (this.fillState) {
-				this.rectangle.fillColor = this.fillColor;
-				this.rectangle.setFillState(true);
-			}
-			this.rectangle.stroke = this.defaultStroke;
-			// 1. We must addCircle() to render shape
-			// 2. we will replace the last object in the collection in the model to reduce duplication
-			// 3. we will add the shape object on mousePressed to guarantee this logic
-			this.model.getRectangles().remove(this.model.getRectangles().size() - 1);
-			this.model.addRectangle(this.rectangle);
+		LOG.fine("Dragged [" + e.getX() + ", " + e.getY() + "]...");
 		
-		} else if (this.mode=="Square") {
-			Point renderTopLeftP = this.square.getRenderTopLeftPoint();
-			Point dragStartOrigin = this.square.getOrigin();
-			// set width
-			int width = Math.abs(dragStartOrigin.getX() - e.getX());
-			this.square.setWidth(width);
-			// set height
-			int height = Math.abs(dragStartOrigin.getY() - e.getY());
-			this.square.setHeight(height);
-			// set renderTopLeftP x
-			if (e.getX() > renderTopLeftP.getX()) {
-				renderTopLeftP.setX(dragStartOrigin.getX());
-			} else {
-				renderTopLeftP.setX(e.getX());
-			}
-			// set renderTopLeftP y
-			if (e.getY() > renderTopLeftP.getY()) {
-				renderTopLeftP.setY(dragStartOrigin.getY());
-			} else {
-				renderTopLeftP.setY(e.getY());
-			}
-			
-			this.square.color = this.defaultColor;
-			if (this.fillState) {
-				this.square.fillColor = this.fillColor;
-				this.square.setFillState(true);
-			}
-			this.square.stroke = this.defaultStroke;
-			// 1. We must addCircle() to render shape
-			// 2. we will replace the last object in the collection in the model to reduce duplication
-			// 3. we will add the shape object on mousePressed to guarantee this logic
-			this.model.getSquares().remove(this.model.getSquares().size() - 1);
-			this.model.addSquare(this.square);
+		if (shapeManipulator != null) {
+			shapeManipulator.mouseDragged(e);
 		}
 	}
 
 	// MouseListener below
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
-		}
+		LOG.fine("Clicked...");
 	}
-
-	// 1. We must addCircle() to render shape
-	// 2. we will replace the last object in the collection in the model to reduce duplication
-	// 3. we will add the shape object on mousePressed to guarantee this logic
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			this.squiggle = new Squiggle(new ArrayList<Point>());
-			this.model.addSquiggle(this.squiggle);
-			
-		} else if(this.mode=="Circle"){
-			// Problematic notion of radius and centre!!
-			Point centre = new Point(e.getX(), e.getY());
-			int radius = 0;
-			this.circle=new Circle(centre, 0);
-			this.model.addCircle(this.circle);
-			
-		} else if(this.mode == "Rectangle") {
-			Point origin = new Point(e.getX(), e.getY());
-			int height = 0;
-			int width = 0;
-			this.rectangle = new Rectangle(origin, 0,  0);
-			this.model.addRectangle(this.rectangle);
-			
-		} else if (this.mode == "Square") {
-			Point origin = new Point(e.getX(), e.getY());
-			int width = 0;
-			int height = 0;
-			this.square = new Square(origin, 0, 0);
-			this.model.addSquare(this.square);
+		LOG.fine("Pressed...");
+		if (shapeManipulator != null) {
+			shapeManipulator.mousePressed(e);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.println("Released...");
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			if(this.circle!=null){
-				// Problematic notion of radius and centre!!
-				// get coordinates for center of circle
-				int xCoord = Math.abs(e.getX() - this.circle.getCentre().getX());
-				int yCoord = Math.abs(e.getY() - this.circle.getCentre().getY());
-				
-				// solve for correct value of radius using distance formula
-				int xSq = (int) Math.pow(xCoord, 2);
-				int ySq = (int) Math.pow(yCoord, 2);
-				int radius = (int) Math.sqrt(xSq + ySq);
-				this.circle.setRadius(radius);
-				
-				// set coordinates for circle that is logical for drawOval
-				this.circle.setX(this.circle.getCentre().getX() - this.circle.getRadius());
-				this.circle.setY(this.circle.getCentre().getY() - this.circle.getRadius());
-				
-				this.circle.color = this.defaultColor;
-				if (this.fillState) {
-					this.circle.fillColor = this.fillColor;
-					this.circle.setFillState(true);
-				}
+		LOG.fine("Released...");
 
-				this.circle.stroke = this.defaultStroke;
-				// 1. We must addCircle() to render shape
-				// 2. we will replace the last object in the collection in the model to reduce duplication
-				// 3. we will add the shape object on mousePressed to guarantee this logic
-				this.model.getCircles().remove(this.model.getCircles().size() - 1);
-				this.model.addCircle(this.circle);
-				this.circle=null;
-			}
-		} else if(this.mode=="Rectangle") {
-			if(this.rectangle!= null) {
-				Point renderTopLeftP = this.rectangle.getRenderTopLeftPoint();
-				Point dragStartOrigin = this.rectangle.getOrigin();
-				// set width
-				int width = Math.abs(dragStartOrigin.getX() - e.getX());
-				this.rectangle.setWidth(width);
-				// set height
-				int height = Math.abs(dragStartOrigin.getY() - e.getY());
-				this.rectangle.setHeight(height);
-				// set renderTopLeftP x
-				if (e.getX() > renderTopLeftP.getX()) {
-					renderTopLeftP.setX(dragStartOrigin.getX());
-				} else {
-					renderTopLeftP.setX(e.getX());
-				}
-				// set renderTopLeftP y
-				if (e.getY() > renderTopLeftP.getY()) {
-					renderTopLeftP.setY(dragStartOrigin.getY());
-				} else {
-					renderTopLeftP.setY(e.getY());
-				}
-				
-				// ----------------------
-//				if (this.rectangle.getOrigin().getX() - e.getX() <  0) {
-//					int width = Math.abs(this.rectangle.getOrigin().getX()-e.getX());
-//					this.rectangle.setWidth(width);
-//				}
-//				else {
-//					int width = Math.abs(this.rectangle.getOrigin().getX()-e.getX());
-//					this.rectangle.getOrigin().setX(Math.abs(e.getX()));
-//					this.rectangle.setWidth(width);
-//				}
-//				if (this.rectangle.getOrigin().getY() - e.getY() < 0){
-//					int height = Math.abs(this.rectangle.getOrigin().getY()-e.getY());
-//					this.rectangle.setHeight(height);
-//				}
-//				else {
-//					int height = Math.abs(this.rectangle.getOrigin().getY()-e.getY());
-//					this.rectangle.getOrigin().setY(Math.abs(e.getY()));
-//					this.rectangle.setHeight(height);
-//				}
-				
-				this.rectangle.color = this.defaultColor;
-				if (this.fillState) {
-					this.rectangle.fillColor = this.fillColor;
-					this.rectangle.setFillState(true);
-				}
-				this.rectangle.stroke = this.defaultStroke;
-				// 1. We must addCircle() to render shape
-				// 2. we will replace the last object in the collection in the model to reduce duplication
-				// 3. we will add the shape object on mousePressed to guarantee this logic
-				this.model.getRectangles().remove(this.model.getRectangles().size() - 1);
-				this.model.addRectangle(this.rectangle);
-				this.rectangle = null;
-			}
-		} else if (this.mode == "Square") {
-			if(this.square!= null) {
-				Point renderTopLeftP = this.square.getRenderTopLeftPoint();
-				Point dragStartOrigin = this.square.getOrigin();
-				// set width
-				int width = Math.abs(dragStartOrigin.getX() - e.getX());
-				this.square.setWidth(width);
-				// set height
-				int height = Math.abs(dragStartOrigin.getY() - e.getY());
-				this.square.setHeight(height);
-				// set renderTopLeftP x
-				if (e.getX() > renderTopLeftP.getX()) {
-					renderTopLeftP.setX(dragStartOrigin.getX());
-				} else {
-					renderTopLeftP.setX(e.getX());
-				}
-				// set renderTopLeftP y
-				if (e.getY() > renderTopLeftP.getY()) {
-					renderTopLeftP.setY(dragStartOrigin.getY());
-				} else {
-					renderTopLeftP.setY(e.getY());
-				}
-				
-				this.square.color = this.defaultColor;
-				if (this.fillState) {
-					this.square.fillColor = this.fillColor;
-					this.square.setFillState(true);
-				}
-				this.square.stroke = this.defaultStroke;
-				// 1. We must addCircle() to render shape
-				// 2. we will replace the last object in the collection in the model to reduce duplication
-				// 3. we will add the shape object on mousePressed to guarantee this logic
-				this.model.getSquares().remove(this.model.getSquares().size() - 1);
-				this.model.addSquare(this.square);
-				this.square = null;
+		if (shapeManipulator != null) {
+			DrawingCommand draggingDrawCmd = this.shapeManipulator.getDraggingDrawingCommand();
+			if (draggingDrawCmd != null) {
+				shapeManipulator.getDraggingDrawingCommand().setRenderingParameters(toRenderingParameters());
+				shapeManipulator.mouseReleased(e);
+				shapeManipulator.setDragging(false);
+
+				this.model.addPlacedDrawingCommand(draggingDrawCmd); // place dragging shape
 			}
 		}
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
-		}
+		LOG.fine("mouseEntered...");
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
-		}
+		LOG.fine("mouseExited...");
 	}
 	
-	public Color getDefaultColor() {
-		return defaultColor;
+	public Color getLineColor() {
+		return lineColor;
 	}
 
-	public void setDefaultColor(Color defaultColor) {
-		this.defaultColor = defaultColor;
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
 	}
 
 	public Color getFillColor() {
@@ -499,11 +198,16 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 		this.fillState = fillState;
 	}
 
-	public int getDefaultStroke() {
-		return defaultStroke;
+	public int getLineThickness() {
+		return lineThickness;
 	}
 
-	public void setDefaultStroke(int defaultStroke) {
-		this.defaultStroke = defaultStroke;
+	public void setLineThickness(int lineThickness) {
+		this.lineThickness = lineThickness;
+	}
+	
+	public PaintModel getModel()
+	{
+		return model;
 	}
 }

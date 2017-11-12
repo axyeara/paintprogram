@@ -15,11 +15,11 @@ public class LineThickness extends JFrame implements ChangeListener {
 	static final int strokeMin = 0;
 	static final int strokeMax = 50;
 	static final int strokeInit = 25;
-	private View view;
+	private PaintPanel paintPanel;
 	
-	public LineThickness(View view) {
+	public LineThickness(PaintPanel paintPanel) {
 		super();
-		this.view = view;
+		this.paintPanel = paintPanel;
 		
 		// creates a label.
 		JLabel sliderLabel = new JLabel("Line Thickness", JLabel.CENTER);
@@ -51,7 +51,7 @@ public class LineThickness extends JFrame implements ChangeListener {
 		JSlider source = (JSlider)e.getSource();
 		if (!source.getValueIsAdjusting()) {
 			int stroke = (int)source.getValue();
-			this.view.getPaintPanel().setDefaultStroke(stroke);
+			this.paintPanel.setLineThickness(stroke);
 		}
 		
 	}

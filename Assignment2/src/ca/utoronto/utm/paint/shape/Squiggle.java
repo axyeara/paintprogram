@@ -1,19 +1,13 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.shape;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
-public class Squiggle {
-	Color color;
-	Color fillColor;
+public class Squiggle implements RenderableShape {
+	
 	private ArrayList<Point> points;
-	int stroke;
 	
 	public Squiggle(ArrayList<Point> points) {
 		this.points = points;
-		this.color = color;
-		this.fillColor = fillColor;
-		this.stroke = stroke;
 	}
 	
 	public ArrayList<Point> getPoints() {
@@ -23,4 +17,9 @@ public class Squiggle {
 	public void addPoint(Point point) {
 		this.points.add(point);
 	}
+	
+	public void setPoints(ArrayList<Point> points) {
+		this.points = points;
+	}
+
 }
