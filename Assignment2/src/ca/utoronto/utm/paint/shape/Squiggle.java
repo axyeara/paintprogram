@@ -1,6 +1,5 @@
 package ca.utoronto.utm.paint.shape;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Squiggle implements RenderableShape {

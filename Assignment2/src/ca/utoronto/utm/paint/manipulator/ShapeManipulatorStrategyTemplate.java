@@ -2,6 +2,7 @@ package ca.utoronto.utm.paint.manipulator;
 
 import java.awt.event.MouseEvent;
 import java.util.logging.Logger;
+
 import javax.swing.SwingUtilities;
 
 import ca.utoronto.utm.paint.PaintModel;

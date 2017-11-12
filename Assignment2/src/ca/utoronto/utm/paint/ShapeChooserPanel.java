@@ -12,8 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactory;
 import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategy;
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactory;
 import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactoryImpl;
 
 
