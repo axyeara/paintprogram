@@ -73,8 +73,9 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 			firstbt.setEnabled(false);
 		}
 
-		// Bug 2.4 Strategy Factory
+		// Bug 2.3, Bug 2.4: Strategy Factory for creating different ShapeManipulatorStrategy instances
 		ShapeManipulatorStrategy sm = manipulatorFactory.create(e.getActionCommand(), paintPanel);
+		// then, install it in to the PaintPanel (Bug 2.3)
 		paintPanel.setShapeManupulator(sm);
 	}
 

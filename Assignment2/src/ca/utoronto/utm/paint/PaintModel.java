@@ -10,7 +10,7 @@ import ca.utoronto.utm.paint.render.DrawingCommand;
 /**
  * Has 2 responsibilities:
  * 1: holds only placed shapes
- * 2: Observable, so notifies Observer
+ * 2: Observable, so notifies Observer -> Bug 2.4 3: called by ShapeManipulator and View at appropriate time
  * 
  * My understanding of a part of Bug 2.4 is creating an instance of the DrawingCommand of 
  * a shape and storing it into the List in PaintModel.
@@ -21,11 +21,15 @@ public class PaintModel extends Observable {
 	// log
 	private static final Logger LOG = Logger.getLogger(PaintModel.class.getName());
 	
-	// Bug 2.1: Should not declare the variable as concrete class like ArrayList
+	// Bug 2.1: command pattern
+	// Should not declare the variable as concrete class like ArrayList
 	private List<DrawingCommand> placedDrawingCommands = new ArrayList<>();
 	private List<DrawingCommand> undoneDrawingCommands = new ArrayList<>();
 
-	// Bug 2.4 : called from ShapeManupulatorStrategy
+	/**
+	 * notifies Observers
+	 * Bug 2.4 : called from ShapeManupulatorStrategy
+	 */
 	public void changed() {
 		// notify observers
 		this.setChanged();
@@ -34,14 +38,32 @@ public class PaintModel extends Observable {
 
 	//------------------------------------------------
 	// Shapes already placed
+	/**
+	 * clears DrawingCommand stack
+	 * clears the canvas
+	 * called when menu button "clear" is clicked
+	 */
 	public void clearPlacedDrawingCommands() {
 		this.placedDrawingCommands = new ArrayList<>();
 		changed(); // notify observers
 	}
+	
+	/**
+	 * adds placed DrawingCommand object to the stack
+	 * called by ShapeManipulatorStrategy when drawing of a shape is complete
+	 * 
+	 * passes dragging drawingCommand of Manipulator as argument
+	 * drawingCommand (rubberband) holds shape which holds points of shape when it is made final
+	 */
 	public void addPlacedDrawingCommand(DrawingCommand cmd) {
 		this.placedDrawingCommands.add(cmd);
 		changed(); // notify observers
 	}
+	
+	/**
+	 * To draw the shapes
+	 * called by paintPanel.paintComponent
+	 */
 	public List<DrawingCommand> getPlacedDrawingCommands() {
 		return placedDrawingCommands;
 	}

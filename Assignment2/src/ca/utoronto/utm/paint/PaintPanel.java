@@ -89,12 +89,15 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		// Origin is at the top left of the window 50 over, 75 down
 		g2d.setColor(Color.white);
 		
-		// draw placed shape
+		// Bug 2.1: draw placed shape
 		for (DrawingCommand drawingCmd : this.model.getPlacedDrawingCommands()) {
 			drawingCmd.render(g2d);
 		}
 
 		// draw dragging shape (rubberband)
+		// rubberband must be drawn above because it is a stack
+		// never saves rubberband drawingCommand
+		// draws separately
 		if (shapeManipulator != null) {
 			DrawingCommand draggingDrawCmd = this.shapeManipulator.getDraggingDrawingCommand();
 			if (draggingDrawCmd != null) {
@@ -115,6 +118,7 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		this.repaint(); // Schedule a call to paintComponent
 	}
 	
+	// EventListenerMethods below
 	// MouseMotionListener below
 	@Override
 	public void mouseMoved(MouseEvent e) {

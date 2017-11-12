@@ -174,6 +174,10 @@ public class View extends JFrame implements ActionListener {
 		return menuBar;
 	}
 
+	/**
+	 * Bug 2.4 3: repaint at appropriate time through PaintModel's method
+	 * such as undo, redo, and clearPlacedDrawingCommands
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "Choose Color") {
 			this.colorFrame.setVisible(true);

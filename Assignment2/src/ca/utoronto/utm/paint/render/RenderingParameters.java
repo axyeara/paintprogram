@@ -2,6 +2,9 @@ package ca.utoronto.utm.paint.render;
 
 import java.awt.Color;
 
+// 2.1 
+// 2.2  handle changes to the graphics parameter
+// which is why used in drawing command
 public class RenderingParameters {
 	
 	private Color color = Color.RED;
