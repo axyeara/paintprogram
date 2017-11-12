@@ -33,4 +33,11 @@ public class PaintModel extends Observable {
 		return points;
 	}
 	
+	public void replaceLastPoint(Point p) {
+		if(points.size() >= 2) {
+			this.points.set(points.size()-1, p);
+			this.setChanged();
+			this.notifyObservers();
+		}
+	}	
 }

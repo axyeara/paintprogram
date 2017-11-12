@@ -26,9 +26,11 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	private Rectangle rectangle; 
 	private Square square;
 	private Squiggle squiggle;
+	private Polyline polyline;
 	private String fillState;	
 	private Color color;	
 	private int lineThickness = 1;
+	
 
 	
 	public PaintPanel(PaintModel model, View view){
@@ -120,8 +122,17 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
      					g2d.fillRect(x, y, width, width);
      				}
      			}
-     		}
-        
+     			//Draw Polylines
+     			else if (sh instanceof Polyline) {
+     				for(int i=0;i< ((Polyline) sh).getSize()-1; i++) {
+     				Point p1=((Polyline) sh).getPoint(i);
+     	    			Point p2=((Polyline) sh).getPoint(i+1);
+     	    			g2d.setColor(((Polyline) sh).getColor());
+     	    			g2d.setStroke(new BasicStroke(((Polyline) sh).getLineThickness()));
+     	    			g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+     				}
+     			}
+     		}       
      	// Draw Lines
      		ArrayList<Point> points = this.model.getPoints();
      		for(int i=0;i<points.size()-1; i++){
@@ -163,6 +174,12 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		if(this.mode == "Polyline" && this.polyline!=null) {
+			this.model.replaceLastPoint(new Point(e.getX(), e.getY()));//keeps tracing the mouse
+	
+				
+		}
+		
 		if(this.mode=="Squiggle"){
 			
 		} else if(this.mode=="Circle"){
@@ -197,6 +214,25 @@ class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseL
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if(this.mode == "Polyline" && this.polyline==null) {
+			this.polyline = new Polyline(new Point(e.getX(),e.getY()),this.color,this.fillState,this.lineThickness);
+			this.model.addPoint(new Point(e.getX(),e.getY()));//add starting point
+			this.model.addPoint(new Point(e.getX(),e.getY()));//add cursor point (these two addPoints, are here for the mouseMoved method, to draw "outline")
+		}else {
+			this.polyline.addPoint(new Point(e.getX(),e.getY()));
+			this.model.replaceLastPoint(new Point(e.getX(),e.getY()));//overwriting cursor point with click point
+			this.model.addPoint(new Point(e.getX(),e.getY()));//adds a new cursor point, always keeping the cursor point at the end
+
+			if (e.getClickCount() == 2) {
+				this.polyline.addPoint(new Point(e.getX(), e.getY()));
+				this.model.addShape(this.polyline);
+				this.model.clearPoints();			
+				this.polyline = null;
+			}
+		}		
+		
+		
+		
 		if(this.mode=="Squiggle"){
 			
 		} else if(this.mode=="Circle"){
