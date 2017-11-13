@@ -1,4 +1,4 @@
-package ca.utoronto.utm.paint;
+package ca.utoronto.utm.paint.wip;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
