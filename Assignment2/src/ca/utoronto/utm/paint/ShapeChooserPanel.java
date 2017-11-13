@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategy;
 import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactory;
 import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactoryImpl;
+import ca.utoronto.utm.paint.shape.RenderableShape;
 
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
@@ -33,23 +33,25 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	public ShapeChooserPanel(PaintPanel paintPanel) {	
 		this.paintPanel = paintPanel;
 		
-		ImageIcon rectangle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-                .getResource("images/rectangle.gif"));
-		ImageIcon circle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-                .getResource("images/circle.gif"));
-		ImageIcon square = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-                .getResource("images/square.gif"));
-		ImageIcon squiggle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-                .getResource("images/squiggle.png"));
-		ImageIcon polyline = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-                .getResource("images/polyline.gif"));
+//		ImageIcon rectangle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+//                .getResource("images/rectangle.gif"));
+//		ImageIcon circle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+//                .getResource("images/circle.gif"));
+//		ImageIcon square = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+//                .getResource("images/square.gif"));
+//		ImageIcon squiggle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+//                .getResource("images/squiggle.png"));
+//		ImageIcon polyline = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+//                .getResource("images/polyline.gif"));
 		
-		ImageIcon[] buttonIcons = {circle, rectangle, square, squiggle, polyline};
-		String[] buttonLabels = {"Circle", "Rectangle", "Square", "Squiggle", "Polyline"};
-		this.setLayout(new GridLayout(buttonIcons.length, 1));
+//		ImageIcon[] buttonIcons = {circle, rectangle, square, squiggle, polyline};
+		String[] buttonLabels = {RenderableShape.LABEL_CIRCLE, RenderableShape.LABEL_RECTANGLE, RenderableShape.LABEL_SQUARE, RenderableShape.LABEL_SQUIGGLE, RenderableShape.LABEL_POLYLINE};
+//		this.setLayout(new GridLayout(buttonIcons.length, 1));
+		this.setLayout(new GridLayout(buttonLabels.length, 1));
 		int index = 0;
-		for (ImageIcon icon : buttonIcons) {
-			JButton button = new JButton(icon);
+//		for (ImageIcon icon : buttonIcons) {
+		for (String buttonLabel : buttonLabels) {
+			JButton button = new JButton(buttonLabel);
 			button.setActionCommand(buttonLabels[index]);
 			button.setBackground(Color.WHITE);
 			this.add(button);
