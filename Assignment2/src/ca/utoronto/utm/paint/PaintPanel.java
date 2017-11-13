@@ -1,6 +1,5 @@
 package ca.utoronto.utm.paint;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -8,311 +7,205 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Logger;
 
 import javax.swing.JPanel;
+
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategy;
+import ca.utoronto.utm.paint.render.DrawingCommand;
+import ca.utoronto.utm.paint.render.RenderingParameters;
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
 
 public class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseListener  {
-	private PaintModel model; // slight departure from MVC, because of the way painting works
-	private View view; // So we can talk to our parent or other components of the view
-	private String mode; 
-	private Circle circle; 
-	private Rectangle rectangle; 
-	private Square square;
-	private Squiggle squiggle;
-	private Polyline polyline;
-	private String fillState;	
-	private Color color;	
-	private int lineThickness = 1;
-	
 
+	// JPanel implements Serializable
+	private static final long serialVersionUID = 1L;
+
+	private static final Logger LOG = Logger.getLogger(PaintPanel.class.getName());
 	
-	public PaintPanel(PaintModel model, View view){
-		this.setBackground(Color.white);
-		this.setPreferredSize(new Dimension(1600,900));
+	private final PaintModel model; // slight departure from MVC, because of the way painting works
+
+	// followings are paint panel properties, nothing to do with view
+	// these are set by chooser component hen users select a choice for drawing
+	// parameters to draw lines
+	private Color lineColor = Color.RED;
+	private int lineThickness;
+	// parameters to draw fill
+	private Color fillColor;
+	private boolean fillState = false;
+	
+	// Bug 2.2, 2.3, 2.4
+	private ShapeManipulatorStrategy shapeManipulator;
+	
+	public PaintPanel(PaintModel model){
+		this.setBackground(Color.WHITE);
+		this.setPreferredSize(new Dimension(300,300));
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		
 		this.model = model;
-		this.model.addObserver(this);
-		this.view=view;
+		
+		// paintPanel will now observe model
+		// Every time model is changed (model calls notifyObservers()), this update method gets called
+		this.model.addObserver(this);	
+	}
+	
+	public void setShapeManupulator(ShapeManipulatorStrategy shapeManipulator) {
+		this.shapeManipulator = shapeManipulator;
+	}
+	
+	public ShapeManipulatorStrategy getShapeManipulator() {
+		return shapeManipulator;
+	}
+	
+	/**
+	 * convert current rendering parameters into RenderingParameters object
+	 * to set to DrawingCommand
+	 * @return
+	 */
+	public RenderingParameters toRenderingParameters() {
+		RenderingParameters renderingParams = new RenderingParameters();
+		renderingParams.setColor(this.lineColor);
+		renderingParams.setFillColor(this.fillColor);
+		renderingParams.setStroke(this.lineThickness);
+		renderingParams.setFillState(this.fillState);
+		return renderingParams;
 	}
 
-
+	/**
+	 *  View aspect of this
+	 */
 	public void paintComponent(Graphics g) {
-	
+		// Use g to draw on the JPanel, lookup java.awt.Graphics in
+		// the javadoc to see more of what this can do for you!!
 		
         super.paintComponent(g); //paint background
         Graphics2D g2d = (Graphics2D) g; // lets use the advanced api
+		// setBackground (Color.blue); 
+		// Origin is at the top left of the window 50 over, 75 down
+		g2d.setColor(Color.white);
 		
-     	ArrayList<Shape> shapeStack = this.model.getShapes();
-     	for(Shape sh: shapeStack) {
-     		
-     			// Draw Squiggles
-     			if(sh instanceof Squiggle) {
-     	        	for(int i=0;i< ((Squiggle) sh).getSize()-1; i++){
-     	    			Point p1=((Squiggle) sh).getPoint(i);
-     	    			Point p2=((Squiggle) sh).getPoint(i+1);
-     	    			g2d.setColor(((Squiggle) sh).getColor());
-     	    			g2d.setStroke(new BasicStroke(((Squiggle) sh).getLineThickness()));
-     	    			g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-     	    		}  
-     	        }
-     			else if(sh instanceof Circle) {
-     			// Draw Circles
-     				int x = ((Circle) sh).getCentre().getX();
-     				int y = ((Circle) sh).getCentre().getY();
-     				int radius = ((Circle) sh).getRadius();
-     				g2d.setColor(((Circle) sh).getColor());
-     				if(((Circle) sh).getFillState()=="Outline") {
-     				g2d.setStroke(new BasicStroke(((Circle) sh).getLineThickness()));	
-     				g2d.drawOval(x-radius, y-radius, 2*radius, 2*radius);}
-     				else {
-     					g2d.fillOval(x-radius, y-radius, 2*radius, 2*radius);
-     				}
-     			
-     			}
-     			// Draw Rectangles
-     			else if(sh instanceof Rectangle) {
-     				int x = ((Rectangle) sh).getCorner().getX();
-     				int y = ((Rectangle) sh).getCorner().getY();
-     				int width = ((Rectangle) sh).getWidth();
-     				int height = ((Rectangle) sh).getHeight();
-     				if(width<0) {
-     					width = Math.abs(width);
-     					x = ((Rectangle) sh).getCorner().getX()-width;
-     				}
-     				if(height<0) {
-     					height = Math.abs(height);
-     					y = ((Rectangle) sh).getCorner().getY()-height;
-     				}
-     				g2d.setColor(((Rectangle) sh).getColor());
-     				if(((Rectangle) sh).getFillState()=="Outline") {
-     				g2d.setStroke(new BasicStroke(((Rectangle) sh).getLineThickness()));
-     				g2d.drawRect(x, y, width, height);}
-     				else {
-     					g2d.fillRect(x, y, width, height);
-     				}
-     			}
-     			
-     			//Draw Squares
-     			else if (sh instanceof Square) {
-     				int x = ((Square) sh).getCorner().getX();
-     				int y = ((Square) sh).getCorner().getY();
-     				int width = ((Square) sh).getWidth();
-     				int height = ((Square) sh).getHeight();
-     				if(width<0) {
-     					width = Math.abs(width);
-     					x = ((Square) sh).getCorner().getX()-width;
-     				}
-     				if(height<0) {
-     					height = Math.abs(height);
-     					y = ((Square) sh).getCorner().getY()-height;
-     				}
-     				g2d.setColor(((Square) sh).getColor());
-     				if(((Square) sh).getFillState()=="Outline") {
-     				g2d.setStroke(new BasicStroke(((Square) sh).getLineThickness()));
-     				g2d.drawRect(x, y, width, width);}
-     				else {
-     					g2d.fillRect(x, y, width, width);
-     				}
-     			}
-     			//Draw Polylines
-     			else if (sh instanceof Polyline) {
-     				for(int i=0;i< ((Polyline) sh).getSize()-1; i++) {
-     				Point p1=((Polyline) sh).getPoint(i);
-     	    			Point p2=((Polyline) sh).getPoint(i+1);
-     	    			g2d.setColor(((Polyline) sh).getColor());
-     	    			g2d.setStroke(new BasicStroke(((Polyline) sh).getLineThickness()));
-     	    			g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-     				}
-     			}
-     		}       
-     	// Draw Lines
-     		ArrayList<Point> points = this.model.getPoints();
-     		for(int i=0;i<points.size()-1; i++){
-     			Point p1=points.get(i);
-     			Point p2=points.get(i+1);
-     			g2d.setColor(this.color);
-     			g2d.setStroke(new BasicStroke(this.lineThickness));
-     			g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-     		}
-		
-		
+		// Bug 2.1: draw placed shape
+		for (DrawingCommand drawingCmd : this.model.getPlacedDrawingCommands()) {
+			drawingCmd.render(g2d);
+		}
+
+		// draw dragging shape (rubberband)
+		// rubberband must be drawn above because it is a stack
+		// never saves rubberband drawingCommand
+		// draws separately
+		if (shapeManipulator != null) {
+			DrawingCommand draggingDrawCmd = this.shapeManipulator.getDraggingDrawingCommand();
+			if (draggingDrawCmd != null) {
+				if (shapeManipulator.isDragging()) {
+					LOG.fine("paint draggable shape = " + draggingDrawCmd.getShape());
+					draggingDrawCmd.render(g2d);		// draw rubberband
+				}
+			}
+		}
+   
 		g2d.dispose();
 	}
 
-
-	
+	// implements Observer
 	@Override
 	public void update(Observable o, Object arg) {
 		// Not exactly how MVC works, but similar.
 		this.repaint(); // Schedule a call to paintComponent
 	}
 	
-	public void setMode(String mode){
-		this.mode=mode;
-	}
-	
-	public void setFillState(String fillState) {
-		this.fillState = fillState;
-	}
-	
-	public void setLineThickness(int thickness) {
-		this.lineThickness = thickness;
-	}
-	
-	public void setColor(Color color) {
-		this.color = color;
-	}
-	
-	
+	// EventListenerMethods below
+	// MouseMotionListener below
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(this.mode == "Polyline" && this.polyline!=null) {
-			this.model.replaceLastPoint(new Point(e.getX(), e.getY()));//keeps tracing the mouse
-	
-				
-		}
-		
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
+		// for Polyline
+		if (shapeManipulator != null) {
+			shapeManipulator.mouseMoved(e);
 		}
 	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			this.model.addPoint(new Point(e.getX(), e.getY()));
-			this.squiggle.addPoint(new Point(e.getX(), e.getY()));
-		} else if(this.mode=="Circle"){
-			int radius = (int) Math.sqrt((this.circle.getCentre().getX()-e.getX())*(this.circle.getCentre().getX()-e.getX())+(this.circle.getCentre().getY()-e.getY())*(this.circle.getCentre().getY()-e.getY()));
-			this.circle.setRadius(radius);
-			this.model.addShape(this.circle);
-		} else if(this.mode=="Rectangle") {
-			int width = e.getX()-this.rectangle.getCorner().getX();
-			int height = e.getY()-this.rectangle.getCorner().getY();
-			this.rectangle.setWidth(width);
-			this.rectangle.setHeight(height);
-			this.model.addShape(this.rectangle);
-		}else if(this.mode=="Square") {
-			int width = Math.max(Math.abs(e.getX()-this.square.getCorner().getX()), Math.abs(e.getY()-this.square.getCorner().getY()));
-			this.square.setHeight(width*(int)Math.signum(e.getY()-this.square.getCorner().getY()));
-			this.square.setWidth(width*(int)Math.signum(e.getX()-this.square.getCorner().getX()));
-			this.model.addShape(this.square);
-		}
-			
+		LOG.fine("Dragged [" + e.getX() + ", " + e.getY() + "]...");
 		
+		if (shapeManipulator != null) {
+			shapeManipulator.mouseDragged(e);
+		}
 	}
 
-	
+	// MouseListener below
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(this.mode == "Polyline" && this.polyline==null) {
-			this.polyline = new Polyline(new Point(e.getX(),e.getY()),this.color,this.fillState,this.lineThickness);
-			this.model.addPoint(new Point(e.getX(),e.getY()));//add starting point
-			this.model.addPoint(new Point(e.getX(),e.getY()));//add cursor point (these two addPoints, are here for the mouseMoved method, to draw "outline")
-		}else {
-			this.polyline.addPoint(new Point(e.getX(),e.getY()));
-			this.model.replaceLastPoint(new Point(e.getX(),e.getY()));//overwriting cursor point with click point
-			this.model.addPoint(new Point(e.getX(),e.getY()));//adds a new cursor point, always keeping the cursor point at the end
-
-			if (e.getClickCount() == 2) {
-				this.polyline.addPoint(new Point(e.getX(), e.getY()));
-				this.model.addShape(this.polyline);
-				this.model.clearPoints();			
-				this.polyline = null;
-			}
-		}		
-		
-		
-		
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
+		LOG.fine("Clicked");
+		if (shapeManipulator != null) {
+			shapeManipulator.mouseClicked(e);
 		}
 	}
-
-
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			this.model.addPoint(new Point(e.getX(),e.getY()));
-			this.squiggle = new Squiggle(new Point(e.getX(),e.getY()),this.color,this.fillState,this.lineThickness);
-		} else if(this.mode=="Circle"){
-			int radius = 0;
-			Point centre = new Point(e.getX(), e.getY());
-			this.circle=new Circle(centre, radius, this.color,this.fillState,this.lineThickness);
-		} else if(this.mode=="Rectangle") {
-			int width = 0;
-			int height = 0;
-			Point corner = new Point(e.getX(),e.getY());
-			this.rectangle=new Rectangle(corner,width,height, this.color,this.fillState,this.lineThickness);
-		} else if(this.mode == "Square") {
-			int width = 0;
-			Point corner = new Point(e.getX(),e.getY());
-			this.square=new Square(corner,width, width,this.color,this.fillState,this.lineThickness);
+		LOG.fine("Pressed...");
+		if (shapeManipulator != null) {
+			shapeManipulator.mousePressed(e);
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			this.model.addPoint(new Point(e.getX(), e.getY()));
-			this.squiggle.addPoint(new Point(e.getX(), e.getY()));
-			this.model.addShape(this.squiggle);
-			this.model.clearPoints();
-		} else if(this.mode=="Circle"){
-			if(this.circle!=null){
-				int radius = (int) Math.sqrt((this.circle.getCentre().getX()-e.getX())*(this.circle.getCentre().getX()-e.getX())+(this.circle.getCentre().getY()-e.getY())*(this.circle.getCentre().getY()-e.getY()));
-				this.circle.setRadius(radius);
-				this.model.addShape(this.circle);
-			}
-		}else if(this.mode=="Rectangle") {
-			if(this.rectangle!=null) {
-				int width = e.getX()-this.rectangle.getCorner().getX();
-				int height = e.getY()-this.rectangle.getCorner().getY();
-				this.rectangle.setWidth(width);
-				this.rectangle.setHeight(height);
-				this.model.addShape(this.rectangle);
-			}
-		}else if(this.mode=="Square") {
-			if(this.square!=null) {
-				int width = Math.max(Math.abs(e.getX()-this.square.getCorner().getX()), Math.abs(e.getY()-this.square.getCorner().getY()));
-				this.square.setHeight(width*(int)Math.signum(e.getY()-this.square.getCorner().getY()));
-				this.square.setWidth(width*(int)Math.signum(e.getX()-this.square.getCorner().getX()));
-				this.model.addShape(this.square);
-			}
+		LOG.fine("Released...");
+		if (shapeManipulator != null) {
+			shapeManipulator.mouseReleased(e);
 		}
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
-		}
+//		LOG.fine("mouseEntered...");
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(this.mode=="Squiggle"){
-			
-		} else if(this.mode=="Circle"){
-			
-		}
+//		LOG.fine("mouseExited...");
+	}
+	
+	public Color getLineColor() {
+		return lineColor;
+	}
+
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
+	public Color getFillColor() {
+		return fillColor;
+	}
+
+	public void setFillColor(Color fillColor) {
+		this.fillColor = fillColor;
+	}
+
+	public boolean isFillState() {
+		return fillState;
+	}
+
+	public void setFillState(boolean fillState) {
+		this.fillState = fillState;
+	}
+
+	public int getLineThickness() {
+		return lineThickness;
+	}
+
+	public void setLineThickness(int lineThickness) {
+		this.lineThickness = lineThickness;
+	}
+	
+	public PaintModel getModel()
+	{
+		return model;
 	}
 }
-
-
-	
-	

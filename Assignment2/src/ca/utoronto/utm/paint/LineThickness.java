@@ -6,21 +6,20 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class LineThickness extends JPanel implements ChangeListener {
+public class LineThickness extends JFrame implements ChangeListener {
 	
-	static final int strokeMin = 0;
-	static final int strokeMax = 50;
-	static final int strokeInit = 25;
-	private View view;
+	static final int STROKE_MIN = 0;
+	static final int STROKE_MAX = 50;
+	static final int STROKE_DEFAULT = 25;
+	private PaintPanel paintPanel;
 	
-	public LineThickness(View view) {
+	public LineThickness(PaintPanel paintPanel) {
 		super();
-		this.view = view;
+		this.paintPanel = paintPanel;
 		
 		// creates a label.
 		JLabel sliderLabel = new JLabel("Line Thickness", JLabel.CENTER);
@@ -30,8 +29,8 @@ public class LineThickness extends JPanel implements ChangeListener {
 		
 		
 		// creates the slider.
-		JSlider lineThickness = new JSlider(JSlider.HORIZONTAL, strokeMin, strokeMax, 
-				strokeInit);
+		JSlider lineThickness = new JSlider(JSlider.HORIZONTAL, STROKE_MIN, STROKE_MAX, 
+				STROKE_DEFAULT);
 		
 		lineThickness.addChangeListener(this);
 		//turn on labels at major tick marks.
@@ -43,16 +42,17 @@ public class LineThickness extends JPanel implements ChangeListener {
 		Font font = new Font("Serif", Font.ITALIC, 15);
 		
 		//add the components to the panel
-		this.add(sliderLabel, BorderLayout.SOUTH);
-		this.add(lineThickness, BorderLayout.NORTH);
-	
-		
-	
+		this.getContentPane().add(lineThickness, BorderLayout.CENTER);
+		this.getContentPane().add(sliderLabel, BorderLayout.PAGE_END);
+		this.pack();
 	}
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		JSlider sliderSource = (JSlider)e.getSource();
-		this.view.getPaintPanel().setLineThickness(sliderSource.getValue());
+		JSlider source = (JSlider)e.getSource();
+		if (!source.getValueIsAdjusting()) {
+			int stroke = (int)source.getValue();
+			this.paintPanel.setLineThickness(stroke);
+		}
 		
 	}
 	

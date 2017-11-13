@@ -1,63 +1,83 @@
 package ca.utoronto.utm.paint;
 
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategy;
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactory;
+import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategyFactoryImpl;
 
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
 
 class ShapeChooserPanel extends JPanel implements ActionListener {
-	private View view; // So we can talk to our parent or other components of the view
-	private JButton button;
-	private ArrayList<JButton> buttons = new ArrayList<JButton>();
+	private static final Logger LOG = Logger.getLogger(PaintModel.class.getName());
 	
-	public ShapeChooserPanel(View view) {	
-		this.view=view;
-		this.buttons = buttons;
+	private PaintPanel paintPanel; // So we can talk to our parent or other components of the view
+	private int numClicks = 0;
+	private JButton firstBt;
+	private JButton secondBt;
+	private List<JButton> buttons = new ArrayList<JButton>();
+	private ShapeManipulatorStrategyFactory manipulatorFactory =  new ShapeManipulatorStrategyFactoryImpl();
+	
+	public ShapeChooserPanel(PaintPanel paintPanel) {	
+		this.paintPanel = paintPanel;
 		
-		ImageIcon[] buttonIcons = {
-                new ImageIcon(getClass().getClassLoader().getResource("images/circle.png")), 
-                new ImageIcon(getClass().getClassLoader().getResource("images/rectangle.png")),
-        new ImageIcon(getClass().getClassLoader().getResource("images/squiggle.png")),
-        new ImageIcon(getClass().getClassLoader().getResource("images/square.png")),
-        new ImageIcon(getClass().getClassLoader().getResource("images/polyline.png"))
-        };
+		ImageIcon rectangle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/rectangle.gif"));
+		ImageIcon circle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/circle.gif"));
+		ImageIcon square = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/square.gif"));
+		ImageIcon squiggle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/squiggle.png"));
+		ImageIcon polyline = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
+                .getResource("images/polyline.gif"));
 		
-		
-		String[] buttonLabels = { "Circle", "Rectangle", "Squiggle", "Square" ,"Polyline" };
-		this.setLayout(new GridLayout(buttonLabels.length,1));
+		ImageIcon[] buttonIcons = {circle, rectangle, square, squiggle, polyline};
+		String[] buttonLabels = {"Circle", "Rectangle", "Square", "Squiggle", "Polyline"};
+		this.setLayout(new GridLayout(buttonIcons.length, 1));
 		int index = 0;
-		for (String label : buttonLabels) {
-			button = new JButton(buttonIcons[index]);
-			button.setActionCommand(label);		
-			button.setOpaque(true);
+		for (ImageIcon icon : buttonIcons) {
+			JButton button = new JButton(icon);
+			button.setActionCommand(buttonLabels[index]);
+			button.setBackground(Color.WHITE);
 			this.add(button);
 			this.buttons.add(button);
-			button.setBackground(Color.white);
 			button.addActionListener(this);
 			index++;
 		}
-		this.add(new FillPanel(this.view));
 	}
 	
-
+	/**
+	 * Controller aspect of this
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton buttonSelected = (JButton)e.getSource();
 		for (JButton button: this.buttons) {
-			if (!(button.isEnabled())) {
+			if (button.isEnabled() == false) {
 				button.setEnabled(true);
-				button.setBackground(Color.white);
+				
 			}
+			JButton firstbt = (JButton)e.getSource();
+			firstbt.setEnabled(false);
 		}
-		buttonSelected.setEnabled(false);
-		buttonSelected.setBackground(Color.GREEN);	
-		
-		this.view.getPaintPanel().setMode(e.getActionCommand());	
+
+		// Bug 2.3, Bug 2.4: Strategy Factory for creating different ShapeManipulatorStrategy instances
+		ShapeManipulatorStrategy sm = manipulatorFactory.create(e.getActionCommand(), paintPanel);
+		// then, install it in to the PaintPanel (Bug 2.3)
+		paintPanel.setShapeManupulator(sm);
 	}
+
+	
 }

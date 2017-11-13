@@ -1,5 +1,5 @@
 package ca.utoronto.utm.scribble;
-import javax.swing.*;
+import javax.swing.JFrame;
 class Scribble {
 	public static void createAndShowGUI() {
 		JFrame jf=new JFrame("Graphics Panel");

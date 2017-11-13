@@ -1,43 +1,104 @@
 package ca.utoronto.utm.paint;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
+import java.util.logging.Logger;
 
+import ca.utoronto.utm.paint.render.DrawingCommand;
+
+/**
+ * Has 2 responsibilities:
+ * 1: holds only placed shapes
+ * 2: Observable, so notifies Observer -> Bug 2.4 3: called by ShapeManipulator and View at appropriate time
+ * 
+ * My understanding of a part of Bug 2.4 is creating an instance of the DrawingCommand of 
+ * a shape and storing it into the List in PaintModel.
+ * @author momo
+ *
+ */
 public class PaintModel extends Observable {
-	private ArrayList<Point> points=new ArrayList<Point>();
+	// log
+	private static final Logger LOG = Logger.getLogger(PaintModel.class.getName());
 	
-	private ArrayList<Shape> shapeStack = new ArrayList<Shape>();
+	// Bug 2.1: command pattern
+	// Should not declare the variable as concrete class like ArrayList
+	private List<DrawingCommand> placedDrawingCommands = new ArrayList<>();
+	private List<DrawingCommand> undoneDrawingCommands = new ArrayList<>();
 
-	public void addShape(Shape shape) {
-		this.shapeStack.add(shape);
+	/**
+	 * notifies Observers
+	 * Bug 2.4 : called from ShapeManupulatorStrategy
+	 */
+	public void changed() {
+		// notify observers
 		this.setChanged();
 		this.notifyObservers();
 	}
-	
-	public ArrayList<Shape> getShapes(){
-		return this.shapeStack;
+
+	//------------------------------------------------
+	// Shapes already placed
+	/**
+	 * clears DrawingCommand stack
+	 * clears the canvas
+	 * called when menu button "clear" is clicked
+	 */
+	public void clearPlacedDrawingCommands() {
+		this.placedDrawingCommands = new ArrayList<>();
+		changed(); // notify observers
 	}
 	
-	public void addPoint(Point p){
-		this.points.add(p);
-		this.setChanged();
-		this.notifyObservers();
-	} 
-	
-	public void clearPoints() {
-		this.points.clear();
+	/**
+	 * adds placed DrawingCommand object to the stack
+	 * called by ShapeManipulatorStrategy when drawing of a shape is complete
+	 * 
+	 * passes dragging drawingCommand of Manipulator as argument
+	 * drawingCommand (rubberband) holds shape which holds points of shape when it is made final
+	 */
+	public void addPlacedDrawingCommand(DrawingCommand cmd) {
+		this.placedDrawingCommands.add(cmd);
+		changed(); // notify observers
 	}
 	
-	
-	public ArrayList<Point> getPoints(){
-		return points;
+	/**
+	 * To draw the shapes
+	 * called by paintPanel.paintComponent
+	 */
+	public List<DrawingCommand> getPlacedDrawingCommands() {
+		return placedDrawingCommands;
 	}
 	
-	public void replaceLastPoint(Point p) {
-		if(points.size() >= 2) {
-			this.points.set(points.size()-1, p);
-			this.setChanged();
-			this.notifyObservers();
+	//------------------------------------------------
+	// Undo Redo
+	public void undo()
+	{
+		if (placedDrawingCommands.isEmpty()) {
+			return;
 		}
-	}	
+
+		int lastInd = placedDrawingCommands.size() - 1;
+		DrawingCommand lastCmd = placedDrawingCommands.get(lastInd);
+		placedDrawingCommands.remove(lastInd);
+
+		undoneDrawingCommands.add(lastCmd);
+
+		changed(); // notify observers
+	}
+
+	public void redo()
+	{
+		if (undoneDrawingCommands.isEmpty()) {
+			return;
+		}
+
+		int lastInd = undoneDrawingCommands.size() - 1;
+		DrawingCommand lastCmd = undoneDrawingCommands.get(lastInd);
+		undoneDrawingCommands.remove(lastInd);
+
+		placedDrawingCommands.add(lastCmd);
+
+		changed(); // notify observers
+	}
+	
 }
+
