@@ -35,7 +35,7 @@ public class CircleShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 		int radius = 0;
 		this.circle = new Circle(centre, 0);
 
-		draggingDrawCmd = new CircleDrawingCommand(circle, paintPanel.toRenderingParameters());
+		draggingDrawCmd = new CircleDrawingCommand(circle, paintPanel.getRenderingParameters().copy());
 	}
 
 	protected boolean doMouseDraggedUpdateShape(MouseEvent e) {

@@ -1,9 +1,6 @@
 package ca.utoronto.utm.paint;
 
-import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,7 +34,7 @@ public class LineThicknessPanel extends JPanel implements ChangeListener{
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		this.view.getPaintPanel().setLineThickness(slider.getValue());
+		this.view.getPaintPanel().getRenderingParameters().setStroke(slider.getValue());
 		
 	}
 }

@@ -28,15 +28,9 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	private static final Logger LOG = Logger.getLogger(PaintPanel.class.getName());
 	
 	private final PaintModel model; // slight departure from MVC, because of the way painting works
-
-	// followings are paint panel properties, nothing to do with view
-	// these are set by chooser component hen users select a choice for drawing
+	
 	// parameters to draw lines
-	private Color lineColor = Color.RED;
-	private int lineThickness;
-	// parameters to draw fill
-	private Color fillColor;
-	private boolean fillState = false;
+	private final RenderingParameters renderingParameter = new RenderingParameters();
 	
 	// Bug 2.2, 2.3, 2.4
 	private ShapeManipulatorStrategy shapeManipulator;
@@ -54,6 +48,10 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		this.model.addObserver(this);	
 	}
 	
+	public RenderingParameters getRenderingParameters() {
+		return renderingParameter;
+	}
+	
 	public void setShapeManupulator(ShapeManipulatorStrategy shapeManipulator) {
 		this.shapeManipulator = shapeManipulator;
 	}
@@ -67,14 +65,14 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	 * to set to DrawingCommand
 	 * @return
 	 */
-	public RenderingParameters toRenderingParameters() {
-		RenderingParameters renderingParams = new RenderingParameters();
-		renderingParams.setColor(this.lineColor);
-		renderingParams.setFillColor(this.fillColor);
-		renderingParams.setStroke(this.lineThickness);
-		renderingParams.setFillState(this.fillState);
-		return renderingParams;
-	}
+//	public RenderingParameters toRenderingParameters() {
+//		RenderingParameters renderingParams = new RenderingParameters();
+//		renderingParams.setColor(this.lineColor);
+//		renderingParams.setFillColor(this.fillColor);
+//		renderingParams.setStroke(this.lineThickness);
+//		renderingParams.setFillState(this.fillState);
+//		return renderingParams;
+//	}
 
 	/**
 	 *  View aspect of this
@@ -170,38 +168,6 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	@Override
 	public void mouseExited(MouseEvent e) {
 //		LOG.fine("mouseExited...");
-	}
-	
-	public Color getLineColor() {
-		return lineColor;
-	}
-
-	public void setLineColor(Color lineColor) {
-		this.lineColor = lineColor;
-	}
-
-	public Color getFillColor() {
-		return fillColor;
-	}
-
-	public void setFillColor(Color fillColor) {
-		this.fillColor = fillColor;
-	}
-
-	public boolean isFillState() {
-		return fillState;
-	}
-
-	public void setFillState(boolean fillState) {
-		this.fillState = fillState;
-	}
-
-	public int getLineThickness() {
-		return lineThickness;
-	}
-
-	public void setLineThickness(int lineThickness) {
-		this.lineThickness = lineThickness;
 	}
 	
 	public PaintModel getModel()

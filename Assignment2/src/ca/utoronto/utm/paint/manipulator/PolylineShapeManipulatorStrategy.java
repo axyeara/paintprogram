@@ -35,7 +35,7 @@ public class PolylineShapeManipulatorStrategy extends ShapeManipulatorStrategyTe
 
 			this.plyline = new Polyline(new ArrayList<Point>());
 			this.plyline.addPoint(new Point(e.getX(), e.getY()));
-			draggingDrawCmd = new PolylineDrawingCommand(plyline, paintPanel.toRenderingParameters());
+			draggingDrawCmd = new PolylineDrawingCommand(plyline, paintPanel.getRenderingParameters().copy());
 		} else {
 			LOG.fine("doMousePressedSetDraggingDrawCmd: polyline add point");
 			this.plyline.addPoint(new Point(e.getX(), e.getY()));

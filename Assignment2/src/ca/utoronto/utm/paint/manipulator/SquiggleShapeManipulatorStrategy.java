@@ -38,7 +38,7 @@ public class SquiggleShapeManipulatorStrategy extends ShapeManipulatorStrategyTe
 		this.squiggle = new Squiggle(new ArrayList<Point>());
 		this.squiggle.addPoint(new Point(e.getX(), e.getY()));
 		
-		draggingDrawCmd = new SquiggleDrawingCommand(squiggle, paintPanel.toRenderingParameters());
+		draggingDrawCmd = new SquiggleDrawingCommand(squiggle, paintPanel.getRenderingParameters().copy());
 	}
 
 	protected boolean doMouseDraggedUpdateShape(MouseEvent e)

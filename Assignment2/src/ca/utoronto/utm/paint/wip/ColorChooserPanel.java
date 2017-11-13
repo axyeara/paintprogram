@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ca.utoronto.utm.paint.wip.View;
-
 public class ColorChooserPanel extends JPanel implements ChangeListener {
 	private JColorChooser colorChooser;
 	private View view;

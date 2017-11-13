@@ -30,6 +30,7 @@ public class ColorChooser extends JFrame implements ChangeListener {
 		//Sets up the color chooser
 		colorChooser = new JColorChooser(title.getForeground());
 		colorChooser.getSelectionModel().addChangeListener(this);
+		colorChooser.setColor(paintPanel.getRenderingParameters().getColor());
 		
 		//added the components to the panel
 		this.getContentPane().add(titlePanel, BorderLayout.CENTER);
@@ -41,7 +42,7 @@ public class ColorChooser extends JFrame implements ChangeListener {
 	public void stateChanged(ChangeEvent arg0) {
 		Color newColor = colorChooser.getColor();
         title.setForeground(newColor);
-        this.paintPanel.setLineColor(newColor);
+        this.paintPanel.getRenderingParameters().setColor(newColor); 
 	}		
 }
 	

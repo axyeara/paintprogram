@@ -38,7 +38,7 @@ public class SquareShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 		int height = 0;
 		this.square = new Square(origin, 0, 0);
 
-		draggingDrawCmd = new SquareDrawingCommand(square, paintPanel.toRenderingParameters());
+		draggingDrawCmd = new SquareDrawingCommand(square, paintPanel.getRenderingParameters().copy());
 	}
 
 	protected boolean doMouseDraggedUpdateShape(MouseEvent e)

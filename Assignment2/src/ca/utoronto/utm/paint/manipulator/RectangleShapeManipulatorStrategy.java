@@ -36,7 +36,7 @@ public class RectangleShapeManipulatorStrategy extends ShapeManipulatorStrategyT
 		int width = 0;
 		this.rect = new Rectangle(origin, 0,  0);
 
-		draggingDrawCmd = new RectangleDrawingCommand(rect, paintPanel.toRenderingParameters());
+		draggingDrawCmd = new RectangleDrawingCommand(rect, paintPanel.getRenderingParameters().copy());
 	}
 
 	protected boolean doMouseDraggedUpdateShape(MouseEvent e) {

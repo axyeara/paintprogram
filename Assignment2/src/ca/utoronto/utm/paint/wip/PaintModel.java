@@ -3,9 +3,6 @@ package ca.utoronto.utm.paint.wip;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import ca.utoronto.utm.paint.wip.Point;
-import ca.utoronto.utm.paint.wip.Shape;
-
 public class PaintModel extends Observable {
 	private ArrayList<Point> points=new ArrayList<Point>();
 	

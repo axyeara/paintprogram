@@ -14,7 +14,6 @@ public class LineThickness extends JFrame implements ChangeListener {
 	
 	static final int STROKE_MIN = 0;
 	static final int STROKE_MAX = 50;
-	static final int STROKE_DEFAULT = 25;
 	private PaintPanel paintPanel;
 	
 	public LineThickness(PaintPanel paintPanel) {
@@ -30,7 +29,7 @@ public class LineThickness extends JFrame implements ChangeListener {
 		
 		// creates the slider.
 		JSlider lineThickness = new JSlider(JSlider.HORIZONTAL, STROKE_MIN, STROKE_MAX, 
-				STROKE_DEFAULT);
+				paintPanel.getRenderingParameters().getStroke());
 		
 		lineThickness.addChangeListener(this);
 		//turn on labels at major tick marks.
@@ -51,7 +50,7 @@ public class LineThickness extends JFrame implements ChangeListener {
 		JSlider source = (JSlider)e.getSource();
 		if (!source.getValueIsAdjusting()) {
 			int stroke = (int)source.getValue();
-			this.paintPanel.setLineThickness(stroke);
+			this.paintPanel.getRenderingParameters().setStroke(stroke);
 		}
 		
 	}

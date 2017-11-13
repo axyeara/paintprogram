@@ -1,11 +1,15 @@
 package ca.utoronto.utm.paint.wip;
 
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html

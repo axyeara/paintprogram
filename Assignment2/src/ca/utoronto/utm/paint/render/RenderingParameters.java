@@ -7,10 +7,14 @@ import java.awt.Color;
 // which is why used in drawing command
 public class RenderingParameters {
 	
-	private Color color = Color.RED;
-	private int stroke;
+	private static final Color DEFAULT_LINE_COLOR = Color.RED;
+	private static final int DEFAULT_STROKE = 25;
+	private static final Color DEFAULT_FILL_COLOR = Color.RED;
+	
+	private Color color = DEFAULT_LINE_COLOR;
+	private int stroke = DEFAULT_STROKE;
 	// to draw fill
-	private Color fillColor;
+	private Color fillColor = DEFAULT_FILL_COLOR;
 	private boolean fillState = false;
 	
 	public Color getColor()
@@ -44,6 +48,15 @@ public class RenderingParameters {
 	public void setFillState(boolean fillState)
 	{
 		this.fillState = fillState;
+	}
+	
+	public RenderingParameters copy() {
+		RenderingParameters renderingParams = new RenderingParameters();
+		renderingParams.setColor(this.color);
+		renderingParams.setStroke(this.stroke);
+		renderingParams.setFillColor(this.fillColor);
+		renderingParams.setFillState(this.fillState);
+		return renderingParams;
 	}
 
 }

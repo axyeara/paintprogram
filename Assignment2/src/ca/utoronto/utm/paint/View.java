@@ -184,10 +184,10 @@ public class View extends JFrame implements ActionListener {
 		}
 		else if (e.getActionCommand() == "Choose Fill") {
 			this.fillFrame.setVisible(true);
-			this.paintPanel.setFillState(true);
+			this.paintPanel.getRenderingParameters().setFillState(true);
 		}
 		else if (e.getActionCommand() == "Cancel Fill") {
-			this.paintPanel.setFillState(false);
+			this.paintPanel.getRenderingParameters().setFillState(false);
 		}
 		
 		else if (e.getActionCommand() == "Choose Line Thickness") {

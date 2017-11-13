@@ -36,8 +36,8 @@ public class Paint {
 		});
 	}
 
-	PaintModel model; // Model
-	View view; // View+Controller
+	private PaintModel model; // Model
+	private View view; // View+Controller
 
 	public Paint() {
 		// Create MVC components and hook them together
