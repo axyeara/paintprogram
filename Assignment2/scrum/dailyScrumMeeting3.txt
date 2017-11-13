@@ -71,7 +71,7 @@ Nov 5, 2017
 	Today     :
 	Obstacles :
 	
-	//IN OLD GROUP FOR A2P2
+	//IN OLD GROUP FOR A2P1
 	
 Nov 6, 2017
 	Yesterday :
@@ -104,8 +104,8 @@ Nov 11, 2017
 	Obstacles :
 	
 Nov 12, 2017
-	Yesterday :
-	Today     :
+	Yesterday : discussed with group members about the assignment and what code base we wanted to use.
+	Today     :Do polyline before it's too late!
 	Obstacles :
 	
 Nov 13, 2017
