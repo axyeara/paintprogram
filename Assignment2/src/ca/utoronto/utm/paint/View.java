@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
@@ -72,6 +73,8 @@ public class View extends JFrame implements ActionListener {
 		this.pack();
 		// this.setSize(200,200);
 		this.setVisible(true);
+		JOptionPane.showMessageDialog(paintPanel, "Welcome to Paint Application. To Begin Please Select a Shape and then a Color.");
+	
 		
         // on ESC key clear current rubber-band
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
