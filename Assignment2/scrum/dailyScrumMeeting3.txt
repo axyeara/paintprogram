@@ -109,12 +109,12 @@ Nov 12, 2017
 	Obstacles : code base in future might change
 	
 Nov 13, 2017
-	Yesterday :
+	Yesterday : completed polyline on old code base
 	Today     : Reimplement polyline to have double click, work on fixing up old code and reimplementing it on new code base.
 				add more features, maybe a triangle tool or something.
 	Obstacles : lot's of tricky work reorganzing working code into a new foundation
 	
 Nov 14, 2017
-	Yesterday :
-	Today     :
-	Obstacles :	
+	Yesterday :Fixed up reimplementing polyline as well as adding scroll bar, and icons, etc...
+	Today     :add any small additional features you can think of.
+	Obstacles :	time is running thin!
