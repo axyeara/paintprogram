@@ -213,7 +213,7 @@ ISSUE    : The first click should specify the center of the circle, with
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 TYPE     : USER STORY 2.1 : debragaf
-NAME     : Implement Poly Line
+NAME     : Implement Poly Line double click
 OWNER    : Filip
 PRIORITY : high
 ESTIMATE : 2 hours
@@ -520,7 +520,16 @@ AS A     : user
 I WANT   : The user to see a live tracing of the squiggle he/she is constructing
 SO THAT  : I can construct squiggles with feedback tracing.
 --------------------------------------------------------------------------
-
+--------------------------------------------------------------------------
+TYPE     : USER STORY 10a:debragaf
+NAME     : Icons for new code base
+OWNER    : Filip
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to see new icons formatted and placed correctly.
+SO THAT  : I can use a more visually appealing program.
+--------------------------------------------------------------------------
 
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
