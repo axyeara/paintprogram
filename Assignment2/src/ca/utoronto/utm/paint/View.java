@@ -59,6 +59,7 @@ public class View extends JFrame implements ActionListener {
 		
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
 		c.add(this.colorPanel,BorderLayout.SOUTH);
+		c.add(this.strokePanel,BorderLayout.NORTH);
 
 		
 		JScrollPane scrollBar = new JScrollPane(paintPanel);
@@ -164,14 +165,7 @@ public class View extends JFrame implements ActionListener {
 		menu.add(menuItem);
 		
 		menuBar.add(menu);
-		
-		menu = new JMenu("Line Thickness");
-		
-		menuItem = new JMenuItem("Choose Line Thickness");
-		menuItem.addActionListener(this);
-		menu.add(menuItem);
-			
-		menuBar.add(menu);
+
 		
 		return menuBar;
 	}
@@ -182,17 +176,6 @@ public class View extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "Choose Color") {
-		}
-		else if (e.getActionCommand() == "Choose Fill") {
-			this.fillFrame.setVisible(true);
-			this.paintPanel.getRenderingParameters().setFillState(true);
-		}
-		else if (e.getActionCommand() == "Cancel Fill") {
-			this.paintPanel.getRenderingParameters().setFillState(false);
-		}
-		
-		else if (e.getActionCommand() == "Choose Line Thickness") {
-			this.strokePanel.setVisible(true);
 		}
 		else if (e.getActionCommand() == "Undo") {
 			LOG.info("Undo");
