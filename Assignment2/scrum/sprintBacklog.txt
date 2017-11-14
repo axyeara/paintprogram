@@ -194,3 +194,40 @@ I WANT   : The user to see a live tracing of the squiggle he/she is constructing
 SO THAT  : I can construct squiggles with feedback tracing.
 --------------------------------------------------------------------------
 
+
+Sprint 3 November 5-14, 2017
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 11:yearagen
+NAME     : Color Chooser Re-implementation
+OWNER    : Alexander Yeara
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : To have a move accessible color chooser than the previously implemented one.
+SO THAT  : I can draw choose color directly without having to open a menu item.
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 12:yearagen
+NAME     : Line Thickness Re-implementation
+OWNER    : Alexander Yeara
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : To have a move accessible line thickness panel than the previously implemented one.
+SO THAT  : I can draw choose line thickness directly without having to open a menu item.
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 13:yearagen
+NAME     : Fill chooser Re-implementation
+OWNER    : Alexander Yeara
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : To have a move accessible fill chooser panel than the previously implemented one.
+SO THAT  : I can draw choose fill state of a shape directly without having to open a menu item.
+--------------------------------------------------------------------------
+

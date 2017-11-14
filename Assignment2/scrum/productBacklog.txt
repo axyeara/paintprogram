@@ -551,6 +551,39 @@ I WANT   : to be able to use the polyline tool and stop the current polyline by 
 SO THAT  : I can draw straight lines connecting points and choose when I want to stop drawing connecting straight lines.
 --------------------------------------------------------------------------
 
+--------------------------------------------------------------------------
+TYPE     : USER STORY 11:yearagen
+NAME     : Color Chooser Re-implementation
+OWNER    : Alexander Yeara
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : To have a move accessible color chooser than the previously implemented one.
+SO THAT  : I can draw choose color directly without having to open a menu item.
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 12:yearagen
+NAME     : Line Thickness Re-implementation
+OWNER    : Alexander Yeara
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : To have a move accessible line thickness panel than the previously implemented one.
+SO THAT  : I can draw choose line thickness directly without having to open a menu item.
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 13:yearagen
+NAME     : Fill chooser Re-implementation
+OWNER    : Alexander Yeara
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : To have a move accessible fill chooser panel than the previously implemented one.
+SO THAT  : I can draw choose fill state of a shape directly without having to open a menu item.
+--------------------------------------------------------------------------
+
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
 

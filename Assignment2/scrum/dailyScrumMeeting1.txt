@@ -112,13 +112,13 @@ Nov 11, 2017
 	Obstacles :
 	
 Nov 12, 2017
-	Yesterday :
-	Today     :
+	Yesterday : Implemented Polyline and worked on the strategy design pattern.
+	Today     : Tried to understand code in order to implement color chooser, line thickness and fill chooser.
 	Obstacles :
 	
 Nov 13, 2017
-	Yesterday :
-	Today     :
+	Yesterday : Tried to understand code in order to implement color chooser, line thickness and fill chooser.
+	Today     : Implemented user stories 11-13. 
 	Obstacles :
 	
 Nov 14, 2017
