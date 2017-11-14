@@ -231,3 +231,13 @@ I WANT   : To have a move accessible fill chooser panel than the previously impl
 SO THAT  : I can draw choose fill state of a shape directly without having to open a menu item.
 --------------------------------------------------------------------------
 
+--------------------------------------------------------------------------
+TYPE     : USER STORY 14:ikiebeos
+NAME     : GUI Improvement
+OWNER    : Osioreame Ikiebe
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : To have a more aesthetically pleasing User Interface
+SO THAT  : The program is more appealing to users.
+--------------------------------------------------------------------------
