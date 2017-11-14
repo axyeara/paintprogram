@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -33,31 +34,27 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	public ShapeChooserPanel(PaintPanel paintPanel) {	
 		this.paintPanel = paintPanel;
 		
-//		ImageIcon rectangle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-//                .getResource("images/rectangle.gif"));
-//		ImageIcon circle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-//                .getResource("images/circle.gif"));
-//		ImageIcon square = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-//                .getResource("images/square.gif"));
-//		ImageIcon squiggle = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-//                .getResource("images/squiggle.png"));
-//		ImageIcon polyline = new ImageIcon(ShapeChooserPanel.class.getClassLoader()
-//                .getResource("images/polyline.gif"));
+		ImageIcon[] buttonIcons = {
+                new ImageIcon(getClass().getClassLoader().getResource("images/circle.png")), 
+                new ImageIcon(getClass().getClassLoader().getResource("images/rectangle.png")),
+        new ImageIcon(getClass().getClassLoader().getResource("images/square.png")),
+        new ImageIcon(getClass().getClassLoader().getResource("images/squiggle.png")),
+        new ImageIcon(getClass().getClassLoader().getResource("images/polyline.png"))
+        };
 		
-//		ImageIcon[] buttonIcons = {circle, rectangle, square, squiggle, polyline};
 		String[] buttonLabels = {RenderableShape.LABEL_CIRCLE, RenderableShape.LABEL_RECTANGLE, RenderableShape.LABEL_SQUARE, RenderableShape.LABEL_SQUIGGLE, RenderableShape.LABEL_POLYLINE};
-//		this.setLayout(new GridLayout(buttonIcons.length, 1));
+		this.setLayout(new GridLayout(buttonIcons.length, 1));
 		this.setLayout(new GridLayout(buttonLabels.length, 1));
 		int index = 0;
-//		for (ImageIcon icon : buttonIcons) {
-		for (String buttonLabel : buttonLabels) {
-			JButton button = new JButton(buttonLabel);
-			button.setActionCommand(buttonLabels[index]);
+		for (String label : buttonLabels) {
+			JButton button = new JButton(buttonIcons[index]);
+			button.setActionCommand(label);
 			button.setBackground(Color.WHITE);
 			this.add(button);
 			this.buttons.add(button);
 			button.addActionListener(this);
 			index++;
+			
 		}
 	}
 	
