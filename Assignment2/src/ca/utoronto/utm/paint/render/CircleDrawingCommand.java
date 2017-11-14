@@ -51,8 +51,9 @@ private static final Logger LOG = Logger.getLogger(CircleDrawingCommand.class.ge
 			g2d.fillOval(topX, topY, radius*2, radius*2);
 			
 		} else if (renderingParams.getFillState() == "Outline") {
-			g2d.drawOval(topX, topY, radius*2, radius*2);
 			g2d.setStroke(new BasicStroke(renderingParams.getStroke()));
+			g2d.drawOval(topX, topY, radius*2, radius*2);
+			
 		}
 	}
 

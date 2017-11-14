@@ -59,6 +59,7 @@ public class View extends JFrame implements ActionListener {
 		
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
 		c.add(this.colorPanel,BorderLayout.PAGE_END);
+		this.colorPanel.setPreferredSize(new Dimension(200,300));
 		c.add(this.strokePanel,BorderLayout.NORTH);
 		c.add(this.fillPanel,BorderLayout.EAST);
 

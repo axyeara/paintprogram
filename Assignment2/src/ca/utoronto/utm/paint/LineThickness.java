@@ -17,7 +17,7 @@ public class LineThickness extends JPanel implements ChangeListener {
 	
 	static final int strokeMin = 0;
 	static final int strokeMax = 50;
-	static final int strokeInit = 25;
+	static final int strokeInit = 0;
 	private PaintPanel paintPanel;
 	private View view;
 	private JSlider slider;

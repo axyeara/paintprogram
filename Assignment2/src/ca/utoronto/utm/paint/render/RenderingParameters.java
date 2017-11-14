@@ -8,7 +8,7 @@ import java.awt.Color;
 public class RenderingParameters {
 	
 	private static final Color DEFAULT_LINE_COLOR = Color.RED;
-	private static final int DEFAULT_STROKE = 25;
+	private static final int DEFAULT_STROKE = 0;
 	private static final Color DEFAULT_FILL_COLOR = Color.RED;
 	
 	private Color color = DEFAULT_LINE_COLOR;
