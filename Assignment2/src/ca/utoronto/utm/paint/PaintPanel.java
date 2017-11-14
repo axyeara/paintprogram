@@ -12,6 +12,7 @@ import java.util.Observer;
 import java.util.logging.Logger;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import ca.utoronto.utm.paint.manipulator.ShapeManipulatorStrategy;
 import ca.utoronto.utm.paint.render.DrawingCommand;
@@ -37,9 +38,10 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	
 	public PaintPanel(PaintModel model){
 		this.setBackground(Color.WHITE);
-		this.setPreferredSize(new Dimension(300,300));
+		this.setPreferredSize(new Dimension(1600,900));
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+
 		
 		this.model = model;
 		

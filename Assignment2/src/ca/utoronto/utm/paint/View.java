@@ -13,7 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+import javax.swing.ScrollPaneConstants;
 /**
  * This is the top level View+Controller, it contains other aspects of the View+Controller.
  * @author arnold
@@ -56,6 +58,11 @@ public class View extends JFrame implements ActionListener {
 		
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
 		
+		JScrollPane scrollBar = new JScrollPane(paintPanel);
+        scrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollBar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollBar.setBounds(0, 0, 800, 450);
+        c.add(scrollBar);
 		this.pack();
 		// this.setSize(200,200);
 		this.setVisible(true);

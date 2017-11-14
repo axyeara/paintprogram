@@ -530,6 +530,16 @@ AS A     : user
 I WANT   : to see new icons formatted and placed correctly.
 SO THAT  : I can use a more visually appealing program.
 --------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 10b:debragaf
+NAME     : Scroll bar for new code base
+OWNER    : Filip
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to be able to scroll my paintable.
+SO THAT  : I can use a more visually appealing program, and to create more paintable area.
+--------------------------------------------------------------------------
 
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
