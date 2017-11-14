@@ -60,7 +60,7 @@ public class PolylineShapeManipulatorStrategy extends ShapeManipulatorStrategyTe
 		return false; // set manupulator.dragging is not over
 	}
 
-	protected boolean doMouseRightClickUpdateShape(MouseEvent e) {
+	protected boolean doMouseDoubleClickUpdateShape(MouseEvent e) {
 		LOG.fine("doMouseRightClickUpdateShape polyline");
 
 		this.plyline.removeLastPoint(); //remove last dragging point

@@ -540,6 +540,16 @@ AS A     : user
 I WANT   : to be able to scroll my paintable.
 SO THAT  : I can use a more visually appealing program, and to create more paintable area.
 --------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 10c:debragaf
+NAME     : Polyline reimplementation(double click to stop polyline)
+OWNER    : Filip
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to be able to use the polyline tool and stop the current polyline by double clicking
+SO THAT  : I can draw straight lines connecting points and choose when I want to stop drawing connecting straight lines.
+--------------------------------------------------------------------------
 
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################

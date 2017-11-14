@@ -40,6 +40,10 @@ public abstract class ShapeManipulatorStrategyTemplate implements ShapeManipulat
 		// does nothing for most of the shapes. so implement default methods here. 
 		return false; // do not notify observers
 	}
+	protected boolean doMouseDoubleClickUpdateShape(MouseEvent e) {
+		// does nothing for most of the shapes. so implement default methods here. 
+		return false; // do not notify observers
+	}
 
 	@Override
 	public DrawingCommand getDraggingDrawingCommand() {
@@ -98,8 +102,11 @@ public abstract class ShapeManipulatorStrategyTemplate implements ShapeManipulat
 		boolean notifyObserver = false;
 		
 		if (SwingUtilities.isLeftMouseButton(e)) {
+			if(e.getClickCount() == 2) {
+				notifyObserver = doMouseDoubleClickUpdateShape(e);
+			}else {
 			notifyObserver = false; // we process pressed and released for right button
-			
+			}
 		} else if (SwingUtilities.isRightMouseButton(e)) {
 			notifyObserver = doMouseRightClickUpdateShape(e);
 			
