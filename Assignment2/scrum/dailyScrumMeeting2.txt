@@ -119,4 +119,27 @@ Nov 11, 2017
 				Looked into what procedure is needed in
 				order to fix Bug 2.1.
 	Today     : Fix bug 2.1 and also complete a user story.
+	Obstacles : Took a while to fully understand how to implement
+				certain design patterns.
+	
+Nov 12, 2017
+	Yesterday : Went through each Bug in backlog and did some
+				research on how to implement each design pattern.
+	Today     : Fix bug all 4 bugs written in backlog.
+				Need to get in touch with members.
+	Obstacles : Took a while to fully understand how to implement
+				certain command patterns. Had a hard time communicating
+				with team.
+	
+Nov 13, 2017
+	Yesterday : Fixed all bugs in backlog. Got in touch with
+				two group members.
+	Today     : Check code again for any new bugs. If there is
+				a better way to implement user stories or fixes for bugs,
+				do so.
+	Obstacles : None.
+	
+Nov 14, 2017
+	Yesterday : Fixed new bugs and cleaned up code.
+	Today     : Submit Assignment 2 part 2 by 11:59pm.
 	Obstacles : 
