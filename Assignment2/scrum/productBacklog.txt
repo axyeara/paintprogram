@@ -583,6 +583,16 @@ AS A     : user
 I WANT   : To have a move accessible fill chooser panel than the previously implemented one.
 SO THAT  : I can draw choose fill state of a shape directly without having to open a menu item.
 --------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 16:debragaf
+NAME     : Oval tool
+OWNER    : Filip de Braga
+PRIORITY : medium
+ESTIMATE : 2 hour
+AS A     : user
+I WANT   : to be able to draw a more "dynamic" circle, like an oval.
+SO THAT  : I have more flexibility in the things I can draw.
+--------------------------------------------------------------------------
 
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
