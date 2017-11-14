@@ -66,10 +66,12 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 		for (JButton button: this.buttons) {
 			if (button.isEnabled() == false) {
 				button.setEnabled(true);
+				button.setBackground(Color.WHITE);
 				
 			}
 			JButton firstbt = (JButton)e.getSource();
 			firstbt.setEnabled(false);
+			firstbt.setBackground(Color.GREEN);
 		}
 
 		// Bug 2.3, Bug 2.4: Strategy Factory for creating different ShapeManipulatorStrategy instances

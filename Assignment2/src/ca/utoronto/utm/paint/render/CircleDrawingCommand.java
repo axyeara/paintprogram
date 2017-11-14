@@ -47,11 +47,10 @@ private static final Logger LOG = Logger.getLogger(CircleDrawingCommand.class.ge
 		// we want x and y coordinates for drawOval
 		int topX = x - radius;
 		int topY = y - radius;
-		if (renderingParams.isFillState()) {
-			g2d.setPaint(renderingParams.getFillColor());
+		if (renderingParams.getFillState() == "Solid") {
 			g2d.fillOval(topX, topY, radius*2, radius*2);
 			
-		} else {
+		} else if (renderingParams.getFillState() == "Outline") {
 			g2d.drawOval(topX, topY, radius*2, radius*2);
 			g2d.setStroke(new BasicStroke(renderingParams.getStroke()));
 		}

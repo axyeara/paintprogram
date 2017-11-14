@@ -49,8 +49,7 @@ public class SquareDrawingCommand implements DrawingCommand {
 		int height = square.getHeight();
 		int width = square.getWidth();
 		int length = Math.max(height, width);
-		if (renderingParams.isFillState()) {
-			g2d.setPaint(renderingParams.getFillColor());
+		if (renderingParams.getFillState() == "Solid") {
 			g2d.fillRect(x, y, length, length);
 		}
 		else {
