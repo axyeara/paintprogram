@@ -2,6 +2,7 @@ package ca.utoronto.utm.paint;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -32,7 +33,7 @@ public class View extends JFrame implements ActionListener {
 	// The components that make this up
 	private PaintPanel paintPanel;		// This is Observer
 	private ShapeChooserPanel shapeChooserPanel;
-	private ColorChooser colorFrame;
+	private ColorChooser colorPanel;
 	private FillChooser fillFrame;
 	private LineThickness strokePanel;
 	
@@ -52,11 +53,13 @@ public class View extends JFrame implements ActionListener {
 		// c.add(new JButton("South"),BorderLayout.SOUTH);
 		// c.add(new JButton("East"),BorderLayout.EAST);
 		this.shapeChooserPanel = new ShapeChooserPanel(paintPanel);
-		this.colorFrame = new ColorChooser(paintPanel);
+		this.colorPanel = new ColorChooser(paintPanel);
 		this.fillFrame = new FillChooser(paintPanel);
 		this.strokePanel = new LineThickness(paintPanel);
 		
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
+		c.add(this.colorPanel,BorderLayout.SOUTH);
+
 		
 		JScrollPane scrollBar = new JScrollPane(paintPanel);
         scrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -151,14 +154,6 @@ public class View extends JFrame implements ActionListener {
 		
 		menuBar.add(menu);
 		
-		menu = new JMenu("Color");
-		
-		menuItem = new JMenuItem("Choose Color");
-		menuItem.addActionListener(this);
-		menu.add(menuItem);
-		
-		menuBar.add(menu);
-		
 		menu = new JMenu("Fill");
 		
 		menuItem = new JMenuItem("Choose Fill");
@@ -187,7 +182,6 @@ public class View extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "Choose Color") {
-			this.colorFrame.setVisible(true);
 		}
 		else if (e.getActionCommand() == "Choose Fill") {
 			this.fillFrame.setVisible(true);
