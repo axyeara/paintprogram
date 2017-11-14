@@ -43,8 +43,7 @@ private static final Logger LOG = Logger.getLogger(RectangleDrawingCommand.class
 		int y = renderTopLeftP.getY();
 		int height = rect.getHeight();
 		int width = rect.getWidth();
-		if (renderingParams.isFillState()) {
-			g2d.setPaint(renderingParams.getFillColor());
+		if (renderingParams.getFillState() == "Solid") {
 			g2d.fillRect(x, y, width, height);
 		} else {
 			g2d.setStroke(new BasicStroke(renderingParams.getStroke()));

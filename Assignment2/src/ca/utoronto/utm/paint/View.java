@@ -34,7 +34,7 @@ public class View extends JFrame implements ActionListener {
 	private PaintPanel paintPanel;		// This is Observer
 	private ShapeChooserPanel shapeChooserPanel;
 	private ColorChooser colorPanel;
-	private FillChooser fillFrame;
+	private FillPanel fillPanel;
 	private LineThickness strokePanel;
 	
 	public View(PaintModel model) {
@@ -54,12 +54,13 @@ public class View extends JFrame implements ActionListener {
 		// c.add(new JButton("East"),BorderLayout.EAST);
 		this.shapeChooserPanel = new ShapeChooserPanel(paintPanel);
 		this.colorPanel = new ColorChooser(paintPanel);
-		this.fillFrame = new FillChooser(paintPanel);
+		this.fillPanel = new FillPanel(paintPanel);
 		this.strokePanel = new LineThickness(paintPanel);
 		
 		c.add(this.shapeChooserPanel,BorderLayout.WEST);
-		c.add(this.colorPanel,BorderLayout.SOUTH);
+		c.add(this.colorPanel,BorderLayout.PAGE_END);
 		c.add(this.strokePanel,BorderLayout.NORTH);
+		c.add(this.fillPanel,BorderLayout.EAST);
 
 		
 		JScrollPane scrollBar = new JScrollPane(paintPanel);
@@ -154,19 +155,7 @@ public class View extends JFrame implements ActionListener {
 		menu.add(menuItem);
 		
 		menuBar.add(menu);
-		
-		menu = new JMenu("Fill");
-		
-		menuItem = new JMenuItem("Choose Fill");
-		menuItem.addActionListener(this);
-		menu.add(menuItem);
-		menuItem = new JMenuItem("Cancel Fill");
-		menuItem.addActionListener(this);
-		menu.add(menuItem);
-		
-		menuBar.add(menu);
 
-		
 		return menuBar;
 	}
 
@@ -190,5 +179,4 @@ public class View extends JFrame implements ActionListener {
 			this.model.clearPlacedDrawingCommands();
 		}
 	}
-
 }

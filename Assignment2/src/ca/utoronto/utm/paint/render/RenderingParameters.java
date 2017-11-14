@@ -15,7 +15,7 @@ public class RenderingParameters {
 	private int stroke = DEFAULT_STROKE;
 	// to draw fill
 	private Color fillColor = DEFAULT_FILL_COLOR;
-	private boolean fillState = false;
+	private String fillState = "Outline";
 	
 	public Color getColor()
 	{
@@ -41,11 +41,11 @@ public class RenderingParameters {
 	{
 		this.fillColor = fillColor;
 	}
-	public boolean isFillState()
+	public String getFillState()
 	{
-		return fillState;
+		return this.fillState;
 	}
-	public void setFillState(boolean fillState)
+	public void setFillState(String fillState)
 	{
 		this.fillState = fillState;
 	}
