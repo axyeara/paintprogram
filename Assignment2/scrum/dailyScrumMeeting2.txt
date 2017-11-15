@@ -141,5 +141,6 @@ Nov 13, 2017
 	
 Nov 14, 2017
 	Yesterday : Fixed new bugs and cleaned up code.
-	Today     : Submit Assignment 2 part 2 by 11:59pm.
-	Obstacles : 
+	Today     : Helped manage git and commits on git.
+			    Submit Assignment 2 part 2 by 11:59pm.
+	Obstacles : Some problems with git.
