@@ -26,7 +26,10 @@ public class ShapeManipulatorStrategyFactoryImpl implements ShapeManipulatorStra
 			return new SquiggleShapeManipulatorStrategy(paintPanel);
 		} else if (RenderableShape.LABEL_POLYLINE.equals(shapeLabel)) {
 			return new PolylineShapeManipulatorStrategy(paintPanel);
-		} else {
+		} else if(RenderableShape.LABEL_OVAL.equals(shapeLabel)) {
+			return new OvalShapeManipulatorStrategy(paintPanel);
+		} 
+		else {
 			throw new IllegalStateException("Unknown shape is registered: " + shapeLabel);
 		}
 	}
