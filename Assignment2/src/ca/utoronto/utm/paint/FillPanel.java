@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
@@ -26,9 +27,16 @@ public class FillPanel extends JPanel implements ActionListener{
 	
 	public FillPanel(PaintPanel paintPanel) {
 		this.paintPanel = paintPanel;
-		this.setLayout(new GridLayout(1, 2));
-		button1 = new JButton("Outline");
-		button2 = new JButton("Solid");
+		this.setLayout(new GridLayout(2, 1));
+		
+		ImageIcon[] buttonIcons = {
+                new ImageIcon(getClass().getClassLoader().getResource("images/outline.png")), 
+                new ImageIcon(getClass().getClassLoader().getResource("images/fill.png"))
+        };
+		
+		
+		button1 = new JButton(buttonIcons[0]);
+		button2 = new JButton(buttonIcons[1]);
 		button1.setEnabled(false);
 		button1.setActionCommand("Outline");
 		button2.setActionCommand("Solid");
