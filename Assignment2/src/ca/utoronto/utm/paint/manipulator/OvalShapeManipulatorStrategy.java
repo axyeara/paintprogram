@@ -66,6 +66,7 @@ public class OvalShapeManipulatorStrategy extends ShapeManipulatorStrategyTempla
 		// set coordinates for circle that is logical for drawOval
 		this.oval.setX(this.oval.getCentre().getX() - this.oval.getWidth());
 		this.oval.setY(this.oval.getCentre().getY() - this.oval.getHeight());
+		
 	}
 
 }

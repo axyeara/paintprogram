@@ -621,6 +621,16 @@ I WANT   : to be able to draw a more "dynamic" circle, like an oval.
 SO THAT  : I have more flexibility in the things I can draw.
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
+TYPE     : USER STORY 17:debragaf
+NAME     : Icons for fill/outline
+OWNER    : Filip de Braga
+PRIORITY : low
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to be able to use a icons in the place of buttons for fill/outline
+SO THAT  : the program looks nicer
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 TYPE     : BUG 2.1 : yoshid36
 NAME     : Architecture for drawing shapes can be improved
 OWNER    : Momo Yoshida
