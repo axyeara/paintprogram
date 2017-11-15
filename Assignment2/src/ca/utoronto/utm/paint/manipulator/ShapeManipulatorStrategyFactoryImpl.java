@@ -28,6 +28,8 @@ public class ShapeManipulatorStrategyFactoryImpl implements ShapeManipulatorStra
 			return new PolylineShapeManipulatorStrategy(paintPanel);
 		} else if(RenderableShape.LABEL_OVAL.equals(shapeLabel)) {
 			return new OvalShapeManipulatorStrategy(paintPanel);
+		}else if(RenderableShape.LABEL_TRIANGLE.equals(shapeLabel)) {
+			return new TriangleShapeManipulatorStrategy(paintPanel);
 		} 
 		else {
 			throw new IllegalStateException("Unknown shape is registered: " + shapeLabel);
