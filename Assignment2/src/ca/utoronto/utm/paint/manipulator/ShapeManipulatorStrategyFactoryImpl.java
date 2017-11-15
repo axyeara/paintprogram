@@ -26,8 +26,8 @@ public class ShapeManipulatorStrategyFactoryImpl implements ShapeManipulatorStra
 			return new SquiggleShapeManipulatorStrategy(paintPanel);
 		} else if (RenderableShape.LABEL_POLYLINE.equals(shapeLabel)) {
 			return new PolylineShapeManipulatorStrategy(paintPanel);
-//		} else if(RenderableShape.LABEL_OVAL.equals(shapeLabel)) {
-//			return new OvalShapeManipulatorStrategy(paintPanel);
+		} else if(RenderableShape.LABEL_OVAL.equals(shapeLabel)) {
+			return new OvalShapeManipulatorStrategy(paintPanel);
 		} else if(RenderableShape.LABEL_TRIANGLE.equals(shapeLabel)) {
 			return new TriangleShapeManipulatorStrategy(paintPanel);
 		} else {
