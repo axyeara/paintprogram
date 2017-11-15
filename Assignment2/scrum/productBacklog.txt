@@ -631,6 +631,16 @@ I WANT   : to be able to use a icons in the place of buttons for fill/outline
 SO THAT  : the program looks nicer
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
+TYPE     : USER STORY 18:debragaf
+NAME     : Triangle Tool
+OWNER    : Filip de Braga
+PRIORITY : medium
+ESTIMATE : 3 hours
+AS A     : user
+I WANT   : to be able to draw a tirangle
+SO THAT  : the program has more flexibility in the things it can draw
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 TYPE     : BUG 2.1 : yoshid36
 NAME     : Architecture for drawing shapes can be improved
 OWNER    : Momo Yoshida
