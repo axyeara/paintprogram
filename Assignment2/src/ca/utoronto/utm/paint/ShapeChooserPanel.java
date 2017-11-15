@@ -20,7 +20,11 @@ import ca.utoronto.utm.paint.shape.RenderableShape;
 
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
-
+/**
+ * This class handles the panel for creating the buttons to choose drawing mode
+ * @author repo_a2_realSlimShady
+ *
+ */
 class ShapeChooserPanel extends JPanel implements ActionListener {
 	private static final Logger LOG = Logger.getLogger(PaintModel.class.getName());
 	
@@ -30,7 +34,10 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	private JButton secondBt;
 	private List<JButton> buttons = new ArrayList<JButton>();
 	private ShapeManipulatorStrategyFactory manipulatorFactory =  new ShapeManipulatorStrategyFactoryImpl();
-	
+	/**
+	 * this constructor handles creates the buttons to choose drawing mode with images and adding the action listeners to them
+	 * @param paintPanel A PaintPanel object
+	 */
 	public ShapeChooserPanel(PaintPanel paintPanel) {	
 		this.paintPanel = paintPanel;
 		
@@ -61,6 +68,7 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
 	}
 	
 	/**
+	 * disables the pressed button and enables the previously pressed ones
 	 * Controller aspect of this
 	 */
 	@Override

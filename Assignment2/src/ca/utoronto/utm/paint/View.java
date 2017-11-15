@@ -37,7 +37,10 @@ public class View extends JFrame implements ActionListener {
 	private ColorChooser colorPanel;
 	private FillPanel fillPanel;
 	private LineThickness strokePanel;
-	
+	/**
+	 * this constructor handles creating and placing all the respective panels together
+	 * @param model A PaintModel object
+	 */
 	public View(PaintModel model) {
 		super("Paint"); // set the title and do other JFrame init
 		
@@ -81,6 +84,9 @@ public class View extends JFrame implements ActionListener {
             KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Escape Pressed");
         getRootPane().getActionMap().put("Escape Pressed", new AbstractAction(){
 			private static final long serialVersionUID = 1L;
+			/**
+			 * function to clear drawing shape when esc is pressed 
+			 */
 			public void actionPerformed(ActionEvent e)
             {
             	LOG.info("ESC Pressed, clear drawing shape");
@@ -99,7 +105,10 @@ public class View extends JFrame implements ActionListener {
 	public ShapeChooserPanel getShapeChooserPanel() {
 		return shapeChooserPanel;
 	}
-
+/**
+ * JMenuBar used to be used more extensively until panels were placed directly onto screen, but it still handles undo, redo, clear canvas
+ * @return
+ */
 	private JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu;

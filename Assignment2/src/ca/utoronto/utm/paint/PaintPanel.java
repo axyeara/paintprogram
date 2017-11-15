@@ -21,6 +21,11 @@ import ca.utoronto.utm.paint.render.RenderingParameters;
 // https://docs.oracle.com/javase/8/docs/api/java/awt/Graphics2D.html
 // https://docs.oracle.com/javase/tutorial/2d/
 
+/**
+ * 	this class handles the main paint canvas of the program by implementing observer and mouse listeners and uses Strategy design pattern objects
+ * @author repo_a2_realSlimShady
+ *
+ */
 public class PaintPanel extends JPanel implements Observer, MouseMotionListener, MouseListener  {
 
 	// JPanel implements Serializable
@@ -35,7 +40,10 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	
 	// Bug 2.2, 2.3, 2.4
 	private ShapeManipulatorStrategy shapeManipulator;
-	
+	/**
+	 * this constructor creates the canvas to draw on as well as adds the mouse action listeners and adds observers
+	 * @param model A PaintModel object
+	 */
 	public PaintPanel(PaintModel model){
 		this.setBackground(Color.WHITE);
 		this.setPreferredSize(new Dimension(1600,900));
@@ -112,6 +120,9 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	}
 
 	// implements Observer
+	/**
+	 * update function given from observer to repaint the canvas
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		// Not exactly how MVC works, but similar.
@@ -120,6 +131,9 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	
 	// EventListenerMethods below
 	// MouseMotionListener below
+	/**
+	 * mouse moved function used for polyline function
+	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// for Polyline
@@ -127,7 +141,9 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 			shapeManipulator.mouseMoved(e);
 		}
 	}
-	
+	/**
+	 * checks when mouse is dragged and updated accordingly
+	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		LOG.fine("Dragged [" + e.getX() + ", " + e.getY() + "]...");
@@ -138,6 +154,9 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 	}
 
 	// MouseListener below
+	/**
+	 * checks when mouse is clicked and updates accordingly
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		LOG.fine("Clicked");
@@ -146,6 +165,9 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		}
 	}
 	
+	/**
+	 * checks when mouse is pressed and updates accordingly
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		LOG.fine("Pressed...");
@@ -154,6 +176,9 @@ public class PaintPanel extends JPanel implements Observer, MouseMotionListener,
 		}
 	}
 
+	/**
+	 * checks when mouse is released and updates accordingly
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		LOG.fine("Released...");

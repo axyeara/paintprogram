@@ -3,7 +3,11 @@ package ca.utoronto.utm.paint;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * This is the main class of the program and handles executing the program and creates the MVC pattern 
+ * @author repo_a2_realSlimShady
+ *
+ */
 public class Paint {
 	public static void main(String[] args) {
 		// log to help debug (similar to sysout, but better)
@@ -38,7 +42,9 @@ public class Paint {
 
 	private PaintModel model; // Model
 	private View view; // View+Controller
-
+	/**
+	 * This constructor handles creating the MVC components and adds them together 
+	 */
 	public Paint() {
 		// Create MVC components and hook them together
 

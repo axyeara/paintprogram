@@ -14,7 +14,7 @@ import ca.utoronto.utm.paint.render.DrawingCommand;
  * 
  * My understanding of a part of Bug 2.4 is creating an instance of the DrawingCommand of 
  * a shape and storing it into the List in PaintModel.
- * @author momo
+ * @author repo_a2_realSlimShady
  *
  */
 public class PaintModel extends Observable {
@@ -70,6 +70,9 @@ public class PaintModel extends Observable {
 	
 	//------------------------------------------------
 	// Undo Redo
+	/**
+	 * To undo the last placed shape on the stack
+	 */
 	public void undo()
 	{
 		if (placedDrawingCommands.isEmpty()) {
@@ -84,7 +87,9 @@ public class PaintModel extends Observable {
 
 		changed(); // notify observers
 	}
-
+	/**
+	 * If a shape has been removed from the stack by calling the undo function then it will be placed back if this function is called
+	 */
 	public void redo()
 	{
 		if (undoneDrawingCommands.isEmpty()) {
