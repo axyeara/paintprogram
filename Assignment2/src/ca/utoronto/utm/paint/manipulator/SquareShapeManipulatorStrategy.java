@@ -68,17 +68,25 @@ public class SquareShapeManipulatorStrategy extends ShapeManipulatorStrategyTemp
 		// set height
 		int height = Math.abs(dragStartOrigin.getY() - e.getY());
 		this.square.setHeight(height);
+		
+		// make width and height the same length
+		int squareLength = Math.max(width, height);
+		
 		// set renderTopLeftP x
-		if (e.getX() > renderTopLeftP.getX()) {
+		if (e.getX() > dragStartOrigin.getX()) {
 			renderTopLeftP.setX(dragStartOrigin.getX());
 		} else {
-			renderTopLeftP.setX(e.getX());
+			// calculate top x of square by squareLength
+			int topLeftX = dragStartOrigin.getX() - squareLength;
+			renderTopLeftP.setX(topLeftX);
 		}
 		// set renderTopLeftP y
-		if (e.getY() > renderTopLeftP.getY()) {
+		if (e.getY() > dragStartOrigin.getY()) {
 			renderTopLeftP.setY(dragStartOrigin.getY());
 		} else {
-			renderTopLeftP.setY(e.getY());
+			// calculate top y of square by squareLength
+			int topLeftY = dragStartOrigin.getY() - squareLength;
+			renderTopLeftP.setY(topLeftY);
 		}
 	}
 

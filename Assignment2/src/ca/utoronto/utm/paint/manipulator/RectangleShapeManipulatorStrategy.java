@@ -63,13 +63,13 @@ public class RectangleShapeManipulatorStrategy extends ShapeManipulatorStrategyT
 		int height = Math.abs(dragStartOrigin.getY() - e.getY());
 		this.rect.setHeight(height);
 		// set renderTopLeftP x
-		if (e.getX() > renderTopLeftP.getX()) {
+		if (e.getX() > dragStartOrigin.getX()) {
 			renderTopLeftP.setX(dragStartOrigin.getX());
 		} else {
 			renderTopLeftP.setX(e.getX());
 		}
 		// set renderTopLeftP y
-		if (e.getY() > renderTopLeftP.getY()) {
+		if (e.getY() > dragStartOrigin.getY()) {
 			renderTopLeftP.setY(dragStartOrigin.getY());
 		} else {
 			renderTopLeftP.setY(e.getY());
