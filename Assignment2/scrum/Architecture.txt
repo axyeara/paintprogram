@@ -38,11 +38,18 @@ DESIGN PATTERNS USED
 	discuss it below. Only add design patterns if they simplify and improve
 	the code. I see at least two that would greatly improve code. 
 		
-	Strategy:
-	Command: 
+	Strategy: The strategy design pattern was selected in order to create shapes instances. More
+	specifically, the ShapeManipulatorStrategies are used to create instances of each shape (according 
+	to the mouse events) and putting these on the PaintModel command stack.
+	Command: This design pattern was used in order to set specific attributes to the
+	shapes that are being built. Every time a new color or line thickness is chosen using
+	their respective panels, the rendering parameters for each shape are set and that shapes
+	are drawn accordingly.
 	Singleton:
 	Composite:
-	Factory:
+	Factory: This design pattern was used to create different strategies for the creation of different shapes
+	in the PaintPanel. More specifically, if the user were to choose a shape in the ShapeChooserPanel, the factory would 
+	be in charge of creating the strategy that corresponds to the creation of that shape.
 	Builder:
 	Observer/Observable:
 	... (any others you find useful) ...
