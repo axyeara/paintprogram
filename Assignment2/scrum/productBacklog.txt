@@ -583,6 +583,36 @@ AS A     : user
 I WANT   : To have a move accessible fill chooser panel than the previously implemented one.
 SO THAT  : I can draw choose fill state of a shape directly without having to open a menu item.
 --------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 16:debragaf
+NAME     : Oval tool
+OWNER    : Filip de Braga
+PRIORITY : medium
+ESTIMATE : 2 hours
+AS A     : user
+I WANT   : to be able to draw ovals not on a fixed radius
+SO THAT  : I have more control over the shapes I can draw
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 17:debragaf
+NAME     : Fill/Outline Icons
+OWNER    : Filip de Braga
+PRIORITY : low
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to have icons replace all buttons left, including fill/outline
+SO THAT  : the GUI looks more presentable
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 18:debragaf
+NAME     : Triangle tool
+OWNER    : Filip de Braga
+PRIORITY : medium
+ESTIMATE : 2 hours
+AS A     : user
+I WANT   : to be able to draw right angled triangles
+SO THAT  : I have more control over the shapes I can draw
+--------------------------------------------------------------------------
 
 
 # OMITTED USER STORIES/BUGS BELOW   ###########################################
