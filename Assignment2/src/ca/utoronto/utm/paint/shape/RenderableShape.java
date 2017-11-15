@@ -1,6 +1,8 @@
 package ca.utoronto.utm.paint.shape;
 
 /**
+ * 
+ * This interface sets variables for each shape that is constructed so the ShapeFactory has access to the shapes.
  * We name this RenderableShape for distinction since awt package has Shape.
  */
 public interface RenderableShape {
