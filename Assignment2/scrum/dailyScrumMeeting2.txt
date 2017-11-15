@@ -141,5 +141,6 @@ Nov 13, 2017
 	
 Nov 14, 2017
 	Yesterday : Fixed new bugs and cleaned up code.
-	Today     : Submit Assignment 2 part 2 by 11:59pm.
+	Today     : Check for unnecessary code and packages.
+				Submit Assignment 2 part 2 by 11:59pm.
 	Obstacles : 
