@@ -241,3 +241,55 @@ AS A     : user
 I WANT   : To have a more aesthetically pleasing User Interface
 SO THAT  : The program is more appealing to users.
 --------------------------------------------------------------------------
+sprint 4 November 11, 2017
+
+--------------------------------------------------------------------------
+TYPE     : USER STORY 10a:debragaf
+NAME     : Icons for new code base
+OWNER    : Filip
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to see new icons formatted and placed correctly.
+SO THAT  : I can use a more visually appealing program.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 10b:debragaf
+NAME     : Scroll bar for new code base
+OWNER    : Filip
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to be able to scroll my paintable.
+SO THAT  : I can use a more visually appealing program, and to create more paintable area.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 10c:debragaf
+NAME     : Polyline reimplementation(double click to stop polyline)
+OWNER    : Filip
+PRIORITY : high
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to be able to use the polyline tool and stop the current polyline by double clicking
+SO THAT  : I can draw straight lines connecting points and choose when I want to stop drawing connecting straight lines.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 16:debragaf
+NAME     : Oval tool
+OWNER    : Filip de Braga
+PRIORITY : medium
+ESTIMATE : 2 hour
+AS A     : user
+I WANT   : to be able to draw a more "dynamic" circle, like an oval.
+SO THAT  : I have more flexibility in the things I can draw.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+TYPE     : USER STORY 17:debragaf
+NAME     : Icons for fill/outline
+OWNER    : Filip de Braga
+PRIORITY : low
+ESTIMATE : 1 hour
+AS A     : user
+I WANT   : to be able to use a icons in the place of buttons for fill/outline
+SO THAT  : the program looks nicer
+--------------------------------------------------------------------------
