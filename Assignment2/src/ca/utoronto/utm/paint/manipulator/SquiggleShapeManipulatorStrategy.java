@@ -1,6 +1,16 @@
 package ca.utoronto.utm.paint.manipulator;
 
 import java.awt.event.MouseEvent;
+
+/**
+ * Concrete class for ShareManipulatorStrategy (Squiggle).
+ * Contains the drawing parameters for squiggle and specifies
+ * the action taken with mouseEvents.
+ * 
+ * 
+ * @author RealSlimShady
+ *
+ */
 import java.util.ArrayList;
 import java.util.logging.Logger;
 

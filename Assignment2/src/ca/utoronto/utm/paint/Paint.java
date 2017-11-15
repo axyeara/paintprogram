@@ -30,8 +30,8 @@ public class Paint {
 
 		// Set log level
 		Logger logger = Logger.getLogger(Paint.class.getPackage().getName());
-		logger.setLevel(Level.FINE);
-//		logger.setLevel(Level.WARNING);		// set to this when submitting
+//		logger.setLevel(Level.FINE);
+		logger.setLevel(Level.WARNING);		// set to this when submitting
 		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

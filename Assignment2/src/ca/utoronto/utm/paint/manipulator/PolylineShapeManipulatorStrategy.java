@@ -9,6 +9,15 @@ import ca.utoronto.utm.paint.render.PolylineDrawingCommand;
 import ca.utoronto.utm.paint.shape.Point;
 import ca.utoronto.utm.paint.shape.Polyline;
 
+/**
+ * Concrete class for ShareManipulatorStrategy (Polyline).
+ * Contains the drawing parameters for polyline and specifies
+ * the action taken with mouseEvents.
+ * 
+ * 
+ * @author RealSlimShady
+ *
+ */
 public class PolylineShapeManipulatorStrategy extends ShapeManipulatorStrategyTemplate implements ShapeManipulatorStrategy {
 	
 	private static final Logger LOG = Logger.getLogger(PolylineShapeManipulatorStrategy.class.getName());

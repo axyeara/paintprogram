@@ -1,6 +1,16 @@
 package ca.utoronto.utm.paint.manipulator;
 
 import java.awt.event.MouseEvent;
+
+/**
+ * Concrete class for ShareManipulatorStrategy (Rectangle).
+ * Contains the drawing parameters for rectangle and specifies
+ * the action taken with mouseEvents.
+ * 
+ * 
+ * @author RealSlimShady
+ *
+ */
 import java.util.logging.Logger;
 
 import ca.utoronto.utm.paint.PaintPanel;

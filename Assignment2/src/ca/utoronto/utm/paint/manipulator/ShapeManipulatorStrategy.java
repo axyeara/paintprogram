@@ -16,7 +16,7 @@ import ca.utoronto.utm.paint.render.DrawingCommand;
  * Design note: 
  * 1: employed Template Method Pattern: ShapeManipulatorStrategyTemplate
  * 
- * @author momo
+ * @author RealSlimShady
  *
  */
 public interface ShapeManipulatorStrategy
@@ -28,10 +28,10 @@ public interface ShapeManipulatorStrategy
 	void reset();
 	
 	/**
-	 * Manipulator holds drawingcommand for rubberband 
-	 * this is different from placed drawingcommand
+	 * Manipulator holds DrawingCommand for rubberband 
+	 * this is different from placed DrawingCommand
 	 * 
-	 * this is called from paintpanel.paintcomponent method
+	 * this is called from PaintPanel.paintComponent method
 	 *  
 	 * @return DrawingCommand object for the shape of the concrete class
 	 */

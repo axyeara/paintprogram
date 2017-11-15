@@ -8,6 +8,15 @@ import ca.utoronto.utm.paint.render.OvalDrawingCommand;
 import ca.utoronto.utm.paint.shape.Oval;
 import ca.utoronto.utm.paint.shape.Point;
 
+/**
+ * Concrete class for ShareManipulatorStrategy (Oval).
+ * Contains the drawing parameters for oval and specifies
+ * the action taken with mouseEvents.
+ * 
+ * 
+ * @author RealSlimShady
+ *
+ */
 public class OvalShapeManipulatorStrategy extends ShapeManipulatorStrategyTemplate implements ShapeManipulatorStrategy {
 	
 	private static final Logger LOG = Logger.getLogger(OvalShapeManipulatorStrategy.class.getName());

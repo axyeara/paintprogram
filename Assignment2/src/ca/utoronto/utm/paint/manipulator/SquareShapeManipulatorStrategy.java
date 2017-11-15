@@ -8,6 +8,15 @@ import ca.utoronto.utm.paint.render.SquareDrawingCommand;
 import ca.utoronto.utm.paint.shape.Point;
 import ca.utoronto.utm.paint.shape.Square;
 
+/**
+ * Concrete class for ShareManipulatorStrategy (Square).
+ * Contains the drawing parameters for square and specifies
+ * the action taken with mouseEvents.
+ * 
+ * 
+ * @author RealSlimShady
+ *
+ */
 public class SquareShapeManipulatorStrategy extends ShapeManipulatorStrategyTemplate implements ShapeManipulatorStrategy {
 	
 	private static final Logger LOG = Logger.getLogger(SquareShapeManipulatorStrategy.class.getName());

@@ -8,6 +8,15 @@ import ca.utoronto.utm.paint.render.CircleDrawingCommand;
 import ca.utoronto.utm.paint.shape.Circle;
 import ca.utoronto.utm.paint.shape.Point;
 
+/**
+ * Concrete class for ShareManipulatorStrategy (Circle).
+ * Contains the drawing parameters for circle and specifies
+ * the action taken with mouseEvents.
+ * 
+ * 
+ * @author RealSlimShady
+ *
+ */
 public class CircleShapeManipulatorStrategy extends ShapeManipulatorStrategyTemplate implements ShapeManipulatorStrategy {
 	
 	private static final Logger LOG = Logger.getLogger(CircleShapeManipulatorStrategy.class.getName());

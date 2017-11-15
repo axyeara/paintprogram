@@ -8,6 +8,15 @@ import ca.utoronto.utm.paint.render.TriangleDrawingCommand;
 import ca.utoronto.utm.paint.shape.Point;
 import ca.utoronto.utm.paint.shape.Triangle;
 
+/**
+ * Concrete class for ShareManipulatorStrategy (Triangle).
+ * Contains the drawing parameters for triangle and specifies
+ * the action taken with mouseEvents.
+ * 
+ * 
+ * @author RealSlimShady
+ *
+ */
 public class TriangleShapeManipulatorStrategy extends ShapeManipulatorStrategyTemplate implements ShapeManipulatorStrategy {
 	
 	private static final Logger LOG = Logger.getLogger(TriangleShapeManipulatorStrategy.class.getName());
