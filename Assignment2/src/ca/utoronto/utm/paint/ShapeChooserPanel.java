@@ -39,10 +39,13 @@ class ShapeChooserPanel extends JPanel implements ActionListener {
                 new ImageIcon(getClass().getClassLoader().getResource("images/rectangle.png")),
         new ImageIcon(getClass().getClassLoader().getResource("images/square.png")),
         new ImageIcon(getClass().getClassLoader().getResource("images/squiggle.png")),
-        new ImageIcon(getClass().getClassLoader().getResource("images/polyline.png"))
+        new ImageIcon(getClass().getClassLoader().getResource("images/polyline.png")),
+//        new ImageIcon(getClass().getClassLoader().getResource("images/oval.png")),
+        new ImageIcon(getClass().getClassLoader().getResource("images/triangle.png"))
         };
 		
-		String[] buttonLabels = {RenderableShape.LABEL_CIRCLE, RenderableShape.LABEL_RECTANGLE, RenderableShape.LABEL_SQUARE, RenderableShape.LABEL_SQUIGGLE, RenderableShape.LABEL_POLYLINE};
+//		String[] buttonLabels = {RenderableShape.LABEL_CIRCLE, RenderableShape.LABEL_RECTANGLE, RenderableShape.LABEL_SQUARE, RenderableShape.LABEL_SQUIGGLE, RenderableShape.LABEL_POLYLINE, RenderableShape.LABEL_OVAL, RenderableShape.LABEL_TRIANGLE};
+		String[] buttonLabels = {RenderableShape.LABEL_CIRCLE, RenderableShape.LABEL_RECTANGLE, RenderableShape.LABEL_SQUARE, RenderableShape.LABEL_SQUIGGLE, RenderableShape.LABEL_POLYLINE, RenderableShape.LABEL_TRIANGLE};
 		this.setLayout(new GridLayout(buttonIcons.length, 1));
 		this.setLayout(new GridLayout(buttonLabels.length, 1));
 		int index = 0;

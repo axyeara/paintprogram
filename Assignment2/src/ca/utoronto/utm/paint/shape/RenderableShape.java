@@ -11,5 +11,7 @@ public interface RenderableShape {
 	String LABEL_SQUARE    = "Square";
 	String LABEL_SQUIGGLE  = "Squiggle";
 	String LABEL_POLYLINE  = "Polyline";
+	String LABEL_OVAL      = "Oval";
+	String LABEL_TRIANGLE  = "Triangle";
 
 }
